@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Free Counselling | PJSM</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="icon"
+          type="image/x-icon"
+          href="favicon.ico">
+
+
+    <style>
+
+        /* =====================================================
+           COUNSELLING PAGE
+           ===================================================== */
+
+        .counselling-page {
+
+            min-height: calc(100vh - 80px);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 80px 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #172A3A,
+                    #0b1824
+                );
+
+            overflow: hidden;
+        }
+
+
+        .counselling-box {
+
+            width: 100%;
+
+            max-width: 700px;
+
+            padding: 55px 45px;
+
+            text-align: center;
+
+            background:
+                rgba(255,255,255,.08);
+
+            border:
+                1px solid
+                rgba(255,255,255,.15);
+
+            border-radius: 18px;
+
+            backdrop-filter: blur(15px);
+
+            -webkit-backdrop-filter: blur(15px);
+
+            box-shadow:
+                0 25px 70px
+                rgba(0,0,0,.3);
+        }
+
+
+        .counselling-box .eyebrow {
+
+            color: #e86f2e;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            letter-spacing: 3px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 18px;
+        }
+
+
+        .counselling-box h1 {
+
+            color: #ffffff;
+
+            font-size:
+                clamp(38px, 6vw, 60px);
+
+            line-height: 1.1;
+
+            margin-bottom: 20px;
+        }
+
+
+        .counselling-box p {
+
+            color:
+                rgba(255,255,255,.75);
+
+            font-size: 16px;
+
+            line-height: 1.7;
+
+            max-width: 550px;
+
+            margin:
+                0 auto 32px;
+        }
+
+
+        .counselling-btn {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 15px 28px;
+
+            background: #e86f2e;
+
+            color: #ffffff !important;
+
+            text-decoration: none;
+
+            font-weight: 700;
+
+            border-radius: 6px;
+
+            transition:
+                transform .3s ease,
+                box-shadow .3s ease;
+        }
+
+
+        .counselling-btn:hover {
+
+            transform:
+                translateY(-4px);
+
+            box-shadow:
+                0 15px 35px
+                rgba(232,111,46,.35);
+
+            color: #ffffff !important;
+        }
+
+
+        .back-home {
+
+            display: block;
+
+            margin-top: 20px;
+
+            color:
+                rgba(255,255,255,.55);
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            transition:
+                color .3s ease;
+        }
+
+
+        .back-home:hover {
+
+            color: #e86f2e;
+        }
+
+
+        /* =====================================================
+           MOBILE COUNSELLING
+           ===================================================== */
+
+        @media (max-width: 700px) {
+
+            .counselling-page {
+
+                min-height: calc(100vh - 70px);
+
+                padding:
+                    50px 16px;
+            }
+
+
+            .counselling-box {
+
+                width: 100%;
+
+                padding:
+                    40px 22px;
+
+                border-radius: 18px;
+            }
+
+
+            .counselling-box .eyebrow {
+
+                font-size: 10px;
+
+                letter-spacing: 2px;
+
+                line-height: 1.5;
+
+                margin-bottom: 15px;
+            }
+
+
+            .counselling-box h1 {
+
+                font-size:
+                    clamp(34px, 10vw, 48px);
+
+                line-height: 1.08;
+            }
+
+
+            .counselling-box p {
+
+                font-size: 14px;
+
+                line-height: 1.65;
+
+                margin-bottom: 26px;
+            }
+
+
+            .counselling-btn {
+
+                width: 100%;
+
+                padding:
+                    14px 18px;
+
+                font-size: 14px;
+            }
+
+
+            .back-home {
+
+                font-size: 12px;
+            }
+
+        }
+
+
+        /* =====================================================
+           SMALL PHONES
+           ===================================================== */
+
+        @media (max-width: 380px) {
+
+            .counselling-page {
+
+                padding:
+                    40px 12px;
+            }
+
+
+            .counselling-box {
+
+                padding:
+                    32px 17px;
+            }
+
+
+            .counselling-box h1 {
+
+                font-size: 32px;
+            }
+
+
+            .counselling-box p {
+
+                font-size: 13px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER / NAVIGATION
+     ===================================================== -->
+
+<header class="header">
+
+    <div class="container nav-container">
+
+
+        <a href="first.html"
+           class="logo">
+
+            <span class="plane-logo">
+                ✈
+            </span>
+
+            <span style="color:#ffffff !important;">
+                PJSM
+            </span>
+
+        </a>
+
+
+        <nav class="navbar"
+             id="navbar">
+
+            <a href="first.html">
+                Home
+            </a>
+
+            <a href="destinations.html">
+                Destinations
+            </a>
+
+            <a href="services.html">
+                Services
+            </a>
+
+            <a href="courses.html">
+                Courses
+            </a>
+
+            <a href="process.html">
+                Process
+            </a>
+
+            <a href="success-stories.html">
+                Success Stories
+            </a>
+
+            <a href="contact.html"
+               class="nav-button">
+
+                Free Counselling
+
+            </a>
+
+        </nav>
+
+
+        <button
+            class="menu-btn"
+            id="menuBtn"
+            type="button"
+            aria-label="Open navigation"
+            aria-expanded="false">
+
+            ☰
+
+        </button>
+
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     COUNSELLING CONTENT
+     ===================================================== -->
+
+<section class="counselling-page">
+
+    <div class="counselling-box">
+
+
+        <div class="eyebrow">
+
+            PJSM Overseas Consultancy
+
+        </div>
+
+
+        <h1>
+
+            Start Your Journey
+
+        </h1>
+
+
+        <p>
+
+            Get personalised guidance from our experts
+            and find the right country, university and
+            course for your future.
+
+        </p>
+
+
+        <a href="first.html#contact"
+           class="counselling-btn">
+
+            Get Free Counselling →
+
+        </a>
+
+
+        <a href="first.html"
+           class="back-home">
+
+            ← Back to Home
+
+        </a>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
+<footer class="pjsm-footer">
+
+    <div class="pjsm-footer-container">
+
+        <!-- BRAND -->
+        <div class="pjsm-footer-box pjsm-footer-about">
+
+            <a href="first.html" class="pjsm-footer-logo">
+                <span class="pjsm-footer-plane">✈</span>
+
+                <span>
+                    PJSM
+                    <small>Education</small>
+                </span>
+            </a>
+
+            <p>
+                Helping students turn their study-abroad dreams
+                into successful international futures through
+                personalised guidance and trusted education
+                consultancy.
+            </p>
+
+            <div class="pjsm-social-links">
+
+                <a href="#" aria-label="Facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+
+                <a href="#" aria-label="LinkedIn">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+
+                <a href="#" aria-label="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+
+                <a href="#" aria-label="YouTube">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- QUICK LINKS -->
+        <div class="pjsm-footer-box">
+
+            <h3>Quick Links</h3>
+
+            <ul>
+                <li><a href="first.html">Home</a></li>
+                <li><a href="destinations.html">Destinations</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="process.html">Our Process</a></li>
+                <li><a href="success-stories.html">Success Stories</a></li>
+            </ul>
+
+        </div>
+
+
+        <!-- DESTINATIONS -->
+        <div class="pjsm-footer-box">
+
+            <h3>Study Destinations</h3>
+
+            <ul>
+                <li><a href="destinations.html">Australia</a></li>
+                <li><a href="destinations.html">United Kingdom</a></li>
+                <li><a href="destinations.html">USA</a></li>
+                <li><a href="destinations.html">Canada</a></li>
+                <li><a href="destinations.html">Germany</a></li>
+                <li><a href="destinations.html">Ireland</a></li>
+            </ul>
+
+        </div>
+
+
+        <!-- CONTACT -->
+        <div class="pjsm-footer-box pjsm-footer-contact">
+
+            <h3>Get In Touch</h3>
+
+            <div class="pjsm-contact-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Bangalore, India</span>
+            </div>
+
+            <div class="pjsm-contact-item">
+                <i class="fa-solid fa-phone"></i>
+                <a href="tel:+919121398010">
+                    +91 9121398010
+                </a>
+            </div>
+
+            <div class="pjsm-contact-item">
+                <i class="fa-solid fa-envelope"></i>
+                <a href="mailto:PJSMconsultancy@gmail.com">
+                    PJSMconsultancy@gmail.com
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- BOTTOM -->
+    <div class="pjsm-footer-bottom">
+
+        <div class="pjsm-footer-bottom-inner">
+
+            <p>
+                © 2026 PJSM Education. All rights reserved.
+            </p>
+
+            <div class="pjsm-footer-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <span>•</span>
+                <a href="#">Terms & Conditions</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>
