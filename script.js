@@ -309,7 +309,7 @@ if (form) {
 
     form.addEventListener(
         "submit",
-        function (event) {
+        async function (event) {
 
             event.preventDefault();
 
@@ -325,6 +325,9 @@ if (form) {
 
             const destinationField =
                 document.getElementById("destination");
+
+            const messageField =
+                document.getElementById("message");
 
 
             const name =
@@ -347,6 +350,11 @@ if (form) {
                 destinationField.value.trim() :
                 "";
 
+            const message =
+                messageField ?
+                messageField.value.trim() :
+                "";
+
 
             if (
                 !name ||
@@ -367,21 +375,99 @@ if (form) {
             }
 
 
+            const requestData = {
+
+                name: name,
+
+                email: email,
+
+                phone: phone,
+
+                destination: destination,
+
+                message: message
+
+            };
+
+
             if (formMessage) {
 
                 formMessage.textContent =
-                    "Thank you! Our counsellor will contact you shortly.";
+                    "Submitting your request...";
 
             }
 
 
-            form.reset();
+            try {
+
+                const response =
+                    await fetch(
+                        "http://localhost:8080/api/counselling",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body:
+                                JSON.stringify(requestData)
+                        }
+                    );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Failed to submit counselling request."
+                    );
+
+                }
+
+
+                const data =
+                    await response.json();
+
+
+                console.log(
+                    "Counselling request submitted:",
+                    data
+                );
+
+
+                if (formMessage) {
+
+                    formMessage.textContent =
+                        "Thank you! Our counsellor will contact you shortly.";
+
+                }
+
+
+                form.reset();
+
+
+            } catch (error) {
+
+                console.error(
+                    "Error submitting counselling request:",
+                    error
+                );
+
+
+                if (formMessage) {
+
+                    formMessage.textContent =
+                        "Unable to submit your request. Please try again.";
+
+                }
+
+            }
 
         }
     );
 
 }
-
 
 /* =========================================
    SCROLL REVEAL
