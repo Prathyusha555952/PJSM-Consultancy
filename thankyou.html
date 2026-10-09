@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Thank You | PJSM</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<!-- IMPORTANT: do NOT add style.css to this page. Its rules can override the
+     mobile layout below. All styling for this page is in this one <style> block. -->
+
+<style>
+  /* All class names start with "ty-" so nothing from other CSS files can clash */
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; }
+
+  .ty-page, .ty-page * { box-sizing: border-box; }
+
+  .ty-page {
+    --navy: #172b3a;
+    --orange: #f4772b;
+    --orange-dark: #dd621b;
+    --muted: #687786;
+    --line: #d9e0e7;
+    --bg: #f5f7fa;
+    --card: #ffffff;
+    --text: #172b3a;
+    --wa: #25d366;
+    min-height: 100vh;
+    min-height: 100dvh;
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ---------- BASE = PHONE (works from 320px up) ---------- */
+
+  .ty-hero {
+    background: var(--navy);
+    color: #fff;
+    text-align: center;
+    padding: 36px 16px 96px;
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
+  }
+
+  .ty-tick {
+    width: 64px; height: 64px;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    background: var(--orange);
+    display: grid; place-items: center;
+    font-size: 28px;
+    box-shadow: 0 0 0 7px rgba(244,119,43,.22);
+    animation: ty-pop .5s ease-out both;
+  }
+  @keyframes ty-pop { from { transform: scale(.4); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+  .ty-hero h1 {
+    margin: 0 0 8px;
+    font-size: clamp(1.4rem, 6vw, 2.4rem);
+    line-height: 1.25;
+    color: #fff;
+  }
+  .ty-hero p {
+    margin: 0 auto;
+    max-width: 44ch;
+    font-size: clamp(.92rem, 3.8vw, 1.05rem);
+    color: #c5d2dc;
+  }
+
+  .ty-card {
+    width: auto;
+    max-width: 760px;
+    margin: -64px 12px 32px;
+    padding: 22px 16px;
+    background: var(--card);
+    border-radius: 16px;
+    box-shadow: 0 16px 40px rgba(23,43,58,.15);
+    position: relative;
+  }
+
+  .ty-picked {
+    display: none;
+    margin: 0 0 22px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: #fff6ef;
+    border-left: 4px solid var(--orange);
+    font-weight: 600;
+    font-size: .95rem;
+    overflow-wrap: anywhere;
+  }
+  .ty-picked.ty-show { display: block; }
+
+  .ty-card h2 { margin: 0 0 16px; font-size: 1.1rem; color: var(--text); }
+
+  .ty-steps { list-style: none; margin: 0 0 26px; padding: 0; display: grid; gap: 14px; }
+  .ty-steps li { display: flex; gap: 12px; align-items: flex-start; }
+  .ty-steps b {
+    flex: 0 0 auto;
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: var(--navy); color: #fff;
+    display: grid; place-items: center;
+    font-size: .85rem;
+  }
+  .ty-steps strong { display: block; font-size: .96rem; }
+  .ty-steps span { display: block; color: var(--muted); font-size: .9rem; }
+
+  .ty-contact { border-top: 1px solid var(--line); padding-top: 22px; }
+  .ty-contact p { margin: 0 0 16px; color: var(--muted); font-size: .95rem; }
+
+  .ty-buttons { display: grid; grid-template-columns: 1fr; gap: 12px; }
+  .ty-buttons a {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    min-height: 54px;
+    padding: 14px 12px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: .98rem;
+    text-align: center;
+    overflow-wrap: anywhere;
+    transition: transform .15s, box-shadow .15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .ty-buttons a:focus-visible { outline: 3px solid var(--navy); outline-offset: 3px; }
+
+  .ty-wa { background: var(--wa); color: #fff; box-shadow: 0 8px 18px rgba(37,211,102,.3); }
+  .ty-wa i { font-size: 1.5rem; }
+  .ty-mail { background: #fff; color: var(--navy); border: 2px solid var(--navy); }
+  .ty-mail i { color: var(--orange); font-size: 1.2rem; }
+
+  .ty-home {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    padding: 12px;
+    color: var(--orange-dark);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .ty-home:hover { text-decoration: underline; }
+
+  /* ---------- 400px and up: standard phones (iPhone 12/13/14, Pixel) ---------- */
+  @media (min-width: 400px) {
+    .ty-hero { padding: 40px 18px 104px; }
+    .ty-tick { width: 70px; height: 70px; font-size: 31px; }
+    .ty-card { margin: -68px 14px 36px; padding: 24px 20px; }
+    .ty-steps b { width: 32px; height: 32px; }
+  }
+
+  /* ---------- 600px and up: big phones, small tablets ---------- */
+  @media (min-width: 600px) {
+    .ty-hero { padding: 52px 24px 120px; }
+    .ty-tick { width: 84px; height: 84px; font-size: 38px; box-shadow: 0 0 0 10px rgba(244,119,43,.2); margin-bottom: 20px; }
+    .ty-card { margin: -80px auto 56px; padding: 34px; border-radius: 18px; }
+    .ty-card h2 { font-size: 1.2rem; }
+    .ty-steps { gap: 18px; margin-bottom: 32px; }
+    .ty-steps b { width: 34px; height: 34px; font-size: .95rem; }
+    .ty-steps li { gap: 16px; }
+    .ty-buttons { grid-template-columns: 1fr 1fr; gap: 14px; }
+    .ty-buttons a:hover { transform: translateY(-2px); }
+  }
+
+  /* ---------- Phones turned sideways (short screens) ---------- */
+  @media (max-height: 500px) and (orientation: landscape) {
+    .ty-hero { padding: 22px 20px 76px; }
+    .ty-tick { width: 52px; height: 52px; font-size: 22px; margin-bottom: 8px; box-shadow: 0 0 0 5px rgba(244,119,43,.2); }
+    .ty-hero h1 { font-size: 1.35rem; }
+    .ty-hero p { font-size: .88rem; }
+    .ty-card { margin: -46px auto 24px; max-width: 720px; padding: 20px 24px; }
+    .ty-buttons { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ---------- Dark mode (follows the device setting) ---------- */
+  @media (prefers-color-scheme: dark) {
+    .ty-page { --bg: #0e1a24; --card: #172b3a; --text: #e8eef3; --muted: #a9bac7; --line: #2b4458; }
+    .ty-hero { background: #10202c; }
+    .ty-card { border: 1px solid #243b4d; box-shadow: 0 16px 40px rgba(0,0,0,.45); }
+    .ty-card h2, .ty-steps strong { color: #fff; }
+    .ty-steps b { background: var(--orange); }
+    .ty-picked { background: rgba(244,119,43,.14); color: #fff; }
+    .ty-mail { background: transparent; color: #fff; border-color: #5a7388; }
+    .ty-home { color: #ff9a5c; }
+  }
+
+  /* ---------- Touch screens and reduced motion ---------- */
+  @media (hover: none) { .ty-buttons a:hover { transform: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    .ty-tick { animation: none; }
+    .ty-buttons a { transition: none; }
+  }
+
+  /* ---------- Print ---------- */
+  @media print {
+    .ty-page { background: #fff; color: #000; }
+    .ty-hero { background: #fff; color: #000; padding: 16px 0; }
+    .ty-hero h1, .ty-hero p { color: #000; }
+    .ty-card { margin: 0; box-shadow: none; border: 1px solid #ccc; }
+    .ty-home { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="ty-page">
+
+  <!-- Keep your existing PJSM navbar here -->
+
+  <header class="ty-hero">
+    <div class="ty-tick"><i class="fa-solid fa-check" aria-hidden="true"></i></div>
+    <h1>Thank you for choosing us</h1>
+    <p>We have received your request. Our counselling team will get back to you shortly.</p>
+  </header>
+
+  <main class="ty-card">
+    <p class="ty-picked" id="picked"></p>
+
+    <h2>What happens next</h2>
+    <ol class="ty-steps">
+      <li><b>1</b><div><strong>We review your details</strong><span>Our team looks at your profile and what you asked for.</span></div></li>
+      <li><b>2</b><div><strong>A counsellor contacts you</strong><span>We reach out by phone, WhatsApp or email to confirm a time.</span></div></li>
+      <li><b>3</b><div><strong>Your free session</strong><span>We discuss your options and answer your questions.</span></div></li>
+    </ol>
+
+    <section class="ty-contact">
+      <h2>Feel free to contact us</h2>
+      <p>Prefer to talk right now? Reach us directly.</p>
+      <div class="ty-buttons">
+        <!-- Replace 91XXXXXXXXXX with your number: country code + number, no + or spaces -->
+        <a class="ty-wa" id="waLink" href="https://wa.me/9121398010" target="_blank" rel="noopener">
+          <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Chat on WhatsApp
+        </a>
+        <!-- Replace with your email -->
+        <a class="ty-mail" href="mailto:mattiguntaprathyusha@gmail.com">
+          <i class="fa-solid fa-envelope" aria-hidden="true"></i> mattiguntaprathyusha@gmail.com
+        </a>
+      </div>
+    </section>
+
+    <a class="ty-home" href="./first.html">Back to home</a>
+  </main>
+
+  <!-- Keep your existing PJSM footer here -->
+
+</div>
+
+<script>
+(function () {
+  var service = '';
+  try { service = sessionStorage.getItem('counsel_service') || ''; } catch (e) {}
+  if (service) {
+    var p = document.getElementById('picked');
+    p.textContent = 'Selected service: ' + service;
+    p.classList.add('ty-show');
+    var wa = document.getElementById('waLink');
+    wa.href += '?text=' + encodeURIComponent('Hi, I would like help with: ' + service);
+  }
+})();
+</script>
+</body>
+</html>

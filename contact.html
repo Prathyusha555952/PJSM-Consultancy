@@ -1,576 +1,371 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>Free Counselling | PJSM</title>
-
-    <link rel="stylesheet"
-          href="style.css">
-
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-    <link rel="icon"
-          type="image/x-icon"
-          href="favicon.ico">
-
-
-    <style>
-
-        /* =====================================================
-           COUNSELLING PAGE
-           ===================================================== */
-
-        .counselling-page {
-
-            min-height: calc(100vh - 80px);
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            padding: 80px 20px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #172A3A,
-                    #0b1824
-                );
-
-            overflow: hidden;
-        }
-
-
-        .counselling-box {
-
-            width: 100%;
-
-            max-width: 700px;
-
-            padding: 55px 45px;
-
-            text-align: center;
-
-            background:
-                rgba(255,255,255,.08);
-
-            border:
-                1px solid
-                rgba(255,255,255,.15);
-
-            border-radius: 18px;
-
-            backdrop-filter: blur(15px);
-
-            -webkit-backdrop-filter: blur(15px);
-
-            box-shadow:
-                0 25px 70px
-                rgba(0,0,0,.3);
-        }
-
-
-        .counselling-box .eyebrow {
-
-            color: #e86f2e;
-
-            font-size: 12px;
-
-            font-weight: 700;
-
-            letter-spacing: 3px;
-
-            text-transform: uppercase;
-
-            margin-bottom: 18px;
-        }
-
-
-        .counselling-box h1 {
-
-            color: #ffffff;
-
-            font-size:
-                clamp(38px, 6vw, 60px);
-
-            line-height: 1.1;
-
-            margin-bottom: 20px;
-        }
-
-
-        .counselling-box p {
-
-            color:
-                rgba(255,255,255,.75);
-
-            font-size: 16px;
-
-            line-height: 1.7;
-
-            max-width: 550px;
-
-            margin:
-                0 auto 32px;
-        }
-
-
-        .counselling-btn {
-
-            display: inline-flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            padding: 15px 28px;
-
-            background: #e86f2e;
-
-            color: #ffffff !important;
-
-            text-decoration: none;
-
-            font-weight: 700;
-
-            border-radius: 6px;
-
-            transition:
-                transform .3s ease,
-                box-shadow .3s ease;
-        }
-
-
-        .counselling-btn:hover {
-
-            transform:
-                translateY(-4px);
-
-            box-shadow:
-                0 15px 35px
-                rgba(232,111,46,.35);
-
-            color: #ffffff !important;
-        }
-
-
-        .back-home {
-
-            display: block;
-
-            margin-top: 20px;
-
-            color:
-                rgba(255,255,255,.55);
-
-            text-decoration: none;
-
-            font-size: 13px;
-
-            transition:
-                color .3s ease;
-        }
-
-
-        .back-home:hover {
-
-            color: #e86f2e;
-        }
-
-
-        /* =====================================================
-           MOBILE COUNSELLING
-           ===================================================== */
-
-        @media (max-width: 700px) {
-
-            .counselling-page {
-
-                min-height: calc(100vh - 70px);
-
-                padding:
-                    50px 16px;
-            }
-
-
-            .counselling-box {
-
-                width: 100%;
-
-                padding:
-                    40px 22px;
-
-                border-radius: 18px;
-            }
-
-
-            .counselling-box .eyebrow {
-
-                font-size: 10px;
-
-                letter-spacing: 2px;
-
-                line-height: 1.5;
-
-                margin-bottom: 15px;
-            }
-
-
-            .counselling-box h1 {
-
-                font-size:
-                    clamp(34px, 10vw, 48px);
-
-                line-height: 1.08;
-            }
-
-
-            .counselling-box p {
-
-                font-size: 14px;
-
-                line-height: 1.65;
-
-                margin-bottom: 26px;
-            }
-
-
-            .counselling-btn {
-
-                width: 100%;
-
-                padding:
-                    14px 18px;
-
-                font-size: 14px;
-            }
-
-
-            .back-home {
-
-                font-size: 12px;
-            }
-
-        }
-
-
-        /* =====================================================
-           SMALL PHONES
-           ===================================================== */
-
-        @media (max-width: 380px) {
-
-            .counselling-page {
-
-                padding:
-                    40px 12px;
-            }
-
-
-            .counselling-box {
-
-                padding:
-                    32px 17px;
-            }
-
-
-            .counselling-box h1 {
-
-                font-size: 32px;
-            }
-
-
-            .counselling-box p {
-
-                font-size: 13px;
-            }
-
-        }
-
-    </style>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Free Counselling | PJSM</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<!-- Do not add style.css to this page: all styling is in the block below.
+     Class names start with "cn-" so other CSS files cannot clash with them. -->
+<style>
+  html { -webkit-text-size-adjust:100%; }
+  body { margin:0; }
+  .cn-page, .cn-page * { box-sizing:border-box; }
+
+  .cn-page {
+    --navy:#172b3a; --orange:#f4772b; --orange-dark:#dd621b; --muted:#687786;
+    --line:#d9e0e7; --bg:#f5f7fa; --error:#c0392b; --ok:#2e9e62;
+    min-height:100vh; min-height:100dvh;
+    background:var(--bg); color:var(--navy);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    line-height:1.5; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+
+  /* ---------- Hero ---------- */
+  .cn-hero {
+    position:relative; overflow:hidden; text-align:center; color:#fff;
+    padding:36px 16px 104px;
+    padding-left:max(16px, env(safe-area-inset-left));
+    padding-right:max(16px, env(safe-area-inset-right));
+    background:
+      radial-gradient(circle at 15% 20%, rgba(244,119,43,.24) 0, transparent 45%),
+      linear-gradient(135deg, #172b3a 0%, #1f3a4f 100%);
+  }
+  .cn-hero::after { content:""; position:absolute; left:0; right:0; bottom:0; height:4px;
+    background:linear-gradient(90deg,#f4772b,#ffb27a,#f4772b); }
+  .cn-hero h1 { margin:0 0 8px; font-size:clamp(1.55rem,7vw,2.5rem); line-height:1.2; letter-spacing:-.02em; font-weight:800; color:#fff; }
+  .cn-hero h1 span { color:var(--orange); }
+  .cn-hero p { margin:0 auto; max-width:46ch; color:#c5d2dc; font-size:clamp(.92rem,3.8vw,1.05rem); }
+
+  /* ---------- Card ---------- */
+  .cn-card {
+    position:relative; max-width:720px; margin:-68px 12px 40px;
+    background:#fff; border-radius:16px; padding:22px 16px 26px;
+    border:1px solid #e6ecf1; border-top:5px solid var(--orange);
+    box-shadow:0 20px 48px rgba(23,43,58,.16);
+  }
+
+  /* ---------- Stepper ---------- */
+  .cn-steps { list-style:none; display:flex; margin:0 0 26px; padding:0; }
+  .cn-step { position:relative; flex:1; text-align:center; font-size:.78rem; color:var(--muted); font-weight:600; }
+  .cn-step b { position:relative; z-index:1; display:grid; place-items:center; width:34px; height:34px; margin:0 auto 8px;
+    border-radius:50%; background:#fff; border:2px solid var(--line); color:var(--muted); font-size:.9rem;
+    transition:background .25s, border-color .25s, color .25s; }
+  .cn-step:not(:last-child)::after { content:""; position:absolute; top:16px; left:calc(50% + 22px); width:calc(100% - 44px);
+    height:3px; border-radius:2px; background:var(--line); transition:background .25s; }
+  .cn-step.is-active { color:var(--navy); }
+  .cn-step.is-active b { border-color:var(--orange); background:var(--orange); color:#fff; box-shadow:0 0 0 5px rgba(244,119,43,.18); }
+  .cn-step.is-done b { border-color:var(--ok); background:var(--ok); color:#fff; font-size:0; }
+  .cn-step.is-done b::before { content:"\2713"; font-size:.95rem; }
+  .cn-step.is-done::after { background:var(--ok); }
+
+  /* ---------- Panels ---------- */
+  .cn-panel { display:none; }
+  .cn-panel.is-active { display:block; animation:cn-in .35s ease-out both; }
+  @keyframes cn-in { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:none; } }
+  .cn-panel h2 { margin:0 0 4px; font-size:1.25rem; outline:none; }
+  .cn-lead { margin:0 0 20px; color:var(--muted); font-size:.95rem; }
+
+  /* ---------- Form fields ---------- */
+  .cn-field { margin-bottom:16px; }
+  .cn-field label { display:block; margin-bottom:7px; font-weight:600; font-size:.9rem; transition:color .2s; }
+  .cn-field:focus-within label { color:var(--orange-dark); }
+  .cn-field input, .cn-field select {
+    width:100%; min-height:50px; padding:12px 14px; font:inherit; font-size:16px; color:var(--navy);
+    background:#fafbfc; border:1.5px solid #dbe3ea; border-radius:12px;
+    transition:border-color .15s, box-shadow .15s, background-color .15s;
+  }
+  .cn-field input::placeholder { color:#9aa7b3; }
+  .cn-field input:hover, .cn-field select:hover { background:#fff; border-color:#b8c4cf; }
+  .cn-field input:focus, .cn-field select:focus { outline:none; background:#fff; border-color:var(--orange); box-shadow:0 0 0 4px rgba(244,119,43,.18); }
+  .cn-field.cn-invalid input, .cn-field.cn-invalid select { border-color:var(--error); background:#fff8f7; }
+  .cn-field select { appearance:none; -webkit-appearance:none; padding-right:42px; cursor:pointer;
+    background:#fafbfc url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' fill='none' stroke='%23687786' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 14px center; }
+  .cn-error { min-height:1.1em; margin-top:5px; color:var(--error); font-size:.85rem; }
+
+  /* ---------- Choice cards ---------- */
+  .cn-choices { display:grid; gap:12px; margin:0 0 6px; }
+  .cn-choice {
+    position:relative; display:flex; gap:14px; align-items:center; width:100%; text-align:left;
+    padding:16px 52px 16px 16px; font:inherit; color:inherit; background:#fff;
+    border:2px solid var(--line); border-radius:14px; cursor:pointer;
+    transition:border-color .2s, background-color .2s, box-shadow .2s, transform .2s;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .cn-choice:hover { border-color:#f9c9a9; box-shadow:0 10px 24px rgba(23,43,58,.1); }
+  .cn-choice:focus-visible { outline:3px solid var(--orange); outline-offset:3px; }
+  .cn-ico { flex:0 0 auto; display:grid; place-items:center; width:46px; height:46px; border-radius:12px;
+    background:#fdeadd; color:var(--orange-dark); font-size:1.15rem; transition:background .2s, color .2s; }
+  .cn-txt strong { display:block; font-size:1rem; }
+  .cn-txt small { display:block; margin-top:2px; color:var(--muted); font-size:.88rem; line-height:1.4; }
+  .cn-choice::after { content:""; position:absolute; right:16px; top:50%; width:24px; height:24px; margin-top:-12px;
+    border-radius:50%; border:2px solid var(--line); background:#fff; transition:all .2s; }
+  .cn-choice.is-selected { border-color:var(--orange); background:#fff6ef; box-shadow:0 10px 24px rgba(244,119,43,.16); }
+  .cn-choice.is-selected .cn-ico { background:var(--orange); color:#fff; }
+  .cn-choice.is-selected::after { border-color:var(--orange); background:var(--orange) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12.5l4 4 8-9' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat; }
+
+  /* ---------- Buttons ---------- */
+  .cn-actions { display:flex; flex-direction:column-reverse; gap:12px; margin-top:22px; }
+  .cn-btn { min-height:52px; padding:13px 24px; font:inherit; font-size:1rem; font-weight:700; border:0; border-radius:12px;
+    background:linear-gradient(135deg,#f4772b 0%,#e8631a 100%); color:#fff; cursor:pointer;
+    box-shadow:0 10px 22px rgba(244,119,43,.3); transition:transform .15s, box-shadow .15s, background .15s;
+    -webkit-tap-highlight-color:transparent; }
+  .cn-btn:hover { transform:translateY(-1px); box-shadow:0 14px 28px rgba(244,119,43,.4); }
+  .cn-btn:focus-visible { outline:3px solid var(--navy); outline-offset:3px; }
+  .cn-btn:disabled { background:#c9d1d9; box-shadow:none; cursor:not-allowed; transform:none; }
+  .cn-btn.cn-ghost { background:transparent; color:var(--navy); border:2px solid var(--line); box-shadow:none; }
+  .cn-btn.cn-ghost:hover { border-color:var(--navy); box-shadow:none; }
+
+  /* ---------- Larger phones and up ---------- */
+  @media (min-width:480px) {
+    .cn-hero { padding:44px 18px 112px; }
+    .cn-card { margin:-72px 14px 48px; padding:26px 22px 30px; }
+    .cn-step { font-size:.85rem; }
+    .cn-actions { flex-direction:row; justify-content:space-between; }
+    .cn-actions .cn-btn { min-width:150px; }
+    .cn-actions .cn-btn:only-child { margin-left:auto; }
+  }
+  @media (min-width:640px) {
+    .cn-hero { padding:56px 24px 124px; }
+    .cn-card { margin:-80px auto 56px; padding:36px 38px 40px; border-radius:18px; }
+    .cn-panel h2 { font-size:1.4rem; }
+    .cn-choices.cn-two { grid-template-columns:1fr 1fr; }
+    .cn-step b { width:38px; height:38px; }
+    .cn-step:not(:last-child)::after { top:18px; left:calc(50% + 26px); width:calc(100% - 52px); }
+  }
+
+  /* ---------- Small phones ---------- */
+  @media (max-width:380px) {
+    .cn-card { margin:-64px 8px 32px; padding:20px 14px 24px; }
+    .cn-step { font-size:.72rem; }
+    .cn-choice { padding:14px 48px 14px 12px; gap:12px; }
+    .cn-ico { width:42px; height:42px; }
+  }
+  @media (max-width:340px) {
+    .cn-step span { font-size:.68rem; }
+    .cn-txt small { font-size:.82rem; }
+  }
+
+  /* ---------- Landscape phones ---------- */
+  @media (max-height:500px) and (orientation:landscape) {
+    .cn-hero { padding:22px 20px 80px; }
+    .cn-hero p { display:none; }
+    .cn-card { margin-top:-50px; }
+  }
+
+  @media (hover:none) {
+    .cn-choice:hover { box-shadow:none; border-color:var(--line); }
+    .cn-choice.is-selected:hover { border-color:var(--orange); box-shadow:0 10px 24px rgba(244,119,43,.16); }
+    .cn-btn:hover { transform:none; }
+  }
+  @media (prefers-reduced-motion:reduce) {
+    .cn-panel.is-active { animation:none; }
+    .cn-page * { transition:none !important; }
+  }
+</style>
 </head>
-
-
 <body>
+<div class="cn-page">
 
+  <!-- Keep your existing PJSM navbar here -->
 
-<!-- =====================================================
-     HEADER / NAVIGATION
-     ===================================================== -->
+  <header class="cn-hero">
+    <h1>Free <span>counselling</span></h1>
+    <p>Three quick steps and our team will get in touch.</p>
+  </header>
 
-<header class="header">
+  <main class="cn-card">
 
-    <div class="container nav-container">
+    <ol class="cn-steps" aria-label="Progress">
+      <li class="cn-step is-active"><b>1</b><span>Your details</span></li>
+      <li class="cn-step"><b>2</b><span>Your goal</span></li>
+      <li class="cn-step"><b>3</b><span>Your service</span></li>
+    </ol>
 
+    <!-- STEP 1: Form -->
+    <section class="cn-panel is-active" id="step1" aria-labelledby="s1t">
+      <h2 id="s1t" tabindex="-1">Tell us about yourself</h2>
+      <p class="cn-lead">We use these details only to contact you about your session.</p>
+      <form id="counselForm" novalidate>
+        <div class="cn-field">
+          <label for="name">Full name</label>
+          <input id="name" name="name" autocomplete="name" placeholder="e.g. Priya Kumar" required>
+          <div class="cn-error" data-for="name"></div>
+        </div>
+        <div class="cn-field">
+          <label for="phone">Phone / WhatsApp number</label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+91 98765 43210" required>
+          <div class="cn-error" data-for="phone"></div>
+        </div>
+        <div class="cn-field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+          <div class="cn-error" data-for="email"></div>
+        </div>
+        <div class="cn-field">
+          <label for="qual">Highest qualification</label>
+          <select id="qual" name="qual" required>
+            <option value="">Select one</option>
+            <option>12th / High school</option>
+            <option>Diploma</option>
+            <option>Bachelor's degree</option>
+            <option>Master's degree</option>
+            <option>Other</option>
+          </select>
+          <div class="cn-error" data-for="qual"></div>
+        </div>
+        <div class="cn-actions">
+          <button type="submit" class="cn-btn">Continue</button>
+        </div>
+      </form>
+    </section>
 
-        <a href="first.html"
-           class="logo">
-
-            <span class="plane-logo">
-                ✈
-            </span>
-
-            <span style="color:#ffffff !important;">
-                PJSM
-            </span>
-
-        </a>
-
-
-        <nav class="navbar"
-             id="navbar">
-
-            <a href="first.html">
-                Home
-            </a>
-
-            <a href="destinations.html">
-                Destinations
-            </a>
-
-            <a href="services.html">
-                Services
-            </a>
-
-            <a href="courses.html">
-                Courses
-            </a>
-
-            <a href="process.html">
-                Process
-            </a>
-
-            <a href="success-stories.html">
-                Success Stories
-            </a>
-
-            <a href="contact.html"
-               class="nav-button">
-
-                Free Counselling
-
-            </a>
-
-        </nav>
-
-
-        <button
-            class="menu-btn"
-            id="menuBtn"
-            type="button"
-            aria-label="Open navigation"
-            aria-expanded="false">
-
-            ☰
-
+    <!-- STEP 2: Career guidance or visa -->
+    <section class="cn-panel" id="step2" aria-labelledby="s2t">
+      <h2 id="s2t" tabindex="-1">What do you need help with?</h2>
+      <p class="cn-lead">Pick the one that fits you best.</p>
+      <div class="cn-choices cn-two" id="pathChoices">
+        <button type="button" class="cn-choice" data-path="career">
+          <span class="cn-ico"><i class="fa-solid fa-compass" aria-hidden="true"></i></span>
+          <span class="cn-txt"><strong>Career guidance</strong><small>Courses, countries and universities that fit you.</small></span>
         </button>
-
-
-    </div>
-
-</header>
-
-
-<!-- =====================================================
-     COUNSELLING CONTENT
-     ===================================================== -->
-
-<section class="counselling-page">
-
-    <div class="counselling-box">
-
-
-        <div class="eyebrow">
-
-            PJSM Overseas Consultancy
-
-        </div>
-
-
-        <h1>
-
-            Start Your Journey
-
-        </h1>
-
-
-        <p>
-
-            Get personalised guidance from our experts
-            and find the right country, university and
-            course for your future.
-
-        </p>
-
-
-        <a href="first.html#contact"
-           class="counselling-btn">
-
-            Get Free Counselling →
-
-        </a>
-
-
-        <a href="first.html"
-           class="back-home">
-
-            ← Back to Home
-
-        </a>
-
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     FOOTER
-     ===================================================== -->
-<footer class="pjsm-footer">
-
-    <div class="pjsm-footer-container">
-
-        <!-- BRAND -->
-        <div class="pjsm-footer-box pjsm-footer-about">
-
-            <a href="first.html" class="pjsm-footer-logo">
-                <span class="pjsm-footer-plane">✈</span>
-
-                <span>
-                    PJSM
-                    <small>Education</small>
-                </span>
-            </a>
-
-            <p>
-                Helping students turn their study-abroad dreams
-                into successful international futures through
-                personalised guidance and trusted education
-                consultancy.
-            </p>
-
-            <div class="pjsm-social-links">
-
-                <a href="#" aria-label="Facebook">
-                    <i class="fa-brands fa-facebook-f"></i>
-                </a>
-
-                <a href="#" aria-label="LinkedIn">
-                    <i class="fa-brands fa-linkedin-in"></i>
-                </a>
-
-                <a href="#" aria-label="Instagram">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-
-                <a href="#" aria-label="YouTube">
-                    <i class="fa-brands fa-youtube"></i>
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <!-- QUICK LINKS -->
-        <div class="pjsm-footer-box">
-
-            <h3>Quick Links</h3>
-
-            <ul>
-                <li><a href="first.html">Home</a></li>
-                <li><a href="destinations.html">Destinations</a></li>
-                <li><a href="courses.html">Courses</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="process.html">Our Process</a></li>
-                <li><a href="success-stories.html">Success Stories</a></li>
-            </ul>
-
-        </div>
-
-
-        <!-- DESTINATIONS -->
-        <div class="pjsm-footer-box">
-
-            <h3>Study Destinations</h3>
-
-            <ul>
-                <li><a href="destinations.html">Australia</a></li>
-                <li><a href="destinations.html">United Kingdom</a></li>
-                <li><a href="destinations.html">USA</a></li>
-                <li><a href="destinations.html">Canada</a></li>
-                <li><a href="destinations.html">Germany</a></li>
-                <li><a href="destinations.html">Ireland</a></li>
-            </ul>
-
-        </div>
-
-
-        <!-- CONTACT -->
-        <div class="pjsm-footer-box pjsm-footer-contact">
-
-            <h3>Get In Touch</h3>
-
-            <div class="pjsm-contact-item">
-                <i class="fa-solid fa-location-dot"></i>
-                <span>Bangalore, India</span>
-            </div>
-
-            <div class="pjsm-contact-item">
-                <i class="fa-solid fa-phone"></i>
-                <a href="tel:+919121398010">
-                    +91 9121398010
-                </a>
-            </div>
-
-            <div class="pjsm-contact-item">
-                <i class="fa-solid fa-envelope"></i>
-                <a href="mailto:PJSMconsultancy@gmail.com">
-                    PJSMconsultancy@gmail.com
-                </a>
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- BOTTOM -->
-    <div class="pjsm-footer-bottom">
-
-        <div class="pjsm-footer-bottom-inner">
-
-            <p>
-                © 2026 PJSM Education. All rights reserved.
-            </p>
-
-            <div class="pjsm-footer-bottom-links">
-                <a href="#">Privacy Policy</a>
-                <span>•</span>
-                <a href="#">Terms & Conditions</a>
-            </div>
-
-        </div>
-
-    </div>
-
-</footer>
-
-
-<script src="script.js"></script>
-
-
+        <button type="button" class="cn-choice" data-path="visa">
+          <span class="cn-ico"><i class="fa-solid fa-passport" aria-hidden="true"></i></span>
+          <span class="cn-txt"><strong>Visa selection</strong><small>Choose the right visa route and prepare for it.</small></span>
+        </button>
+      </div>
+      <div class="cn-actions">
+        <button type="button" class="cn-btn cn-ghost" data-back="1">Back</button>
+        <button type="button" class="cn-btn" id="toStep3" disabled>Continue</button>
+      </div>
+    </section>
+
+    <!-- STEP 3: Free services -->
+    <section class="cn-panel" id="step3" aria-labelledby="s3t">
+      <h2 id="s3t" tabindex="-1">Choose a free service</h2>
+      <p class="cn-lead">Select the service you would like to start with.</p>
+      <div class="cn-choices" id="serviceChoices"></div>
+      <div class="cn-actions">
+        <button type="button" class="cn-btn cn-ghost" data-back="2">Back</button>
+        <button type="button" class="cn-btn" id="finish" disabled>Confirm service</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Keep your existing PJSM footer here -->
+
+</div>
+
+<script>
+(function () {
+  var services = {
+    career: [
+      { id: 'profile',    icon: 'fa-user-check',       title: 'Free Profile Evaluation',  text: 'Discuss your academic background, goals and study pathways.' },
+      { id: 'country',    icon: 'fa-earth-americas',   title: 'Free Country Guidance',    text: 'Explore destinations that fit your budget and career goals.' },
+      { id: 'course',     icon: 'fa-graduation-cap',   title: 'Free Course Guidance',     text: 'Find study options that match your background and interests.' },
+      { id: 'university', icon: 'fa-building-columns', title: 'University Shortlisting',  text: 'Understand what to look for when choosing universities.' },
+      { id: 'budget',     icon: 'fa-wallet',           title: 'Free Budget Discussion',   text: 'Tuition fees, living costs and financial planning.' }
+    ],
+    visa: [
+      { id: 'visa-overview', icon: 'fa-passport',   title: 'Free Visa Process Overview', text: 'General visa preparation steps for your destination.' },
+      { id: 'visa-docs',     icon: 'fa-file-lines', title: 'Document Checklist',          text: 'Know which documents you need before you apply.' },
+      { id: 'visa-route',    icon: 'fa-route',      title: 'Visa Route Selection',        text: 'Compare visa types and pick the one that suits you.' }
+    ]
+  };
+
+  var state = { path: null, service: null };
+  var panels = [1, 2, 3].map(function (n) { return document.getElementById('step' + n); });
+  var steps = document.querySelectorAll('.cn-step');
+
+  function go(n) {
+    panels.forEach(function (p, i) { p.classList.toggle('is-active', i === n - 1); });
+    steps.forEach(function (s, i) {
+      s.classList.toggle('is-active', i === n - 1);
+      s.classList.toggle('is-done', i < n - 1);
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    var h = panels[n - 1].querySelector('h2');
+    if (h) h.focus({ preventScroll: true });
+  }
+
+  // Step 1: validate and save the form
+  var form = document.getElementById('counselForm');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var ok = true;
+    ['name', 'phone', 'email', 'qual'].forEach(function (f) {
+      var el = form.elements[f], err = form.querySelector('[data-for="' + f + '"]');
+      var v = el.value.trim(), msg = '';
+      if (!v) msg = 'This field is required.';
+      else if (f === 'email' && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)) msg = 'Enter a valid email address.';
+      else if (f === 'phone' && v.replace(/\D/g, '').length < 8) msg = 'Enter a valid phone number.';
+      err.textContent = msg;
+      el.closest('.cn-field').classList.toggle('cn-invalid', !!msg);
+      if (msg) ok = false;
+    });
+    if (!ok) return;
+    var data = {};
+    ['name', 'phone', 'email', 'qual'].forEach(function (f) { data[f] = form.elements[f].value.trim(); });
+    try { sessionStorage.setItem('counsel_lead', JSON.stringify(data)); } catch (x) {}
+    // TODO: send `data` to your server / Google Sheet / email service here
+    go(2);
+  });
+
+  // Clear an error as soon as the user edits the field
+  form.addEventListener('input', function (e) {
+    var field = e.target.closest('.cn-field');
+    if (!field) return;
+    field.classList.remove('cn-invalid');
+    var err = field.querySelector('.cn-error');
+    if (err) err.textContent = '';
+  });
+
+  // Step 2: pick career or visa
+  var toStep3 = document.getElementById('toStep3');
+  document.querySelectorAll('#pathChoices .cn-choice').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('#pathChoices .cn-choice').forEach(function (b) { b.classList.remove('is-selected'); });
+      btn.classList.add('is-selected');
+      state.path = btn.dataset.path;
+      toStep3.disabled = false;
+    });
+  });
+  toStep3.addEventListener('click', function () {
+    var box = document.getElementById('serviceChoices');
+    box.innerHTML = '';
+    state.service = null;
+    document.getElementById('finish').disabled = true;
+    services[state.path].forEach(function (s) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'cn-choice';
+      b.innerHTML = '<span class="cn-ico"><i class="fa-solid ' + s.icon + '" aria-hidden="true"></i></span>' +
+                    '<span class="cn-txt"><strong>' + s.title + '</strong><small>' + s.text + '</small></span>';
+      b.addEventListener('click', function () {
+        box.querySelectorAll('.cn-choice').forEach(function (x) { x.classList.remove('is-selected'); });
+        b.classList.add('is-selected');
+        state.service = s;
+        document.getElementById('finish').disabled = false;
+      });
+      box.appendChild(b);
+    });
+    go(3);
+  });
+
+  // Step 3: confirm and go to the thank-you page (one handler only)
+  document.getElementById('finish').addEventListener('click', function () {
+    if (!state.service) return;
+    try { sessionStorage.setItem('counsel_service', state.service.title); } catch (x) {}
+    window.location.href = './thankyou.html?service=' + encodeURIComponent(state.service.id);
+  });
+
+  // Back buttons
+  document.querySelectorAll('[data-back]').forEach(function (b) {
+    b.addEventListener('click', function () { go(Number(b.dataset.back)); });
+  });
+})();
+</script>
 </body>
-
 </html>
