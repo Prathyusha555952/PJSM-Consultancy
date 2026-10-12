@@ -68,7 +68,7 @@
   .cn-lead { margin:0 0 20px; color:var(--muted); font-size:.95rem; }
 
   /* ---------- Form fields ---------- */
-  .cn-field { margin-bottom:16px; }
+  .cn-field { min-width:0; margin-bottom:16px; }
   .cn-field label { display:block; margin-bottom:7px; font-weight:600; font-size:.9rem; transition:color .2s; }
   .cn-field:focus-within label { color:var(--orange-dark); }
   .cn-field input, .cn-field select {
@@ -80,8 +80,25 @@
   .cn-field input:hover, .cn-field select:hover { background:#fff; border-color:#b8c4cf; }
   .cn-field input:focus, .cn-field select:focus { outline:none; background:#fff; border-color:var(--orange); box-shadow:0 0 0 4px rgba(244,119,43,.18); }
   .cn-field.cn-invalid input, .cn-field.cn-invalid select { border-color:var(--error); background:#fff8f7; }
-  .cn-field select { appearance:none; -webkit-appearance:none; padding-right:42px; cursor:pointer;
+  .cn-field select { display:block; min-width:0; max-width:100%; appearance:none; -webkit-appearance:none; padding-right:42px; cursor:pointer;
+    text-overflow:ellipsis; white-space:nowrap; overflow:hidden; -webkit-tap-highlight-color:transparent; touch-action:manipulation;
+    text-overflow:ellipsis; white-space:nowrap; overflow:hidden; -webkit-tap-highlight-color:transparent; touch-action:manipulation;
     background:#fafbfc url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' fill='none' stroke='%23687786' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 14px center; }
+  .cn-field select option { color:var(--navy); background:#fff; }
+ .cn-select { position:relative; }
+  .cn-field select.cn-native-select { position:absolute; width:1px; min-height:1px; height:1px; padding:0; opacity:0; pointer-events:none; }
+  .cn-select-toggle { display:flex; align-items:center; justify-content:space-between; width:100%; min-height:50px; padding:12px 14px;
+    color:var(--navy); background:#fafbfc; border:1.5px solid #dbe3ea; border-radius:12px; font:inherit; font-size:16px; text-align:left; cursor:pointer; }
+  .cn-select-toggle::after { content:""; flex:0 0 14px; width:14px; height:9px; margin-left:14px;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' fill='none' stroke='%23687786' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px 9px no-repeat; transition:transform .2s ease; }
+  .cn-select-toggle[aria-expanded="true"] { border-color:var(--orange); background:#fff; box-shadow:0 0 0 4px rgba(244,119,43,.18); }
+  .cn-select-toggle[aria-expanded="true"]::after { transform:rotate(180deg); }
+  .cn-select-placeholder { color:#9aa7b3; }
+  .cn-select-menu { position:absolute; z-index:20; top:calc(100% + 6px); left:0; width:100%; max-height:220px; margin:0; padding:6px; overflow-y:auto;
+    background:#fff; border:1px solid #dbe3ea; border-radius:12px; box-shadow:0 14px 28px rgba(23,43,58,.18); }
+  .cn-select-option { display:block; width:100%; padding:11px 12px; color:var(--navy); background:transparent; border:0; border-radius:8px; font:inherit; font-size:16px; text-align:left; cursor:pointer; }
+  .cn-select-option:hover, .cn-select-option:focus-visible, .cn-select-option.is-selected { color:var(--orange-dark); background:#fff1e8; outline:none; }
+  .cn-field.cn-invalid .cn-select-toggle { border-color:var(--error); background:#fff8f7; }  
   .cn-error { min-height:1.1em; margin-top:5px; color:var(--error); font-size:.85rem; }
 
   /* ---------- Choice cards ---------- */
@@ -205,14 +222,26 @@
         </div>
         <div class="cn-field">
           <label for="qual">Highest qualification</label>
-          <select id="qual" name="qual" required>
-            <option value="">Select one</option>
-            <option>12th / High school</option>
-            <option>Diploma</option>
-            <option>Bachelor's degree</option>
-            <option>Master's degree</option>
-            <option>Other</option>
-          </select>
+          <div class="cn-select">
+             <select id="qual" name="qual" class="cn-native-select" required tabindex="-1" aria-hidden="true">
+              <option value="">Select one</option>
+              <option>12th / High school</option>
+              <option>Diploma</option>
+              <option>Bachelor's degree</option>
+              <option>Master's degree</option>
+              <option>Other</option>
+            </select>
+            <button type="button" class="cn-select-toggle" id="qualToggle" aria-haspopup="listbox" aria-expanded="false" aria-controls="qualOptions">
+              <span class="cn-select-placeholder">Select one</span>
+            </button>
+            <div class="cn-select-menu" id="qualOptions" role="listbox" aria-label="Highest qualification" hidden>
+              <button type="button" class="cn-select-option" role="option" data-value="12th / High school">12th / High school</button>
+              <button type="button" class="cn-select-option" role="option" data-value="Diploma">Diploma</button>
+              <button type="button" class="cn-select-option" role="option" data-value="Bachelor's degree">Bachelor's degree</button>
+              <button type="button" class="cn-select-option" role="option" data-value="Master's degree">Master's degree</button>
+              <button type="button" class="cn-select-option" role="option" data-value="Other">Other</button>
+            </div>
+          </div>
           <div class="cn-error" data-for="qual"></div>
         </div>
         <div class="cn-actions">
@@ -246,6 +275,7 @@
       <h2 id="s3t" tabindex="-1">Choose a free service</h2>
       <p class="cn-lead">Select the service you would like to start with.</p>
       <div class="cn-choices" id="serviceChoices"></div>
+      <div class="cn-error" id="submitError"></div>
       <div class="cn-actions">
         <button type="button" class="cn-btn cn-ghost" data-back="2">Back</button>
         <button type="button" class="cn-btn" id="finish" disabled>Confirm service</button>
@@ -257,9 +287,10 @@
   <!-- Keep your existing PJSM footer here -->
 
 </div>
-
 <script>
 (function () {
+  var API_URL = 'http://localhost:8080/api/counselling';
+
   var services = {
     career: [
       { id: 'profile',    icon: 'fa-user-check',       title: 'Free Profile Evaluation',  text: 'Discuss your academic background, goals and study pathways.' },
@@ -275,7 +306,7 @@
     ]
   };
 
-  var state = { path: null, service: null };
+  var state = { path: null, service: null, lead: null };
   var panels = [1, 2, 3].map(function (n) { return document.getElementById('step' + n); });
   var steps = document.querySelectorAll('.cn-step');
 
@@ -290,8 +321,48 @@
     if (h) h.focus({ preventScroll: true });
   }
 
-  // Step 1: validate and save the form
+  // Step 1: validate and keep the form data
   var form = document.getElementById('counselForm');
+   var qualSelect = document.getElementById('qual');
+  var qualToggle = document.getElementById('qualToggle');
+  var qualOptions = document.getElementById('qualOptions');
+  var qualLabel = qualToggle.querySelector('span');
+
+  function closeQualificationMenu() {
+    qualOptions.hidden = true;
+    qualToggle.setAttribute('aria-expanded', 'false');
+  }
+
+  qualToggle.addEventListener('click', function () {
+    var willOpen = qualOptions.hidden;
+    qualOptions.hidden = !willOpen;
+    qualToggle.setAttribute('aria-expanded', String(willOpen));
+  });
+
+  qualOptions.querySelectorAll('.cn-select-option').forEach(function (option) {
+    option.addEventListener('click', function () {
+      qualSelect.value = option.dataset.value;
+      qualLabel.textContent = option.textContent;
+      qualLabel.classList.remove('cn-select-placeholder');
+      qualOptions.querySelectorAll('.cn-select-option').forEach(function (item) {
+        item.classList.toggle('is-selected', item === option);
+        item.setAttribute('aria-selected', String(item === option));
+      });
+      closeQualificationMenu();
+      qualSelect.dispatchEvent(new Event('change', { bubbles: true }));
+    });
+  });
+
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.cn-select')) closeQualificationMenu();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      closeQualificationMenu();
+      qualToggle.focus();
+    }
+  });
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var ok = true;
@@ -308,12 +379,11 @@
     if (!ok) return;
     var data = {};
     ['name', 'phone', 'email', 'qual'].forEach(function (f) { data[f] = form.elements[f].value.trim(); });
-    try { sessionStorage.setItem('counsel_lead', JSON.stringify(data)); } catch (x) {}
-    // TODO: send `data` to your server / Google Sheet / email service here
+
+    state.lead = data;
     go(2);
   });
 
-  // Clear an error as soon as the user edits the field
   form.addEventListener('input', function (e) {
     var field = e.target.closest('.cn-field');
     if (!field) return;
@@ -322,7 +392,17 @@
     if (err) err.textContent = '';
   });
 
-  // Step 2: pick career or visa
+   // A select dispatches "change" rather than "input" on several mobile browsers.
+  form.addEventListener('change', function (e) {
+    var field = e.target.closest('.cn-field');
+    if (!field) return;
+    field.classList.remove('cn-invalid');
+    var err = field.querySelector('.cn-error');
+    if (err) err.textContent = '';
+  });
+
+
+  // Step 2: career or visa
   var toStep3 = document.getElementById('toStep3');
   document.querySelectorAll('#pathChoices .cn-choice').forEach(function (btn) {
     btn.addEventListener('click', function () {
@@ -354,14 +434,51 @@
     go(3);
   });
 
-  // Step 3: confirm and go to the thank-you page (one handler only)
-  document.getElementById('finish').addEventListener('click', function () {
-    if (!state.service) return;
-    try { sessionStorage.setItem('counsel_service', state.service.title); } catch (x) {}
-    window.location.href = './thankyou.html?service=' + encodeURIComponent(state.service.id);
+  // Step 3: send everything to the backend
+  var finishBtn = document.getElementById('finish');
+  var submitError = document.getElementById('submitError');
+
+  finishBtn.addEventListener('click', function () {
+    if (!state.service || !state.lead) return;
+
+    submitError.textContent = '';
+    finishBtn.disabled = true;
+    finishBtn.textContent = 'Submitting...';
+
+    var payload = {
+      name: state.lead.name,
+      phone: state.lead.phone,
+      email: state.lead.email,
+      qualification: state.lead.qual,
+      enquiryType: state.path,
+      serviceId: state.service.id,
+      serviceTitle: state.service.title
+    };
+
+    fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(function (res) {
+      if (!res.ok) {
+        return res.text().then(function (t) {
+          throw new Error('HTTP ' + res.status + ' - ' + t);
+        });
+      }
+      return res.json();
+    })
+    .then(function () {
+      window.location.href = './thankyou.html?service=' + encodeURIComponent(state.service.id);
+    })
+    .catch(function (err) {
+      console.error('Submit failed:', err);
+      submitError.textContent = 'Sorry, we could not submit your request. Please try again.';
+      finishBtn.disabled = false;
+      finishBtn.textContent = 'Confirm service';
+    });
   });
 
-  // Back buttons
   document.querySelectorAll('[data-back]').forEach(function (b) {
     b.addEventListener('click', function () { go(Number(b.dataset.back)); });
   });

@@ -9843,6 +9843,107 @@ img {
 .services-grid .service-card .button-outline:active * {
     color: #ffffff !important;
 }
+
+/* Compact, polished service cards */
+
+/* Compact, polished service cards */
+.services-section .services-grid {
+    gap: 18px;
+}
+
+.services-section .service-card {
+    min-height: 340px;
+    border-color: #e8ddd5;
+    border-radius: 18px;
+    box-shadow: 0 8px 22px rgba(48, 35, 27, 0.06);
+    transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease, background-color .3s ease;
+}
+
+.services-section .service-card-head {
+    padding: 20px 21px 12px;
+}
+
+.services-section .service-card-body {
+    padding: 14px 21px 20px;
+}
+
+.services-section .service-card h3 {
+    font-size: 1.35rem;
+}
+
+.services-section .service-card-body > p:not(.card-kicker) {
+    margin: 11px 0 18px;
+    font-size: .85rem;
+    line-height: 1.55;
+}
+
+.services-section .service-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    font-size: 1.1rem;
+}
+
+.services-section .button-outline {
+    padding: 9px 13px;
+}
+
+.services-section .service-card:hover,
+.services-section .service-card:focus-within {
+    transform: translateY(-7px);
+    border-color: #eaa77c;
+    background: linear-gradient(145deg, #ffffff 0%, #fff8f3 100%);
+    box-shadow: 0 18px 34px rgba(48, 35, 27, 0.14);
+}
+
+.services-section .service-card:hover .service-number,
+.services-section .service-card:focus-within .service-number {
+    color: var(--orange-dark);
+}
+
+.services-section .service-card:hover .button-outline,
+.services-section .service-card:focus-within .button-outline {
+    color: #ffffff;
+    border-color: var(--orange);
+    background: var(--orange);
+    box-shadow: 0 7px 14px rgba(237, 118, 47, .2);
+}
+
+
+
+/* Keep service-card content legible against the light hover treatment. */
+.services-section .service-card:hover h3,
+.services-section .service-card:focus-within h3 {
+    color: var(--charcoal) !important;
+}
+
+.services-section .service-card:hover .card-kicker,
+.services-section .service-card:focus-within .card-kicker {
+    color: var(--orange-dark) !important;
+}
+
+.services-section .service-card:hover .service-card-body > p:not(.card-kicker),
+.services-section .service-card:focus-within .service-card-body > p:not(.card-kicker) {
+    color: #5e626b !important;
+}
+
+@media (max-width: 700px) {
+    .services-section .services-grid {
+        gap: 14px !important;
+    }
+
+    .services-section .service-card {
+        min-height: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .services-section .service-card,
+    .services-section .service-icon,
+    .services-section .button-outline {
+        transition: none;
+    }
+}
 /* =========================================================
    PJSM SERVICES + SERVICE PROCESS
    SIDE-BY-SIDE RESPONSIVE LAYOUT
@@ -12124,6 +12225,67 @@ html body header.header .menu-btn {
     color: #172A3A;
 }
 
+/* Cleaner legal-document presentation */
+.legal-content > p:first-child {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 13px;
+    border: 1px solid #f0d2bf;
+    border-radius: 999px;
+    background: #fff8f3;
+    color: #6b4c3b;
+    font-size: 13px;
+    letter-spacing: .01em;
+}
+
+.legal-content h2 {
+    position: relative;
+    margin-top: 48px;
+    padding: 0 0 12px 18px;
+    border-bottom: 1px solid #edf0f2;
+    font-size: 25px;
+}
+
+.legal-content h2::before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    bottom: 17px;
+    left: 0;
+    width: 4px;
+    border-radius: 4px;
+    background: #e86f2e;
+}
+
+.legal-content ul {
+    display: grid;
+    gap: 9px;
+    margin: 20px 0 28px;
+    padding: 0;
+    list-style: none;
+}
+
+.legal-content li {
+    position: relative;
+    margin: 0;
+    padding: 9px 13px 9px 31px;
+    border: 1px solid #edf0f2;
+    border-radius: 9px;
+    background: #fafbfd;
+    line-height: 1.55;
+}
+
+.legal-content li::before {
+    content: "";
+    position: absolute;
+    top: 18px;
+    left: 14px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #e86f2e;
+}
+
 
 /* =========================================================
    LEGAL PAGE HERO
@@ -12152,6 +12314,7 @@ html body header.header .menu-btn {
     .legal-content h2 {
         font-size: 23px;
         margin-top: 35px;
+        padding-left: 15px;
     }
 
     .legal-content p,
@@ -12238,5 +12401,701 @@ html body header.header .menu-btn {
     .success-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
         gap: 10px !important;
+    }
+}
+/* =====================================
+   PJSM PREMIUM IMAGE GALLERY
+===================================== */
+
+.pjsm-gallery {
+    padding: 85px 6%;
+    background: #f7f9fc;
+    overflow: hidden;
+}
+
+.pjsm-gallery-container {
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+.pjsm-gallery-heading {
+    max-width: 760px;
+    margin: 0 auto 45px;
+    text-align: center;
+}
+
+.pjsm-gallery-tag {
+    display: inline-block;
+    margin-bottom: 14px;
+    color: #b68a35;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.pjsm-gallery-heading h2 {
+    margin: 0 0 16px;
+    color: #10264a;
+    font-size: clamp(30px, 4vw, 48px);
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.pjsm-gallery-heading h2 span {
+    color: #c69b45;
+}
+
+.pjsm-gallery-heading p {
+    margin: 0 auto;
+    max-width: 650px;
+    color: #667085;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.pjsm-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.pjsm-gallery-card {
+    position: relative;
+    height: 350px;
+    overflow: hidden;
+    border-radius: 18px;
+    background: #dce3ed;
+    isolation: isolate;
+    box-shadow: 0 12px 35px rgba(16, 38, 74, 0.10);
+}
+
+.pjsm-gallery-card img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+}
+
+.pjsm-gallery-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(
+        to top,
+        rgba(5, 18, 39, 0.92) 0%,
+        rgba(5, 18, 39, 0.40) 42%,
+        rgba(5, 18, 39, 0.02) 100%
+    );
+}
+
+.pjsm-gallery-card:hover img {
+    transform: scale(1.06);
+}
+
+.pjsm-gallery-overlay {
+    position: absolute;
+    z-index: 1;
+    right: 25px;
+    bottom: 25px;
+    left: 25px;
+    color: #fff;
+}
+
+.pjsm-gallery-overlay span {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: #f0c66f;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.pjsm-gallery-overlay h3 {
+    margin: 0 0 8px;
+    color: #fff;
+    font-size: clamp(21px, 2.4vw, 29px);
+    font-weight: 750;
+}
+
+.pjsm-gallery-overlay p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.pjsm-gallery-footer {
+    margin-top: 32px;
+    text-align: center;
+}
+
+.pjsm-gallery-footer p {
+    margin: 0;
+    color: #10264a;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+    .pjsm-gallery {
+        padding: 60px 5%;
+    }
+
+    .pjsm-gallery-grid {
+        gap: 16px;
+    }
+
+    .pjsm-gallery-card {
+        height: 290px;
+        border-radius: 14px;
+    }
+
+    .pjsm-gallery-overlay {
+        right: 16px;
+        bottom: 18px;
+        left: 16px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 520px) {
+    .pjsm-gallery {
+        padding: 45px 5%;
+    }
+
+    .pjsm-gallery-heading {
+        margin-bottom: 28px;
+    }
+
+    .pjsm-gallery-heading p {
+        font-size: 14px;
+    }
+
+    .pjsm-gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .pjsm-gallery-card {
+        height: 300px;
+    }
+
+    .pjsm-gallery-overlay h3 {
+        font-size: 24px;
+    }
+}
+/* Aeroplane image replacing counselling button */
+.plane-image-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 180px;
+    height: 110px;
+    overflow: hidden;
+    border-radius: 14px;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.plane-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+}
+
+.plane-image-link:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(16, 38, 74, 0.2);
+}
+
+.plane-image-link:focus-visible {
+    outline: 3px solid #c69b45;
+    outline-offset: 4px;
+}
+
+@media (max-width: 520px) {
+    .plane-image-link {
+        width: 150px;
+        height: 95px;
+    }
+}
+
+/* =========================================
+   PJSM MOBILE RESPONSIVE IMAGE GALLERY
+========================================= */
+
+@media screen and (max-width: 768px) {
+
+    .pjsm-gallery {
+        padding: 45px 16px;
+    }
+
+    .pjsm-gallery-container {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .pjsm-gallery-heading {
+        margin-bottom: 25px;
+        padding: 0 5px;
+    }
+
+    .pjsm-gallery-tag {
+        font-size: 10px;
+        letter-spacing: 1.5px;
+        line-height: 1.7;
+    }
+
+    .pjsm-gallery-heading h2 {
+        font-size: 30px;
+        line-height: 1.25;
+    }
+
+    .pjsm-gallery-heading p {
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    /* Two-column gallery on tablets and larger phones */
+    .pjsm-gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .pjsm-gallery-card {
+        width: 100%;
+        height: 240px;
+        min-width: 0;
+        border-radius: 12px;
+    }
+
+    .pjsm-gallery-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .pjsm-gallery-overlay {
+        right: 10px;
+        bottom: 12px;
+        left: 10px;
+    }
+
+    .pjsm-gallery-overlay span {
+        margin-bottom: 5px;
+        font-size: 10px;
+    }
+
+    .pjsm-gallery-overlay h3 {
+        margin-bottom: 5px;
+        font-size: 17px;
+        line-height: 1.3;
+    }
+
+    .pjsm-gallery-overlay p {
+        font-size: 11px;
+        line-height: 1.5;
+    }
+
+    .pjsm-gallery-footer {
+        margin-top: 22px;
+    }
+
+    .pjsm-gallery-footer p {
+        font-size: 13px;
+        line-height: 1.6;
+    }
+
+    /* Aeroplane image button */
+    .plane-image-link {
+        display: inline-flex;
+        width: 140px;
+        height: 90px;
+        max-width: 100%;
+        overflow: hidden;
+        border-radius: 12px;
+    }
+
+    .plane-image {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+/* =========================================
+   SMALL MOBILE PHONES
+========================================= */
+
+@media screen and (max-width: 390px) {
+
+    .pjsm-gallery {
+        padding: 35px 12px;
+    }
+
+    .pjsm-gallery-heading h2 {
+        font-size: 26px;
+    }
+
+    .pjsm-gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 9px;
+    }
+
+    .pjsm-gallery-card {
+        height: 205px;
+        border-radius: 10px;
+    }
+
+    .pjsm-gallery-overlay {
+        right: 8px;
+        bottom: 9px;
+        left: 8px;
+    }
+
+    .pjsm-gallery-overlay h3 {
+        font-size: 14px;
+    }
+
+    .pjsm-gallery-overlay p {
+        font-size: 10px;
+        line-height: 1.4;
+    }
+
+    .plane-image-link {
+        width: 120px;
+        height: 78px;
+    }
+}
+
+
+
+/* =====================================
+   PJSM AEROPLANE IMAGE - MOBILE FIX
+===================================== */
+
+.plane-image-link {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    width: 180px;
+    height: 100px;
+    max-width: 100%;
+
+    margin: 16px 0 0;
+    padding: 0;
+
+    overflow: hidden;
+    border-radius: 12px;
+    text-decoration: none;
+
+    transition: transform 0.3s ease;
+}
+
+.plane-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    border-radius: inherit;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+    .plane-image-link {
+        width: 155px;
+        height: 85px;
+        margin: 14px 0 0;
+    }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+    .plane-image-link {
+        width: 135px;
+        height: 76px;
+        margin: 12px 0 0;
+        border-radius: 9px;
+    }
+}
+
+/* Small mobile phones */
+@media (max-width: 360px) {
+    .plane-image-link {
+        width: 115px;
+        height: 66px;
+    }
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .plane-image-link:hover {
+        transform: translateY(-3px);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-overlay .plane-image-link {
+        align-self: flex-start;
+        margin-left: 0;
+        margin-right: auto;
+    }
+}
+
+
+
+/* FORCE aeroplane image alignment on mobile */
+@media screen and (max-width: 768px) {
+
+    a.plane-image-link {
+        display: flex !important;
+        position: relative !important;
+
+        width: 135px !important;
+        height: 76px !important;
+        max-width: 135px !important;
+
+        margin-left: 0 !important;
+        margin-right: auto !important;
+        margin-top: 12px !important;
+        margin-bottom: 0 !important;
+
+        padding: 0 !important;
+        transform: none !important;
+        float: none !important;
+
+        align-self: flex-start !important;
+        justify-self: start !important;
+
+        overflow: hidden !important;
+        border-radius: 9px !important;
+    }
+
+    a.plane-image-link img.plane-image {
+        display: block !important;
+        width: 100% !important;
+        height: 100% !important;
+        max-width: 100% !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        object-fit: cover !important;
+        object-position: center !important;
+    }
+}
+
+/* FIX: Aeroplane image in CTA section - mobile only */
+@media screen and (max-width: 768px) {
+
+    .cta .cta-content {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
+        text-align: left !important;
+        gap: 16px !important;
+    }
+
+    .cta .cta-content > .plane-image {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 150px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        align-self: stretch !important;
+        object-fit: cover !important;
+        object-position: center !important;
+        box-sizing: border-box !important;
+        border-radius: 10px !important;
+    }
+}
+
+/* Smaller phones */
+@media screen and (max-width: 390px) {
+    .cta .cta-content > .plane-image {
+        height: 120px !important;
+    }
+}
+
+/* MOBILE FIX: CTA aeroplane image only */
+@media screen and (max-width: 768px) {
+    .cta .cta-content {
+        align-items: flex-start !important;
+    }
+
+    .cta .cta-content > img.plane-image {
+        display: block !important;
+        width: 180px !important;
+        max-width: 100% !important;
+        height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        align-self: flex-start !important;
+        object-fit: contain !important;
+        object-position: left center !important;
+        box-sizing: border-box !important;
+    }
+}
+/* =========================================================
+   CTA SECTION — AEROPLANE IMAGE LEFT (MOBILE)
+   Keep this at the VERY END of style.css
+   ========================================================= */
+@media screen and (max-width: 768px) {
+
+    /* Row layout: image left, text right.
+       ".cta .cta-content" is more specific than the old
+       ".cta-content { flex-direction: column !important }" rule. */
+    .cta .cta-content {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 16px !important;
+    }
+
+    /* Image link = left column */
+    .cta .cta-content .plane-image-link {
+        flex: 0 0 120px !important;
+        width: 120px !important;
+        max-width: 120px !important;
+        height: 90px !important;
+        margin: 0 !important;
+        align-self: center !important;
+        order: -1 !important;
+    }
+
+    .cta .cta-content .plane-image-link .plane-image {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        border-radius: inherit !important;
+    }
+
+    /* Text = right column */
+    .cta .cta-content .cta-text {
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
+        text-align: left !important;
+    }
+
+    /* Overrides the old ".cta h2 { font-size: 42px !important }" */
+    .cta .cta-content .cta-text h2 {
+        font-size: 22px !important;
+        line-height: 1.2 !important;
+    }
+}
+
+@media screen and (max-width: 390px) {
+    .cta .cta-content .plane-image-link {
+        flex-basis: 95px !important;
+        width: 95px !important;
+        max-width: 95px !important;
+        height: 75px !important;
+    }
+
+    .cta .cta-content .cta-text h2 {
+        font-size: 19px !important;
+    }
+}
+
+/* STUDY ABROAD VIDEO SECTION */
+.service-video-section {
+    padding: 60px 0;
+    background: #f7f8fa;
+}
+
+.service-video-heading {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.service-video-heading span {
+    color: #e86f2e;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.service-video-heading h2 {
+    color: #172a3a;
+    font-size: clamp(26px, 4vw, 38px);
+    margin: 10px 0;
+}
+
+.service-video-heading p {
+    color: #667085;
+    font-size: 14px;
+}
+
+.service-video-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.service-video-card {
+    background: #fff;
+    border: 1px solid #e7e9ed;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(23, 42, 58, 0.07);
+    transition: transform 0.3s ease;
+}
+
+.service-video-card:hover {
+    transform: translateY(-5px);
+}
+
+.service-video-card video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    background: #172a3a;
+}
+
+.service-video-info {
+    padding: 16px 18px 20px;
+}
+
+.service-video-info h3 {
+    margin: 0 0 8px;
+    color: #172a3a;
+    font-size: 17px;
+}
+
+.service-video-info p {
+    margin: 0;
+    color: #667085;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+    .service-video-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .service-video-section {
+        padding: 40px 0;
+    }
+
+    .service-video-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
     }
 }
