@@ -39,6 +39,8 @@
                 Home
             </a>
 
+            <a href="about.html">About Us</a>
+
             <a href="destinations.html">
                 Destinations
             </a>
@@ -316,6 +318,19 @@
 
         </div>
 
+    </section>
+
+    <section class="destination-planner" id="destinationBooking" aria-labelledby="plannerTitle">
+        <div class="container">
+            <div class="page-heading"><span>COMPARE & BOOK</span><h2 id="plannerTitle">Choose your <strong>destination</strong></h2><p>Select a country, review popular universities and indicative annual tuition, then book your counselling session.</p></div>
+            <div class="planner-countries" id="plannerCountries" aria-label="Choose a study destination"></div>
+            <div class="planner-details" id="plannerDetails" aria-live="polite"></div>
+            <form class="booking-card" id="destinationBookingForm" novalidate>
+                <div><span class="eyebrow">FINAL STEP</span><h3>Confirm your counselling booking</h3><p>Your chosen destination, university, course and intake will be securely saved for our counsellors.</p></div>
+                <div class="booking-fields"><label>Full name<input name="name" autocomplete="name" required></label><label>Email address<input name="email" type="email" autocomplete="email" required></label><label>Phone / WhatsApp<input name="phone" type="tel" autocomplete="tel" required></label><label>Preferred course<input name="course" placeholder="e.g. MSc Data Science" required></label><label>Preferred intake<select name="intake" required><option value="">Select intake</option><option>January / February</option><option>May / June</option><option>September / October</option></select></label></div>
+                <p class="booking-summary" id="bookingSummary">Choose a country and university to continue.</p><p class="booking-message" id="bookingMessage" role="status"></p><button class="button button-primary" type="submit">Confirm booking <span aria-hidden="true">→</span></button>
+            </form>
+        </div>
     </section>
 
 </main>

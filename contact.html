@@ -287,9 +287,15 @@
   <!-- Keep your existing PJSM footer here -->
 
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
+  var EMAILJS_PUBLIC_KEY  = 'EQwx3W4NNS79SNJVf';
+  var EMAILJS_SERVICE_ID  = 'service_sb2vyha';
+  var EMAILJS_TEMPLATE_ID = 'template_6ae2dej';
+  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
 (function () {
-  var API_URL = 'http://localhost:8080/api/counselling';
 
   var services = {
     career: [
@@ -434,7 +440,7 @@
     go(3);
   });
 
-  // Step 3: send everything to the backend
+  // Step 3: send the confirmation email with EmailJS, then go to the thank-you page.
   var finishBtn = document.getElementById('finish');
   var submitError = document.getElementById('submitError');
 
@@ -445,44 +451,75 @@
     finishBtn.disabled = true;
     finishBtn.textContent = 'Submitting...';
 
-    var payload = {
-      name: state.lead.name,
+    var reference = 'PJSM-' + Date.now().toString(36).toUpperCase();
+
+    // These names must match the {{variables}} in your EmailJS template.
+    var emailParams = {
+      to_name: state.lead.name,
+      to_email: state.lead.email,
       phone: state.lead.phone,
-      email: state.lead.email,
       qualification: state.lead.qual,
-      enquiryType: state.path,
-      serviceId: state.service.id,
-      serviceTitle: state.service.title
+      help_type: state.path === 'visa' ? 'Visa guidance' : 'Career guidance',
+      service: state.service.title,
+      reference: reference
     };
 
-    fetch(API_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    })
-    .then(function (res) {
-      if (!res.ok) {
-        return res.text().then(function (t) {
-          throw new Error('HTTP ' + res.status + ' - ' + t);
-        });
-      }
-      return res.json();
-    })
-    .then(function () {
-      window.location.href = './thankyou.html?service=' + encodeURIComponent(state.service.id);
-    })
-    .catch(function (err) {
-      console.error('Submit failed:', err);
-      submitError.textContent = 'Sorry, we could not submit your request. Please try again.';
-      finishBtn.disabled = false;
-      finishBtn.textContent = 'Confirm service';
-    });
+emailjs.send(
+  EMAILJS_SERVICE_ID,
+  EMAILJS_TEMPLATE_ID,
+  emailParams
+).then(
+  function (response) {
+    console.log(
+      "EmailJS success:",
+      response.status,
+      response.text
+    );
+
+    alert("Email sent successfully!");
+
+    // Continue to the thank-you page after testing
+    window.location.href =
+      "./thankyou.html?service=" +
+      encodeURIComponent(state.service.id);
+  },
+  function (error) {
+    console.error(
+      "EmailJS error:",
+      error.status,
+      error.text || error.message
+    );
+
+    alert(
+      "Email failed: " +
+      (error.text || error.message || "Unknown error")
+    );
+
+    finishBtn.disabled = false;
+    finishBtn.textContent = "Confirm service";
+  }
+);
+
+  //   emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, emailParams)
+  //     .then(function () {
+  //       try { sessionStorage.setItem('counsel_service', state.service.title); } catch (e) {}
+  //       window.location.href = './thankyou.html?service=' + encodeURIComponent(state.service.id);
+  //     })
+  //     .catch(function (err) {
+  //       console.error('Email failed:', err);
+  //       var reason = (err && (err.text || err.message)) ? ' (' + (err.text || err.message) + ')' : '';
+  //       submitError.textContent = 'We could not send your confirmation email. Please check the email address and try again.' + reason;
+  //       finishBtn.disabled = false;
+  //       finishBtn.textContent = 'Confirm service';
+  //     });
   });
 
+  // Back buttons
   document.querySelectorAll('[data-back]').forEach(function (b) {
     b.addEventListener('click', function () { go(Number(b.dataset.back)); });
   });
 })();
+
 </script>
 </body>
 </html>

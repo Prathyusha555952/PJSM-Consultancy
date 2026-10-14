@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About PJSM | Study Abroad Consultancy</title>
+  <meta name="description" content="Learn how PJSM Consultancy supports students through every stage of their study abroad journey.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>cd
+    .about-page { background:#f6f8fb; color:#172b3a; min-height:100vh; }
+    .about-hero { position:relative; isolation:isolate; overflow:hidden; padding:150px 6% 88px; background:#102738; color:#fff; }
+    .about-hero::before { content:''; position:absolute; z-index:-2; inset:-20px; background:url('https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=2000&q=85') center/cover no-repeat; filter:blur(3px); transform:scale(1.04); }
+    .about-hero::after { content:''; position:absolute; z-index:-1; inset:0; background:linear-gradient(105deg,rgba(10,30,44,.93),rgba(18,51,69,.74)),radial-gradient(circle at 83% 18%,rgba(244,119,43,.28),transparent 27%); }
+    .about-hero-inner { position:relative; max-width:1180px; margin:auto; }
+    .about-eyebrow { display:inline-block; color:#ffb482; font-size:.78rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
+    .about-hero h1 { max-width:700px; margin:14px 0 18px; font-family:'Playfair Display',serif; font-size:clamp(2.45rem,5vw,4.4rem); line-height:1.08; }
+    .about-hero p { max-width:650px; margin:0; color:#d7e5ed; font-size:1.1rem; line-height:1.8; }
+    .about-wrap { max-width:1180px; margin:-38px auto 0; padding:0 24px 82px; }
+    .about-grid { display:grid; grid-template-columns:minmax(0,.9fr) minmax(420px,1.1fr); gap:34px; align-items:center; }
+    .about-copy { padding:25px 10px; }
+    .about-copy h2 { margin:0 0 16px; font-family:'Playfair Display',serif; color:#172b3a; font-size:clamp(2rem,3vw,3rem); line-height:1.17; }
+    .about-copy p { color:#596d7c; line-height:1.8; margin:0 0 15px; }
+    .about-values { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:25px; }
+    .about-value { padding:16px; background:#fff; border:1px solid #e4ebf0; border-radius:14px; box-shadow:0 9px 25px rgba(23,43,58,.06); }
+    .about-value strong { display:block; color:#e8631a; font-size:.92rem; margin-bottom:4px; }
+    .about-value span { color:#647787; font-size:.86rem; line-height:1.45; }
+    .about-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:25px 0 0; }
+    .about-stat { padding:16px 10px; border-radius:12px; background:#173b50; color:#fff; text-align:center; }
+    .about-stat b { display:block; color:#ff9b60; font-size:1.55rem; line-height:1; } .about-stat span { display:block; margin-top:6px; color:#d5e3ea; font-size:.72rem; line-height:1.35; }
+    .world-card { position:relative; overflow:hidden; min-height:510px; border:9px solid #fff; border-radius:24px; background:#dcecf3; box-shadow:0 22px 45px rgba(15,42,58,.2); }
+    .world-card iframe { position:absolute; inset:0; width:100%; height:100%; border:0; filter:saturate(.85) contrast(.95); }
+    .world-card::after { content:'Explore our popular study destinations'; position:absolute; left:20px; bottom:18px; z-index:2; padding:9px 14px; border-radius:100px; background:rgba(18,43,59,.88); color:#fff; font-size:.78rem; font-weight:700; pointer-events:none; }
+    .about-journey { margin-top:70px; padding:42px; border-radius:22px; background:#fff; text-align:center; box-shadow:0 12px 30px rgba(23,43,58,.07); }
+    .about-journey h2 { margin:0 0 10px; font-family:'Playfair Display',serif; font-size:2rem; } .about-journey p { margin:0 auto 24px; max-width:670px; color:#647787; line-height:1.7; }
+    .about-journey a { display:inline-block; padding:13px 22px; border-radius:9px; background:#f4772b; color:#fff; font-weight:700; text-decoration:none; transition:transform .2s,background .2s; } .about-journey a:hover { background:#dd621b; transform:translateY(-2px); }
+    @media (max-width:850px) { .about-hero { padding-top:125px; } .about-grid { grid-template-columns:1fr; } .world-card { min-height:430px; } .about-copy { order:2; } }
+    @media (max-width:520px) { .about-hero { padding:110px 24px 66px; } .about-wrap { padding:0 16px 55px; } .about-values { grid-template-columns:1fr; } .about-stats { grid-template-columns:1fr; } .world-card { min-height:350px; border-width:5px; } .about-journey { margin-top:38px; padding:30px 20px; } }
+  </style>
+</head>
+<body class="about-page">
+  <header class="header" id="header">
+    <div class="container nav-container">
+      <a href="first.html" class="logo"><span class="plane-logo">✈</span><span class="logo-text">PJSM</span></a>
+      <nav class="navbar" id="navbar">
+        <a href="first.html">Home</a>
+        <a href="about.html" class="active" aria-current="page">About Us</a>
+        <a href="destinations.html">Destinations</a>
+        <a href="services.html">Services</a>
+        <a href="courses.html">Courses</a>
+        <a href="process.html">Process</a>
+        <a href="success-stories.html">Success Stories</a>
+        <a href="contact.html" class="nav-button">Free Counselling</a>
+      </nav>
+      <button class="menu-btn" id="menuBtn" aria-label="Open navigation">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="about-hero"><div class="about-hero-inner"><span class="about-eyebrow">About PJSM Consultancy</span><h1>Guidance that makes global education feel possible.</h1><p>PJSM supports ambitious students with clear, practical advice from their first shortlist to their arrival on campus.</p></div></section>
+    <section class="about-wrap"><div class="about-grid">
+      <div class="about-copy"><h2>Your study-abroad journey, made clearer.</h2><p>For over 10 years, PJSM Consultancy has helped students turn international study plans into well-prepared next steps. We bring university choices, applications and visa preparation into one clear plan.</p><p>Our counsellors listen first, then help you choose the destination, university and course that match your goals, profile and budget.</p><div class="about-stats"><div class="about-stat"><b>10+</b><span>years of study-abroad guidance</span></div><div class="about-stat"><b>100%</b><span>assistance through each application step</span></div><div class="about-stat"><b>1:1</b><span>personalised counselling support</span></div></div><div class="about-values"><div class="about-value"><strong>Student-first advice</strong><span>Recommendations built around your plans—not a one-size-fits-all list.</span></div><div class="about-value"><strong>University selection</strong><span>Focused shortlists for your course, budget and future career goals.</span></div><div class="about-value"><strong>Application support</strong><span>Clear document guidance and help preparing a complete application.</span></div><div class="about-value"><strong>Visa readiness</strong><span>Practical preparation so you can move forward with confidence.</span></div></div></div>
+      <div class="world-card" aria-label="Google map showing popular PJSM study destinations"><iframe title="World map of popular PJSM destinations" src="https://www.google.com/maps?q=world&z=2&output=embed" loading="lazy"></iframe></div>
+    </div><section class="about-journey"><h2>Ready to plan with confidence?</h2><p>Tell us where you want to study and we will help you identify the right path forward.</p><a href="contact.html">Book free counselling</a></section></section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

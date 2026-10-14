@@ -1,4 +1,3 @@
-
 /* =========================================
    HEADER SCROLL EFFECT
 ========================================= */
@@ -293,181 +292,6 @@ else if (counters.length > 0) {
 
 
 
-
-/* =========================================
-   CONTACT FORM
-========================================= */
-
-const form =
-    document.getElementById("contactForm");
-
-if (form) {
-
-    const formMessage =
-        document.getElementById("formMessage");
-
-
-    form.addEventListener(
-        "submit",
-        async function (event) {
-
-            event.preventDefault();
-
-
-            const nameField =
-                document.getElementById("name");
-
-            const emailField =
-                document.getElementById("email");
-
-            const phoneField =
-                document.getElementById("phone");
-
-            const destinationField =
-                document.getElementById("destination");
-
-            const messageField =
-                document.getElementById("message");
-
-
-            const name =
-                nameField ?
-                nameField.value.trim() :
-                "";
-
-            const email =
-                emailField ?
-                emailField.value.trim() :
-                "";
-
-            const phone =
-                phoneField ?
-                phoneField.value.trim() :
-                "";
-
-            const destination =
-                destinationField ?
-                destinationField.value.trim() :
-                "";
-
-            const message =
-                messageField ?
-                messageField.value.trim() :
-                "";
-
-
-            if (
-                !name ||
-                !email ||
-                !phone ||
-                !destination
-            ) {
-
-                if (formMessage) {
-
-                    formMessage.textContent =
-                        "Please fill in all required fields.";
-
-                }
-
-                return;
-
-            }
-
-
-            const requestData = {
-
-                name: name,
-
-                email: email,
-
-                phone: phone,
-
-                destination: destination,
-
-                message: message
-
-            };
-
-
-            if (formMessage) {
-
-                formMessage.textContent =
-                    "Submitting your request...";
-
-            }
-
-
-            try {
-
-                const response =
-                    await fetch(
-                        "http://localhost:8080/api/counselling",
-                        {
-                            method: "POST",
-
-                            headers: {
-                                "Content-Type":
-                                    "application/json"
-                            },
-
-                            body:
-                                JSON.stringify(requestData)
-                        }
-                    );
-
-
-                if (!response.ok) {
-
-                    throw new Error(
-                        "Failed to submit counselling request."
-                    );
-
-                }
-
-
-                const data =
-                    await response.json();
-
-
-                console.log(
-                    "Counselling request submitted:",
-                    data
-                );
-
-
-                if (formMessage) {
-
-                    formMessage.textContent =
-                        "Thank you! Our counsellor will contact you shortly.";
-
-                }
-
-
-                form.reset();
-
-
-            } catch (error) {
-
-                console.error(
-                    "Error submitting counselling request:",
-                    error
-                );
-
-
-                if (formMessage) {
-
-                    formMessage.textContent =
-                        "Unable to submit your request. Please try again.";
-
-                }
-
-            }
-
-        }
-    );
-
-}
 
 /* =========================================
    SCROLL REVEAL
@@ -978,5 +802,40 @@ if (processSteps) {
     });
 }
 
-
-
+const plannerCountries = document.getElementById("plannerCountries");
+if (plannerCountries) {
+    const plannerData = {
+        canada: { name:"Canada", fee:"CAD 25,000–55,000 / year", visa:"Study Permit", note:"Fees vary by programme and institution; confirm the latest amount directly with the university.", universities:[["University of Toronto","Toronto, Ontario"],["University of British Columbia","Vancouver, British Columbia"],["McGill University","Montréal, Quebec"]] },
+        uk: { name:"United Kingdom", fee:"£15,000–35,000 / year", visa:"Student visa", note:"Fees are indicative and depend on course level, subject and institution.", universities:[["University of Manchester","Manchester"],["University of Birmingham","Birmingham"],["University of Leeds","Leeds"]] },
+        australia: { name:"Australia", fee:"AUD 25,000–50,000 / year", visa:"Student visa (Subclass 500)", note:"Tuition varies by provider, course and city. Check the provider’s current offer before applying.", universities:[["University of Melbourne","Melbourne"],["University of Sydney","Sydney"],["Monash University","Melbourne"]] },
+        usa: { name:"United States", fee:"USD 25,000–60,000 / year", visa:"F-1 student visa", note:"Annual tuition varies significantly by institution, course and financial aid.", universities:[["Arizona State University","Tempe, Arizona"],["Northeastern University","Boston, Massachusetts"],["University of Illinois Urbana-Champaign","Illinois"]] },
+        germany: { name:"Germany", fee:"€0–20,000 / year", visa:"National student visa", note:"Public and private university fees differ; semester contributions and living costs are separate.", universities:[["Technical University of Munich","Munich"],["Heidelberg University","Heidelberg"],["RWTH Aachen University","Aachen"]] }
+    };
+    const details = document.getElementById("plannerDetails"), form = document.getElementById("destinationBookingForm"), summary = document.getElementById("bookingSummary"), message = document.getElementById("bookingMessage");
+    let selectedCountry = "", selectedUniversity = "";
+    plannerCountries.innerHTML = Object.keys(plannerData).map(key => `<button type="button" class="planner-country" data-country="${key}">${plannerData[key].name}</button>`).join("");
+    function renderCountry(key) {
+        selectedCountry = key; selectedUniversity = "";
+        const item = plannerData[key];
+        plannerCountries.querySelectorAll("button").forEach(button => button.classList.toggle("is-selected", button.dataset.country === key));
+        details.innerHTML = `<div class="planner-info"><div><h3>Study in ${item.name}</h3><p><strong>Visa route:</strong> ${item.visa}</p><p>${item.note}</p><div class="planner-fee"><strong>Indicative annual tuition</strong><b>${item.fee}</b><span>Tuition only; accommodation, insurance and living costs are separate.</span></div></div><div><h3>Popular universities</h3><div class="university-options">${item.universities.map(([name,place]) => `<button type="button" class="university-option" data-university="${name}"><span>${name}</span><small>${place}</small></button>`).join("")}</div></div></div>`;
+        details.querySelectorAll(".university-option").forEach(button => button.addEventListener("click", () => { selectedUniversity = button.dataset.university; details.querySelectorAll(".university-option").forEach(option => option.classList.toggle("is-selected", option === button)); summary.textContent = `Booking: ${plannerData[selectedCountry].name} · ${selectedUniversity}`; }));
+        summary.textContent = "Choose a university to continue.";
+    }
+    plannerCountries.querySelectorAll("button").forEach(button => button.addEventListener("click", () => renderCountry(button.dataset.country)));
+    renderCountry("canada");
+    form.addEventListener("submit", async event => {
+        event.preventDefault(); message.textContent = "";
+        if (!selectedUniversity) { message.textContent = "Please choose a university before confirming your booking."; return; }
+        const data = Object.fromEntries(new FormData(form));
+        data.country = plannerData[selectedCountry].name; data.university = selectedUniversity;
+        const submit = form.querySelector("button[type=submit]"); submit.disabled = true; submit.textContent = "Confirming…";
+        try {
+            const bookingApi = "http://localhost:8080/api/destination-bookings";
+            const response = await fetch(bookingApi, { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(data) });
+            const result = await response.json(); if (!response.ok) throw new Error(result.error || "Booking could not be saved.");
+            try { sessionStorage.setItem("counsel_service", data.country + " - " + data.university); } catch (e) {} window.location.href = "thankyou.html";
+        } catch (error) { message.textContent = error.message; }
+        submit.disabled = false; submit.innerHTML = 'Confirm booking <span aria-hidden="true">→</span>';
+    });
+}

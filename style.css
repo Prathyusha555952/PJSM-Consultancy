@@ -1912,6 +1912,19 @@ a {
 
     font-size: 14px;
 }
+
+/* Service destination planner */
+.destination-planner { padding:78px 0; background:#f5f8fa; }
+.planner-countries { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin:28px 0; }
+.planner-country { padding:17px 10px; border:1px solid #dce5ea; border-radius:14px; background:#fff; color:#172b3a; font:700 .92rem 'DM Sans',sans-serif; cursor:pointer; transition:.2s; }
+.planner-country:hover,.planner-country.is-selected { border-color:#f4772b; background:#fff5ef; color:#d95e18; transform:translateY(-2px); }
+.planner-details { min-height:80px; }
+.planner-info { display:grid; grid-template-columns:1.05fr .95fr; gap:22px; padding:30px; border-radius:18px; background:#fff; box-shadow:0 12px 28px rgba(23,43,58,.08); }
+.planner-info h3 { margin:0 0 8px; color:#172b3a; font-size:1.6rem; }.planner-info p { color:#687786; line-height:1.65; }
+.planner-fee { padding:16px; border-radius:12px; background:#173b50; color:#fff; }.planner-fee strong { display:block; color:#ffae78; font-size:.74rem; letter-spacing:.08em; text-transform:uppercase; }.planner-fee b { display:block; margin:7px 0; font-size:1.25rem; }.planner-fee span { color:#d3e4ec; font-size:.86rem; }
+.university-options { display:grid; gap:10px; }.university-option { display:flex; justify-content:space-between; gap:12px; padding:13px; border:1px solid #e1e8ed; border-radius:10px; background:#fff; text-align:left; color:#172b3a; font:600 .94rem 'DM Sans',sans-serif; cursor:pointer; }.university-option:hover,.university-option.is-selected { border-color:#f4772b; background:#fff8f4; }.university-option small { color:#687786; font-weight:500; }
+.booking-card { display:grid; grid-template-columns:.8fr 1.2fr; gap:22px; margin-top:28px; padding:30px; border-radius:18px; background:#172b3a; color:#fff; }.booking-card h3 { margin:8px 0; font-size:1.65rem; }.booking-card p { color:#c9d8e1; line-height:1.6; }.booking-fields { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }.booking-fields label { color:#d3e4ec; font-size:.8rem; font-weight:700; }.booking-fields input,.booking-fields select { display:block; width:100%; margin-top:6px; padding:11px; border:1px solid #5a7587; border-radius:8px; background:#fff; color:#172b3a; font:inherit; }.booking-summary,.booking-message { grid-column:1/-1; margin:0; }.booking-message { color:#ffb27f !important; }.booking-card button { justify-self:start; }
+@media (max-width:800px) { .planner-countries { grid-template-columns:repeat(2,1fr); }.planner-info,.booking-card { grid-template-columns:1fr; }.booking-fields { grid-template-columns:1fr; } }
 /* =========================================================
    COURSES HERO — IMAGE
    ========================================================= */
