@@ -1,12 +1,16 @@
 package com.pjsm.pjsmbackend.entity;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "destination_bookings")
 public class DestinationBooking {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
     private String email;
     private String phone;
@@ -15,19 +19,39 @@ public class DestinationBooking {
     private String country;
     private String university;
 
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
+    @PrePersist
+    private void onCreate() {
+        if (createdAt == null) {
+            createdAt = LocalDateTime.now();
+        }
+    }
+
     public Long getId() { return id; }
+
     public String getName() { return name; }
-    public void setName(String v) { this.name = v; }
+    public void setName(String value) { name = value; }
+
     public String getEmail() { return email; }
-    public void setEmail(String v) { this.email = v; }
+    public void setEmail(String value) { email = value; }
+
     public String getPhone() { return phone; }
-    public void setPhone(String v) { this.phone = v; }
+    public void setPhone(String value) { phone = value; }
+
     public String getCourse() { return course; }
-    public void setCourse(String v) { this.course = v; }
+    public void setCourse(String value) { course = value; }
+
     public String getIntake() { return intake; }
-    public void setIntake(String v) { this.intake = v; }
+    public void setIntake(String value) { intake = value; }
+
     public String getCountry() { return country; }
-    public void setCountry(String v) { this.country = v; }
+    public void setCountry(String value) { country = value; }
+
     public String getUniversity() { return university; }
-    public void setUniversity(String v) { this.university = v; }
+    public void setUniversity(String value) { university = value; }
+
+    public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(LocalDateTime value) { createdAt = value; }
 }
