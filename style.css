@@ -13112,3 +13112,272 @@ html body header.header .menu-btn {
         gap: 16px;
     }
 }
+/* Nav bar colour fix */
+.site-header {
+  background: #0f1c28 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.main-nav a {
+  color: #ffffff;
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+  color: #f5b942; /* accent for hover/active link, change if you like */
+}
+
+/* Mobile dropdown menu */
+@media (max-width: 900px) {
+  .main-nav {
+    background: #0f1c28 !important;
+  }
+}
+/* Match header to services.html */
+.site-header .logo-plane {
+  width: 63px;
+  height: 63px;
+  min-width: 63px;
+  padding: 0;
+  box-sizing: border-box;
+  border-radius: 50%;
+  background: #ee7228;
+  color: #fff;
+  display: inline-grid;
+  place-items: center;
+  font-size: 1.5rem;
+  line-height: 1;
+  margin-right: 15px;
+}
+
+.main-nav a {
+  font-size: 1rem;
+  font-weight: 500;
+  white-space: nowrap;   /* stops "About Us" and "Success Stories" wrapping */
+}
+
+.main-nav a.nav-cta span { display: none; }  /* removes the ↗ arrow */
+/* =========================================================
+   DESTINATION BOOKING FORM - LAYOUT + RESPONSIVE
+   ========================================================= */
+
+/* ---------- Desktop: text left, form right ---------- */
+.booking-card {
+    display: grid;
+    grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+    grid-template-areas:
+        "intro fields"
+        "intro summary"
+        "intro message"
+        "intro button";
+    column-gap: clamp(20px, 3vw, 40px);
+    row-gap: 0;
+    align-content: start;
+    align-items: start;
+    padding: clamp(20px, 4vw, 34px);
+}
+
+.booking-card > div:first-child {
+    grid-area: intro;
+}
+
+.booking-card h3 {
+    font-size: clamp(1.3rem, 4.5vw, 1.65rem);
+}
+
+.booking-card .booking-fields {
+    grid-area: fields;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.booking-card .booking-summary {
+    grid-area: summary;
+    margin: 18px 0 0;
+}
+
+.booking-card .booking-message {
+    grid-area: message;
+    margin: 0;
+}
+
+.booking-card .booking-message:not(:empty) {
+    margin-top: 10px;
+}
+
+/* Button sits right under the "Preferred intake" field */
+.booking-card button[type="submit"] {
+    grid-area: button;
+    justify-self: start;
+    width: auto;
+    min-width: 220px;
+    margin-top: 18px;
+    padding: 14px 30px;
+}
+
+.booking-fields input,
+.booking-fields select {
+    min-width: 0;
+}
+
+/* ---------- Country buttons ---------- */
+.planner-countries {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+/* ---------- Tablet (up to 900px) ---------- */
+@media (max-width: 900px) {
+    .booking-card {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas:
+            "intro"
+            "fields"
+            "summary"
+            "message"
+            "button";
+    }
+
+    .booking-card > div:first-child {
+        margin-bottom: 20px;
+    }
+
+    .planner-countries {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .planner-info {
+        padding: clamp(16px, 4.5vw, 30px);
+    }
+}
+
+/* ---------- Phones (up to 600px) ---------- */
+@media (max-width: 600px) {
+    .booking-card .booking-fields {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .booking-card button[type="submit"] {
+        justify-self: stretch;
+        width: 100%;
+        min-width: 0;
+    }
+
+    /* 16px stops iPhones zooming in when a field is tapped */
+    .booking-fields input,
+    .booking-fields select {
+        font-size: 16px;
+    }
+
+    .university-option {
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    .planner-details {
+        min-height: 0;
+    }
+}
+
+/* ---------- Small phones (up to 420px) ---------- */
+@media (max-width: 420px) {
+    .planner-countries {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .planner-country {
+        padding: 14px 8px;
+        font-size: .85rem;
+    }
+
+    .booking-card {
+        border-radius: 14px;
+    }
+}
+/* Service videos stay inside their cards */
+.service-video-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    align-items: start;
+}
+
+.service-video-card {
+    min-width: 0;
+    overflow: hidden;
+    border-radius: 14px;
+}
+
+.service-video-card video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    height: auto;
+    max-height: 260px;
+    object-fit: contain;
+    background: #07131c;
+}
+
+.service-video-info {
+    padding: 16px;
+}
+
+@media (max-width: 900px) {
+    .service-video-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+    }
+}
+
+@media (max-width: 560px) {
+    .service-video-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .service-video-card video {
+        max-height: 170px;
+    }
+
+    .service-video-info {
+        padding: 10px;
+    }
+
+    .service-video-info h3 {
+        font-size: 14px;
+        line-height: 1.3;
+    }
+
+    .service-video-info p {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+}
+.service-video-card {
+    position: relative;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.service-video-card video {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 240px;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+    background: #000;
+}
+
+@media (max-width: 600px) {
+    .service-video-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .service-video-card video {
+        max-height: 160px;
+    }
+}

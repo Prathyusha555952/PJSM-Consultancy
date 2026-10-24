@@ -4,12 +4,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore study abroad programs with PJSM: computer science, engineering, business, healthcare, data science and more.">
 
     <title>PJSM | Courses</title>
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <style>
+        /* =====================================================
+           STICKY COURSE SETS  (cards 1-4, 5-8, 9-10)
+           Each set sticks under the header while you scroll, and the
+           next set slides up and covers it.
+        ===================================================== */
+
+        /* Sticky only works when the page itself is not a scroll box.
+           style.css sets overflow-x:hidden on html/body, which breaks it,
+           so this page uses "clip" (same look, but sticky keeps working). */
+        html, body { overflow-x: visible !important; }
+        @supports (overflow: clip) {
+            html, body { overflow-x: clip !important; }
+        }
+
+        .courses-page {
+            --hdr: 80px;     /* fixed header height */
+            --bar: 56px;     /* height of the 1-4 / 5-8 / 9-10 bar */
+        }
+
+        @media (max-width: 768px) { .courses-page { --hdr: 70px; --bar: 52px; } }
+        @media (max-width: 480px) { .courses-page { --hdr: 65px; --bar: 48px; } }
+
+        /* ----- the sticky 1-4 / 5-8 / 9-10 bar ----- */
+        .course-steps {
+            position: sticky;
+            top: var(--hdr);
+            z-index: 40;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            height: var(--bar);
+            margin: 0 0 10px;
+            background: rgba(255, 255, 255, .96);
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid #e7e9ed;
+        }
+
+        .course-step {
+            padding: 8px 20px;
+            border: 1px solid #d8dfe3;
+            border-radius: 99px;
+            background: #ffffff;
+            color: #172a3a;
+            font-family: "DM Sans", sans-serif;
+            font-size: .92rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background .25s ease, color .25s ease, border-color .25s ease, transform .25s ease;
+        }
+
+        .course-step:hover {
+            border-color: #e86f2e;
+            color: #e86f2e;
+        }
+
+        .course-step.is-active {
+            border-color: #172a3a;
+            background: #172a3a;
+            color: #ffffff;
+        }
+
+        .course-step:focus-visible {
+            outline: 3px solid #e86f2e;
+            outline-offset: 2px;
+        }
+
+        /* ----- the three sets ----- */
+        .course-sets {
+            position: relative;
+        }
+
+        .course-set {
+            position: relative;
+            display: flex;
+            margin-bottom: 28px;
+            padding: 16px 0 18px;
+            border-radius: 22px;
+            background: #ffffff;
+        }
+
+        .course-set:last-child { margin-bottom: 0; }
+        .course-set:nth-child(1) { z-index: 1; }
+        .course-set:nth-child(2) { z-index: 2; }
+        .course-set:nth-child(3) { z-index: 3; }
+
+        .course-set > .premium-course-grid {
+            flex: 1;
+            width: 100%;
+        }
+
+        /* the stacking effect (switched on by the script only when a set fits on screen) */
+        .course-sets.is-stacked .course-set {
+            position: sticky;
+            top: var(--stick, calc(var(--hdr) + var(--bar)));
+            box-shadow: 0 -16px 30px -10px rgba(23, 42, 58, .14);
+        }
+
+        /* last set has two cards: centre them under the others on wide screens */
+        @media (min-width: 1001px) {
+            .course-set-last .premium-course-grid > .premium-course-card:first-child {
+                grid-column: 2;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .course-steps { gap: 8px; }
+            .course-step { padding: 7px 16px; font-size: .85rem; }
+            .course-set { margin-bottom: 20px; border-radius: 16px; }
+        }
+
+        @media (max-width: 380px) {
+            .course-step { padding: 6px 12px; font-size: .78rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .course-step { transition: none; }
+        }
+    </style>
 </head>
 
 <body>
@@ -26,6 +149,7 @@
             <a href="about.html">About Us</a>
             <a href="destinations.html">Destinations</a>
             <a href="services.html">Services</a>
+            <a href="scholarship.html">Scholarships</a>
             <a href="courses.html">Courses</a>
             <a href="process.html">Process</a>
             <a href="success-stories.html">Success Stories</a>
@@ -64,225 +188,253 @@
             </h2>
         </div>
 
-        <div class="premium-course-grid">
+        <!-- sticky bar: shows which set you are on, click to jump -->
+        <nav class="course-steps" id="courseSteps" aria-label="Course groups">
+            <button type="button" class="course-step is-active" data-set="0" aria-label="Show programs 1 to 4">1 – 4</button>
+            <button type="button" class="course-step" data-set="1" aria-label="Show programs 5 to 8">5 – 8</button>
+            <button type="button" class="course-step" data-set="2" aria-label="Show programs 9 and 10">9 – 10</button>
+        </nav>
 
-            <div class="premium-course-card">
-                <div class="course-card-top">
-                    <span class="course-number">01</span>
-                    <div class="course-icon">
-                        <i class="fa-solid fa-laptop-code"></i>
-                    </div>
-                </div>
+        <div class="course-sets" id="courseSets">
 
-                <div class="course-card-content">
-                    <h3>Computer Science &amp; IT</h3>
-                    <p>Build practical skills for today’s digital careers.</p>
+            <!-- SET 1: cards 1-4 -->
+            <div class="course-set">
+                <div class="premium-course-grid">
 
-                    <div class="course-tags">
-                        <span>Software</span>
-                        <span>IT</span>
-                        <span>Technology</span>
-                    </div>
+                    <div class="premium-course-card">
+                        <div class="course-card-top">
+                            <span class="course-number">01</span>
+                            <div class="course-icon">
+                                <i class="fa-solid fa-laptop-code"></i>
+                            </div>
+                        </div>
 
-                    <a href="#">Explore Programs <span>→</span></a>
-                </div>
-            </div>
+                        <div class="course-card-content">
+                            <h3>Computer Science &amp; IT</h3>
+                            <p>Build practical skills for today’s digital careers.</p>
 
-            <div class="premium-course-card">
-                <div class="course-card-top">
-                    <span class="course-number">02</span>
-                    <div class="course-icon">
-                        <i class="fa-solid fa-gears"></i>
-                    </div>
-                </div>
+                            <div class="course-tags">
+                                <span>Software</span>
+                                <span>IT</span>
+                                <span>Technology</span>
+                            </div>
 
-                <div class="course-card-content">
-                    <h3>Engineering</h3>
-                    <p>Design, build and solve real-world problems.</p>
-
-                    <div class="course-tags">
-                        <span>Mechanical</span>
-                        <span>Civil</span>
-                        <span>Electrical</span>
+                            <a href="#">Explore Programs <span>→</span></a>
+                        </div>
                     </div>
 
-                    <a href="#">Explore Programs <span>→</span></a>
-                </div>
-            </div>
+                    <div class="premium-course-card">
+                        <div class="course-card-top">
+                            <span class="course-number">02</span>
+                            <div class="course-icon">
+                                <i class="fa-solid fa-gears"></i>
+                            </div>
+                        </div>
 
-            <div class="premium-course-card">
-                <div class="course-card-top">
-                    <span class="course-number">03</span>
-                    <div class="course-icon">
-                        <i class="fa-solid fa-briefcase"></i>
-                    </div>
-                </div>
+                        <div class="course-card-content">
+                            <h3>Engineering</h3>
+                            <p>Design, build and solve real-world problems.</p>
 
-                <div class="course-card-content">
-                    <h3>Business &amp; Management</h3>
-                    <p>Lead teams and grow ideas into successful ventures.</p>
+                            <div class="course-tags">
+                                <span>Mechanical</span>
+                                <span>Civil</span>
+                                <span>Electrical</span>
+                            </div>
 
-                    <div class="course-tags">
-                        <span>Management</span>
-                        <span>Marketing</span>
-                        <span>Leadership</span>
-                    </div>
-
-                    <a href="#">Explore Programs <span>→</span></a>
-                </div>
-            </div>
-
-            <div class="premium-course-card">
-                <div class="course-card-top">
-                    <span class="course-number">04</span>
-                    <div class="course-icon">
-                        <i class="fa-solid fa-heart-pulse"></i>
-                    </div>
-                </div>
-
-                <div class="course-card-content">
-                    <h3>Healthcare</h3>
-                    <p>Prepare to care for people and communities.</p>
-
-                    <div class="course-tags">
-                        <span>Healthcare</span>
-                        <span>Nursing</span>
-                        <span>Health Science</span>
+                            <a href="#">Explore Programs <span>→</span></a>
+                        </div>
                     </div>
 
-                    <a href="#">Explore Programs <span>→</span></a>
-                </div>
-            </div>
+                    <div class="premium-course-card">
+                        <div class="course-card-top">
+                            <span class="course-number">03</span>
+                            <div class="course-icon">
+                                <i class="fa-solid fa-briefcase"></i>
+                            </div>
+                        </div>
 
-            <div class="premium-course-card">
-                <div class="course-card-top">
-                    <span class="course-number">05</span>
-                    <div class="course-icon">
-                        <i class="fa-solid fa-brain"></i>
+                        <div class="course-card-content">
+                            <h3>Business &amp; Management</h3>
+                            <p>Lead teams and grow ideas into successful ventures.</p>
+
+                            <div class="course-tags">
+                                <span>Management</span>
+                                <span>Marketing</span>
+                                <span>Leadership</span>
+                            </div>
+
+                            <a href="#">Explore Programs <span>→</span></a>
+                        </div>
                     </div>
-                </div>
 
-                <div class="course-card-content">
-                    <h3>Data Science &amp; AI</h3>
-                    <p>Turn data into ideas, insight and innovation.</p>
+                    <div class="premium-course-card">
+                        <div class="course-card-top">
+                            <span class="course-number">04</span>
+                            <div class="course-icon">
+                                <i class="fa-solid fa-heart-pulse"></i>
+                            </div>
+                        </div>
 
-                    <div class="course-tags">
-                        <span>AI</span>
-                        <span>Data</span>
-                        <span>Machine Learning</span>
+                        <div class="course-card-content">
+                            <h3>Healthcare</h3>
+                            <p>Prepare to care for people and communities.</p>
+
+                            <div class="course-tags">
+                                <span>Healthcare</span>
+                                <span>Nursing</span>
+                                <span>Health Science</span>
+                            </div>
+
+                            <a href="#">Explore Programs <span>→</span></a>
+                        </div>
                     </div>
 
-                    <a href="#">Explore Programs <span>→</span></a>
                 </div>
             </div>
 
-            <div class="premium-course-card">
-                <div class="course-card-top">
-                    <span class="course-number">06</span>
-                    <div class="course-icon">
-                        <i class="fa-solid fa-chart-line"></i>
+            <!-- SET 2: cards 5-8 -->
+            <div class="course-set">
+                <div class="premium-course-grid">
+
+                    <div class="premium-course-card">
+                        <div class="course-card-top">
+                            <span class="course-number">05</span>
+                            <div class="course-icon">
+                                <i class="fa-solid fa-brain"></i>
+                            </div>
+                        </div>
+
+                        <div class="course-card-content">
+                            <h3>Data Science &amp; AI</h3>
+                            <p>Turn data into ideas, insight and innovation.</p>
+
+                            <div class="course-tags">
+                                <span>AI</span>
+                                <span>Data</span>
+                                <span>Machine Learning</span>
+                            </div>
+
+                            <a href="#">Explore Programs <span>→</span></a>
+                        </div>
                     </div>
-                </div>
 
-                <div class="course-card-content">
-                    <h3>Finance &amp; Accounting</h3>
-                    <p>Understand money, markets and smart decisions.</p>
+                    <div class="premium-course-card">
+                        <div class="course-card-top">
+                            <span class="course-number">06</span>
+                            <div class="course-icon">
+                                <i class="fa-solid fa-chart-line"></i>
+                            </div>
+                        </div>
 
-                    <div class="course-tags">
-                        <span>Finance</span>
-                        <span>Accounting</span>
-                        <span>Investment</span>
+                        <div class="course-card-content">
+                            <h3>Finance &amp; Accounting</h3>
+                            <p>Understand money, markets and smart decisions.</p>
+
+                            <div class="course-tags">
+                                <span>Finance</span>
+                                <span>Accounting</span>
+                                <span>Investment</span>
+                            </div>
+
+                            <a href="#">Explore Programs <span>→</span></a>
+                        </div>
                     </div>
 
-                    <a href="#">Explore Programs <span>→</span></a>
+                    <div class="premium-course-card">
+                        <div class="course-card-top">
+                            <span class="course-number">07</span>
+                            <div class="course-icon">
+                                <i class="fa-solid fa-compass-drafting"></i>
+                            </div>
+                        </div>
+
+                        <div class="course-card-content">
+                            <h3>Architecture &amp; Design</h3>
+                            <p>Shape spaces, products and experiences with purpose.</p>
+
+                            <div class="course-tags">
+                                <span>Architecture</span>
+                                <span>Design</span>
+                                <span>Creative</span>
+                            </div>
+
+                            <a href="#">Explore Programs <span>→</span></a>
+                        </div>
+                    </div>
+
+                    <div class="premium-course-card">
+                        <div class="course-card-top">
+                            <span class="course-number">08</span>
+                            <div class="course-icon">
+                                <i class="fa-solid fa-hotel"></i>
+                            </div>
+                        </div>
+
+                        <div class="course-card-content">
+                            <h3>Hospitality &amp; Tourism</h3>
+                            <p>Create memorable experiences for people everywhere.</p>
+
+                            <div class="course-tags">
+                                <span>Hospitality</span>
+                                <span>Tourism</span>
+                                <span>Travel</span>
+                            </div>
+
+                            <a href="#">Explore Programs <span>→</span></a>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
-            <div class="premium-course-card">
-                <div class="course-card-top">
-                    <span class="course-number">07</span>
-                    <div class="course-icon">
-                        <i class="fa-solid fa-compass-drafting"></i>
-                    </div>
-                </div>
+            <!-- SET 3: cards 9-10 -->
+            <div class="course-set course-set-last">
+                <div class="premium-course-grid">
 
-                <div class="course-card-content">
-                    <h3>Architecture &amp; Design</h3>
-                    <p>Shape spaces, products and experiences with purpose.</p>
+                    <div class="premium-course-card">
+                        <div class="course-card-top">
+                            <span class="course-number">09</span>
+                            <div class="course-icon">
+                                <i class="fa-solid fa-scale-balanced"></i>
+                            </div>
+                        </div>
 
-                    <div class="course-tags">
-                        <span>Architecture</span>
-                        <span>Design</span>
-                        <span>Creative</span>
-                    </div>
+                        <div class="course-card-content">
+                            <h3>Law &amp; Legal Studies</h3>
+                            <p>Build clear thinking, research and advocacy skills.</p>
 
-                    <a href="#">Explore Programs <span>→</span></a>
-                </div>
-            </div>
+                            <div class="course-tags">
+                                <span>Law</span>
+                                <span>Legal</span>
+                                <span>Research</span>
+                            </div>
 
-            <div class="premium-course-card">
-                <div class="course-card-top">
-                    <span class="course-number">08</span>
-                    <div class="course-icon">
-                        <i class="fa-solid fa-hotel"></i>
-                    </div>
-                </div>
-
-                <div class="course-card-content">
-                    <h3>Hospitality &amp; Tourism</h3>
-                    <p>Create memorable experiences for people everywhere.</p>
-
-                    <div class="course-tags">
-                        <span>Hospitality</span>
-                        <span>Tourism</span>
-                        <span>Travel</span>
+                            <a href="#">Explore Programs <span>→</span></a>
+                        </div>
                     </div>
 
-                    <a href="#">Explore Programs <span>→</span></a>
-                </div>
-            </div>
+                    <div class="premium-course-card">
+                        <div class="course-card-top">
+                            <span class="course-number">10</span>
+                            <div class="course-icon">
+                                <i class="fa-solid fa-flask"></i>
+                            </div>
+                        </div>
 
-            <div class="premium-course-card">
-                <div class="course-card-top">
-                    <span class="course-number">09</span>
-                    <div class="course-icon">
-                        <i class="fa-solid fa-scale-balanced"></i>
-                    </div>
-                </div>
+                        <div class="course-card-content">
+                            <h3>Science &amp; Research</h3>
+                            <p>Ask better questions and discover what is next.</p>
 
-                <div class="course-card-content">
-                    <h3>Law &amp; Legal Studies</h3>
-                    <p>Build clear thinking, research and advocacy skills.</p>
+                            <div class="course-tags">
+                                <span>Science</span>
+                                <span>Research</span>
+                                <span>Innovation</span>
+                            </div>
 
-                    <div class="course-tags">
-                        <span>Law</span>
-                        <span>Legal</span>
-                        <span>Research</span>
-                    </div>
-
-                    <a href="#">Explore Programs <span>→</span></a>
-                </div>
-            </div>
-
-            <div class="premium-course-card">
-                <div class="course-card-top">
-                    <span class="course-number">10</span>
-                    <div class="course-icon">
-                        <i class="fa-solid fa-flask"></i>
-                    </div>
-                </div>
-
-                <div class="course-card-content">
-                    <h3>Science &amp; Research</h3>
-                    <p>Ask better questions and discover what is next.</p>
-
-                    <div class="course-tags">
-                        <span>Science</span>
-                        <span>Research</span>
-                        <span>Innovation</span>
+                            <a href="#">Explore Programs <span>→</span></a>
+                        </div>
                     </div>
 
-                    <a href="#">Explore Programs <span>→</span></a>
                 </div>
             </div>
 
@@ -346,6 +498,7 @@
                 <li><a href="destinations.html">Destinations</a></li>
                 <li><a href="courses.html">Courses</a></li>
                 <li><a href="services.html">Services</a></li>
+                <li><a href="scholarship.html">Scholarships</a></li>
                 <li><a href="process.html">Our Process</a></li>
                 <li><a href="success-stories.html">Success Stories</a></li>
             </ul>
@@ -409,10 +562,11 @@
             </p>
 
             <div class="pjsm-footer-bottom-links">
-                              <a href="privacy-policy.html">Privacy Policy</a>
-<span>•</span>
-<a href="terms-conditions.html">Terms & Conditions</a>
-
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <span>•</span>
+                <a href="refund.html">Refund Policy</a>
+                <span>•</span>
+                <a href="terms-conditions.html">Terms &amp; Conditions</a>
             </div>
 
         </div>
@@ -420,7 +574,92 @@
     </div>
 
 </footer>
+
 <script src="script.js"></script>
+
+<script>
+/* Sticky course sets: keeps the 1-4 / 5-8 / 9-10 bar in step with the scroll,
+   makes every set the same height so the next one fully covers the last,
+   and turns the stacking on only when a set fits on the screen. */
+(function () {
+    "use strict";
+
+    var wrap   = document.getElementById("courseSets");
+    var bar    = document.getElementById("courseSteps");
+    var header = document.querySelector(".header");
+    var page   = document.querySelector(".courses-page");
+    if (!wrap || !bar || !page) { return; }
+
+    var sets  = Array.prototype.slice.call(wrap.querySelectorAll(".course-set"));
+    var steps = Array.prototype.slice.call(bar.querySelectorAll(".course-step"));
+    var ticking = false;
+
+    function stickyOffset() {
+        return (header ? header.offsetHeight : 80) + bar.offsetHeight;
+    }
+
+    function layout() {
+        /* header height, so the bar and the sets stop exactly under it */
+        if (header) { page.style.setProperty("--hdr", header.offsetHeight + "px"); }
+
+        wrap.classList.remove("is-stacked");
+        sets.forEach(function (s) { s.style.minHeight = ""; });
+
+        var tallest = 0;
+        sets.forEach(function (s) { tallest = Math.max(tallest, s.offsetHeight); });
+        sets.forEach(function (s) { s.style.minHeight = tallest + "px"; });
+
+        var top = stickyOffset();
+        wrap.style.setProperty("--stick", top + "px");
+
+        /* stack only if a whole set fits below the header + bar */
+        wrap.classList.toggle("is-stacked", tallest + top + 12 <= window.innerHeight);
+
+        highlight();
+    }
+
+    function highlight() {
+        var top = stickyOffset();
+        var active = 0;
+        sets.forEach(function (s, i) {
+            if (s.getBoundingClientRect().top <= top + 8) { active = i; }
+        });
+        steps.forEach(function (b, i) {
+            var on = i === active;
+            b.classList.toggle("is-active", on);
+            if (on) { b.setAttribute("aria-current", "true"); } else { b.removeAttribute("aria-current"); }
+        });
+    }
+
+    function goTo(index) {
+        var setHeight = sets[0].offsetHeight;
+        var gap = parseFloat(getComputedStyle(sets[0]).marginBottom) || 0;
+        var wrapTop = window.pageYOffset + wrap.getBoundingClientRect().top;
+        var target = wrapTop + index * (setHeight + gap) - stickyOffset();
+        var calm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        window.scrollTo({ top: Math.max(0, target), behavior: calm ? "auto" : "smooth" });
+    }
+
+    steps.forEach(function (button) {
+        button.addEventListener("click", function () {
+            goTo(parseInt(button.getAttribute("data-set"), 10) || 0);
+        });
+    });
+
+    window.addEventListener("scroll", function () {
+        if (!ticking) {
+            ticking = true;
+            window.requestAnimationFrame(function () { highlight(); ticking = false; });
+        }
+    }, { passive: true });
+
+    window.addEventListener("resize", layout);
+    window.addEventListener("orientationchange", layout);
+    window.addEventListener("load", layout);
+
+    layout();
+})();
+</script>
 
 </body>
 </html>

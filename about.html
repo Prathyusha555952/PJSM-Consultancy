@@ -9,35 +9,169 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <style>cd
-    .about-page { background:#f6f8fb; color:#172b3a; min-height:100vh; }
-    .about-hero { position:relative; isolation:isolate; overflow:hidden; padding:150px 6% 88px; background:#102738; color:#fff; }
-    .about-hero::before { content:''; position:absolute; z-index:-2; inset:-20px; background:url('https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=2000&q=85') center/cover no-repeat; filter:blur(3px); transform:scale(1.04); }
-    .about-hero::after { content:''; position:absolute; z-index:-1; inset:0; background:linear-gradient(105deg,rgba(10,30,44,.93),rgba(18,51,69,.74)),radial-gradient(circle at 83% 18%,rgba(244,119,43,.28),transparent 27%); }
-    .about-hero-inner { position:relative; max-width:1180px; margin:auto; }
-    .about-eyebrow { display:inline-block; color:#ffb482; font-size:.78rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
-    .about-hero h1 { max-width:700px; margin:14px 0 18px; font-family:'Playfair Display',serif; font-size:clamp(2.45rem,5vw,4.4rem); line-height:1.08; }
-    .about-hero p { max-width:650px; margin:0; color:#d7e5ed; font-size:1.1rem; line-height:1.8; }
-    .about-wrap { max-width:1180px; margin:-38px auto 0; padding:0 24px 82px; }
-    .about-grid { display:grid; grid-template-columns:minmax(0,.9fr) minmax(420px,1.1fr); gap:34px; align-items:center; }
-    .about-copy { padding:25px 10px; }
-    .about-copy h2 { margin:0 0 16px; font-family:'Playfair Display',serif; color:#172b3a; font-size:clamp(2rem,3vw,3rem); line-height:1.17; }
-    .about-copy p { color:#596d7c; line-height:1.8; margin:0 0 15px; }
-    .about-values { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:25px; }
-    .about-value { padding:16px; background:#fff; border:1px solid #e4ebf0; border-radius:14px; box-shadow:0 9px 25px rgba(23,43,58,.06); }
-    .about-value strong { display:block; color:#e8631a; font-size:.92rem; margin-bottom:4px; }
-    .about-value span { color:#647787; font-size:.86rem; line-height:1.45; }
-    .about-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:25px 0 0; }
-    .about-stat { padding:16px 10px; border-radius:12px; background:#173b50; color:#fff; text-align:center; }
-    .about-stat b { display:block; color:#ff9b60; font-size:1.55rem; line-height:1; } .about-stat span { display:block; margin-top:6px; color:#d5e3ea; font-size:.72rem; line-height:1.35; }
-    .world-card { position:relative; overflow:hidden; min-height:510px; border:9px solid #fff; border-radius:24px; background:#dcecf3; box-shadow:0 22px 45px rgba(15,42,58,.2); }
-    .world-card iframe { position:absolute; inset:0; width:100%; height:100%; border:0; filter:saturate(.85) contrast(.95); }
-    .world-card::after { content:'Explore our popular study destinations'; position:absolute; left:20px; bottom:18px; z-index:2; padding:9px 14px; border-radius:100px; background:rgba(18,43,59,.88); color:#fff; font-size:.78rem; font-weight:700; pointer-events:none; }
-    .about-journey { margin-top:70px; padding:42px; border-radius:22px; background:#fff; text-align:center; box-shadow:0 12px 30px rgba(23,43,58,.07); }
-    .about-journey h2 { margin:0 0 10px; font-family:'Playfair Display',serif; font-size:2rem; } .about-journey p { margin:0 auto 24px; max-width:670px; color:#647787; line-height:1.7; }
-    .about-journey a { display:inline-block; padding:13px 22px; border-radius:9px; background:#f4772b; color:#fff; font-weight:700; text-decoration:none; transition:transform .2s,background .2s; } .about-journey a:hover { background:#dd621b; transform:translateY(-2px); }
-    @media (max-width:850px) { .about-hero { padding-top:125px; } .about-grid { grid-template-columns:1fr; } .world-card { min-height:430px; } .about-copy { order:2; } }
-    @media (max-width:520px) { .about-hero { padding:110px 24px 66px; } .about-wrap { padding:0 16px 55px; } .about-values { grid-template-columns:1fr; } .about-stats { grid-template-columns:1fr; } .world-card { min-height:350px; border-width:5px; } .about-journey { margin-top:38px; padding:30px 20px; } }
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    :root { --orange:#f26a1b; --navy:#11273a; --cream:#fffaf6; --sec-y:clamp(52px,7vw,96px); }
+    *, *::before, *::after { box-sizing:border-box; }
+    html { overflow-x:hidden; }
+    html { -webkit-text-size-adjust:100%; text-size-adjust:100%; }
+    .about-page { background:var(--cream); color:var(--navy); min-height:100vh; overflow-x:hidden; overflow-wrap:break-word; }
+    .about-page svg { display:block; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; }
+
+    /* ---------- Hero ---------- */
+    .about-hero { position:relative; isolation:isolate; overflow:hidden; display:flex; align-items:center; min-height:clamp(440px,62vh,580px); padding:clamp(110px,12vw,170px) 4% clamp(60px,8vw,96px); background:#102738; color:#fff; }
+    .about-hero::before { content:''; position:absolute; z-index:-3; inset:-12px; background:url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=2000&q=85') center/cover no-repeat; filter:blur(3px); transform:scale(1.03); }
+    .about-hero::after { content:''; position:absolute; z-index:-2; inset:0; background:linear-gradient(90deg,rgba(10,28,44,.4),rgba(10,28,44,.05) 70%); }
+    .hero-blob { position:absolute; z-index:-1; left:-12%; top:-32%; width:62%; height:100%; border-radius:46% 54% 50% 50% / 58% 62% 38% 42%; background:rgba(13,33,52,.84); transform:rotate(-8deg); pointer-events:none; }
+    .about-hero-inner { width:100%; max-width:1280px; margin:0 auto; padding-left:clamp(0px,7.5vw,100px); }
+    .hero-eyebrow { display:block; color:var(--orange); font-weight:800; letter-spacing:.14em; text-transform:uppercase; font-size:clamp(.8rem,1.4vw,1.1rem); }
+    .about-hero h1 { max-width:780px; margin:12px 0 22px; font-family:'Playfair Display',serif; font-weight:700; font-size:clamp(2.4rem,6.4vw,5.2rem); line-height:1.05; }
+    .about-hero h1 span { display:block; color:var(--orange); }
+    .about-hero p { max-width:620px; margin:0; color:#eaf1f6; font-size:clamp(1rem,1.7vw,1.3rem); line-height:1.6; }
+
+    /* ---------- Our Story ---------- */
+    .story { padding:var(--sec-y) 4%; }
+    .story-grid { max-width:1280px; margin:0 auto; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.05fr); gap:clamp(32px,6vw,80px); align-items:center; }
+    .eyebrow { display:flex; align-items:center; gap:14px; margin-bottom:16px; color:var(--orange); font-weight:800; font-size:.8rem; letter-spacing:.14em; text-transform:uppercase; }
+    .eyebrow::after { content:''; width:46px; height:2px; background:var(--orange); }
+    .story h2, .guide h2 { margin:0 0 20px; font-family:'Playfair Display',serif; font-weight:700; color:var(--navy); font-size:clamp(1.9rem,3.6vw,3rem); line-height:1.17; }
+    .story p { margin:0; color:#5d6b77; font-size:clamp(.98rem,1.3vw,1.12rem); line-height:1.75; }
+
+    .stats { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .stat { display:flex; flex-direction:column; align-items:center; text-align:center; gap:8px; padding:24px 12px; background:#fff; border-radius:14px; box-shadow:0 8px 24px rgba(17,39,58,.07); }
+    .stat svg { width:36px; height:36px; color:var(--orange); }
+    .stat b { display:block; font-family:'Playfair Display',serif; font-size:clamp(1.6rem,2.6vw,2.1rem); line-height:1.1; }
+    .stat span { display:block; color:#5d6b77; font-size:.9rem; }
+
+    .mission { position:relative; overflow:hidden; display:flex; align-items:center; gap:20px; margin-top:20px; padding:24px 28px; border-left:5px solid var(--orange); border-radius:12px; background:linear-gradient(90deg,#ffe8da,#fff2ea); box-shadow:0 8px 24px rgba(242,106,27,.1); }
+    .mission-icon { flex:none; display:grid; place-items:center; width:66px; height:66px; border-radius:50%; background:#fff; color:var(--orange); box-shadow:0 6px 16px rgba(242,106,27,.2); }
+    .mission-icon svg { width:34px; height:34px; }
+    .mission h3 { margin:0 0 4px; font-size:1.1rem; }
+    .mission p { font-size:.93rem; line-height:1.55; max-width:440px; }
+    .mission-globe { position:absolute; right:-28px; top:50%; width:170px; height:170px; margin-top:-85px; color:var(--orange); opacity:.12; stroke-width:1.2; }
+
+    /* ---------- How we guide you ---------- */
+    .guide { padding:0 4% var(--sec-y); }
+    .guide-in { max-width:1280px; margin:0 auto; }
+    .guide h2 { text-align:center; margin-bottom:34px; }
+    .values { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+    .value { position:relative; overflow:hidden; padding:22px 20px 22px 24px; background:#fff; border:1px solid #f1e6dd; border-radius:14px; box-shadow:0 8px 24px rgba(17,39,58,.06); }
+    .value::before { content:''; position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--orange); transform:scaleY(0); transform-origin:top; transition:transform .35s ease; }
+    .value:hover { transform:translateY(-6px); box-shadow:0 18px 36px rgba(242,106,27,.16); }
+    .value:hover::before { transform:scaleY(1); }
+    .value strong { display:block; margin-bottom:6px; color:var(--orange); }
+    .value span { color:#5d6b77; font-size:.9rem; line-height:1.55; }
+    .world-card { position:relative; overflow:hidden; height:400px; margin-top:var(--sec-y); border:8px solid #fff; border-radius:22px; background:#dcecf3; box-shadow:0 20px 44px rgba(17,39,58,.16); }
+    .world-card iframe { position:absolute; inset:0; width:100%; height:100%; border:0; filter:saturate(.85); }
+    .world-card.locked iframe { pointer-events:none; }
+    .world-card::after { content:'Tap or click the map to explore our popular study destinations'; position:absolute; left:14px; bottom:14px; max-width:calc(100% - 28px); padding:8px 14px; border-radius:100px; background:rgba(17,39,58,.9); color:#fff; font-size:.76rem; font-weight:700; pointer-events:none; }
+    .cta { margin-top:var(--sec-y); padding:clamp(30px,5vw,54px) clamp(20px,5vw,48px); border-top:5px solid var(--orange); border-radius:22px; background:#fff; text-align:center; box-shadow:0 12px 30px rgba(17,39,58,.07); }
+    .cta h2 { margin:0 0 12px; font-size:clamp(1.5rem,3.2vw,2.1rem); }
+    .cta p { max-width:640px; margin:0 auto 26px; color:#5d6b77; line-height:1.7; }
+    .cta a { display:inline-block; padding:14px 28px; border-radius:10px; background:var(--orange); color:#fff; font-weight:700; text-decoration:none; box-shadow:0 8px 18px rgba(242,106,27,.3); transition:transform .2s, background .2s; }
+    .cta a:hover { background:#d85a10; transform:translateY(-3px); }
+
+    /* ---------- Interactions ---------- */
+    .stat, .mission, .value { transition:transform .3s ease, box-shadow .3s ease; }
+    .stat:hover { transform:translateY(-6px); box-shadow:0 16px 32px rgba(17,39,58,.14); }
+    .mission:hover { transform:translateY(-4px); box-shadow:0 16px 32px rgba(242,106,27,.2); }
+    .reveal { opacity:0; transform:translateY(26px); transition:opacity .7s ease, transform .7s ease; }
+    .reveal.in { opacity:1; transform:none; transition:opacity .7s ease, transform .3s ease, box-shadow .3s ease; }
+    @media (prefers-reduced-motion:reduce) { .reveal { opacity:1; transform:none; } * { transition-duration:.01ms !important; } }
+    @media (hover:none) { .stat:hover, .mission:hover, .value:hover { transform:none; } }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width:1100px) { .values { grid-template-columns:repeat(2,1fr); } }
+    @media (max-width:900px) {
+      .story-grid { grid-template-columns:1fr; gap:36px; }
+      .about-hero { min-height:480px; }
+      .about-hero-inner { padding-left:0; }
+      .hero-blob { left:-30%; top:-30%; width:110%; height:96%; }
+      .world-card { height:360px; }
+    }
+    @media (max-width:640px) {
+      .about-hero { min-height:450px; padding-left:24px; padding-right:24px; }
+      .about-hero::before { background-position:70% center; background-image:url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=900&q=75'); }
+      .hero-blob { left:-22%; top:-26%; width:112%; height:92%; }
+      .stats { grid-template-columns:1fr 1fr; gap:12px; }
+      .stat { flex-direction:row; justify-content:flex-start; text-align:left; gap:12px; padding:16px 14px; }
+      .stat svg { width:30px; height:30px; flex:none; }
+      .stat b { font-size:1.4rem; }
+      .stat span { font-size:.78rem; }
+      .stat:last-child { grid-column:1 / -1; }
+      .mission { padding:18px 16px; gap:14px; }
+      .mission-icon { width:54px; height:54px; }
+      .mission-icon svg { width:28px; height:28px; }
+      .mission-globe { width:120px; height:120px; margin-top:-60px; right:-24px; }
+      .values { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+      .value { padding:16px 12px 16px 16px; border-radius:12px; }
+      .value strong { font-size:.92rem; margin-bottom:5px; }
+      .value span { font-size:.8rem; line-height:1.5; }
+      .stat-text { min-width:0; }
+      .world-card { height:320px; border-width:5px; border-radius:18px; }
+      .cta a { display:block; width:100%; }
+    }
+    @media (max-width:380px) {
+      .about-hero { padding-left:18px; padding-right:18px; }
+      .about-hero h1 { font-size:2.2rem; }
+      .stats { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+      .stat { gap:8px; padding:14px 10px; }
+      .stat svg { width:26px; height:26px; }
+      .stat b { font-size:1.25rem; }
+      .stat span { font-size:.74rem; line-height:1.3; }
+      .world-card { height:290px; }
+    }
+    /* ---------- Device sizes ---------- */
+    @media (min-width:901px) and (max-width:1100px) { /* small laptops, iPad landscape */
+      .story-grid { gap:36px; }
+      .about-hero h1 { font-size:3.6rem; }
+      .stat { padding:20px 8px; }
+      .stat span { font-size:.82rem; }
+      .mission { padding:20px 18px; }
+      .mission-icon { width:56px; height:56px; }
+    }
+    @media (min-width:641px) and (max-width:900px) { /* tablets, iPad portrait */
+      .about-hero { padding-left:6%; padding-right:6%; min-height:520px; }
+      .about-hero h1 { font-size:clamp(2.8rem,7vw,3.8rem); }
+      .story, .guide { padding-left:6%; padding-right:6%; }
+      .story-copy { max-width:680px; }
+      .mission p { max-width:none; }
+    }
+    @media (min-width:481px) and (max-width:640px) { /* large phones, small tablets, foldables */
+      .about-hero h1 { font-size:2.9rem; }
+      .about-hero p { max-width:480px; }
+      .story { padding-left:5%; padding-right:5%; }
+      .guide { padding-left:5%; padding-right:5%; }
+    }
+    @media (max-width:480px) { /* phones 390–430px: iPhone 14/15/16, Pixel, Galaxy */
+      .about-hero { min-height:430px; padding-top:112px; padding-bottom:56px; }
+      .about-hero h1 { font-size:2.6rem; }
+      .about-hero p { font-size:1rem; }
+      .story h2, .guide h2 { font-size:1.85rem; }
+      .story { padding-left:20px; padding-right:20px; }
+      .guide { padding-left:16px; padding-right:16px; }
+    }
+    @media (max-width:375px) { /* iPhone SE / mini, small Androids */
+      .mission { padding:16px 14px; }
+      .value { padding:14px 10px 14px 14px; }
+      .value strong { font-size:.88rem; }
+      .value span { font-size:.77rem; }
+      .story h2, .guide h2 { font-size:1.65rem; }
+    }
+    @media (max-width:340px) { /* very small screens, Galaxy Fold */
+      .about-hero { padding-left:14px; padding-right:14px; }
+      .about-hero h1 { font-size:2rem; }
+      .hero-eyebrow, .eyebrow { letter-spacing:.08em; }
+      .mission { flex-direction:column; align-items:flex-start; }
+      .mission-globe { display:none; }
+      .cta { padding:24px 16px; }
+      .world-card { height:260px; }
+    }
+    @media (max-height:480px) and (orientation:landscape) {
+      .about-hero { min-height:0; padding-top:90px; padding-bottom:44px; }
+      .about-hero h1 { font-size:2rem; }
+      .hero-blob { left:-18%; top:-40%; width:70%; height:130%; }
+    }
   </style>
 </head>
 <body class="about-page">
@@ -49,6 +183,7 @@
         <a href="about.html" class="active" aria-current="page">About Us</a>
         <a href="destinations.html">Destinations</a>
         <a href="services.html">Services</a>
+        <a href="scholarship.html">Scholarships</a>
         <a href="courses.html">Courses</a>
         <a href="process.html">Process</a>
         <a href="success-stories.html">Success Stories</a>
@@ -59,12 +194,217 @@
   </header>
 
   <main>
-    <section class="about-hero"><div class="about-hero-inner"><span class="about-eyebrow">About PJSM Consultancy</span><h1>Guidance that makes global education feel possible.</h1><p>PJSM supports ambitious students with clear, practical advice from their first shortlist to their arrival on campus.</p></div></section>
-    <section class="about-wrap"><div class="about-grid">
-      <div class="about-copy"><h2>Your study-abroad journey, made clearer.</h2><p>For over 10 years, PJSM Consultancy has helped students turn international study plans into well-prepared next steps. We bring university choices, applications and visa preparation into one clear plan.</p><p>Our counsellors listen first, then help you choose the destination, university and course that match your goals, profile and budget.</p><div class="about-stats"><div class="about-stat"><b>10+</b><span>years of study-abroad guidance</span></div><div class="about-stat"><b>100%</b><span>assistance through each application step</span></div><div class="about-stat"><b>1:1</b><span>personalised counselling support</span></div></div><div class="about-values"><div class="about-value"><strong>Student-first advice</strong><span>Recommendations built around your plans—not a one-size-fits-all list.</span></div><div class="about-value"><strong>University selection</strong><span>Focused shortlists for your course, budget and future career goals.</span></div><div class="about-value"><strong>Application support</strong><span>Clear document guidance and help preparing a complete application.</span></div><div class="about-value"><strong>Visa readiness</strong><span>Practical preparation so you can move forward with confidence.</span></div></div></div>
-      <div class="world-card" aria-label="Google map showing popular PJSM study destinations"><iframe title="World map of popular PJSM destinations" src="https://www.google.com/maps?q=world&z=2&output=embed" loading="lazy"></iframe></div>
-    </div><section class="about-journey"><h2>Ready to plan with confidence?</h2><p>Tell us where you want to study and we will help you identify the right path forward.</p><a href="contact.html">Book free counselling</a></section></section>
+    <section class="about-hero">
+      <span class="hero-blob"></span>
+      <div class="about-hero-inner">
+        <span class="hero-eyebrow">About PJSM</span>
+        <h1>Guiding Your <span>Global Journey.</span></h1>
+        <p>Learn how PJSM transforms aspirations into global opportunities through expert guidance and end-to-end support.</p>
+      </div>
+    </section>
+
+    <section class="story">
+      <div class="story-grid">
+        <div class="story-copy reveal">
+          <div class="eyebrow">Our Story</div>
+          <h2>From Aspirations<br>to Global Opportunities</h2>
+          <p>At PJSM Consultancy, we believe that every student deserves the right guidance to pursue a global education and build a brighter future. Our journey began with a simple vision – to make study abroad dreams more accessible, transparent and achievable for students from across India.</p>
+        </div>
+        <div>
+          <div class="stats">
+            <div class="stat reveal">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 2 9l10 5 10-5-10-5z"/><path d="M6 11.5V16c0 1.5 3 3 6 3s6-1.5 6-3v-4.5"/><path d="M22 9v6"/></svg>
+              <div class="stat-text"><b>500+</b><span>Students Guided</span></div>
+            </div>
+            <div class="stat reveal">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>
+              <div class="stat-text"><b>15+</b><span>Countries</span></div>
+            </div>
+            <div class="stat reveal">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9l9-5 9 5H3z"/><path d="M5.5 9v8M9.5 9v8M14.5 9v8M18.5 9v8M3 20h18M4 17h16"/></svg>
+              <div class="stat-text"><b>200+</b><span>Partner Universities</span></div>
+            </div>
+          </div>
+          <div class="mission reveal">
+            <div class="mission-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3" fill="currentColor"/><circle cx="5.5" cy="9.5" r="2.2" fill="currentColor"/><circle cx="18.5" cy="9.5" r="2.2" fill="currentColor"/><path d="M6.5 19c0-3.2 2.4-5.5 5.5-5.5s5.5 2.3 5.5 5.5M1.5 17.5c0-2.2 1.7-3.8 4-3.8M22.5 17.5c0-2.2-1.7-3.8-4-3.8"/></svg></div>
+            <div>
+              <h3>Our Mission</h3>
+              <p>To empower students with the right knowledge, resources and support to achieve their global education and career goals.</p>
+            </div>
+            <svg class="mission-globe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2c4 4 4 16 0 20M12 2c-4 4-4 16 0 20"/></svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="guide">
+      <div class="guide-in">
+        <h2 class="reveal">How we guide you</h2>
+        <div class="values">
+          <div class="value reveal"><strong>Student-first advice</strong><span>Recommendations built around your plans—not a one-size-fits-all list.</span></div>
+          <div class="value reveal"><strong>University selection</strong><span>Focused shortlists for your course, budget and future career goals.</span></div>
+          <div class="value reveal"><strong>Application support</strong><span>Clear document guidance and help preparing a complete application.</span></div>
+          <div class="value reveal"><strong>Visa readiness</strong><span>Practical preparation so you can move forward with confidence.</span></div>
+        </div>
+        <div class="world-card locked reveal" id="worldCard" aria-label="Google map showing popular PJSM study destinations">
+          <iframe title="World map of popular PJSM destinations" src="https://www.google.com/maps?q=world&z=2&output=embed" loading="lazy"></iframe>
+        </div>
+        <div class="cta reveal">
+          <h2>Ready to plan with confidence?</h2>
+          <p>Tell us where you want to study and we will help you identify the right path forward.</p>
+          <a href="contact.html">Book free counselling</a>
+        </div>
+      </div>
+    </section>
   </main>
+<footer class="pjsm-footer">
+
+    <div class="pjsm-footer-container">
+
+        <!-- BRAND -->
+        <div class="pjsm-footer-box pjsm-footer-about">
+
+            <a href="first.html" class="pjsm-footer-logo">
+                <span class="pjsm-footer-plane">✈</span>
+
+                <span>
+                    PJSM
+                    <small>Education</small>
+                </span>
+            </a>
+
+            <p>
+                Helping students turn their study-abroad dreams
+                into successful international futures through
+                personalised guidance and trusted education
+                consultancy.
+            </p>
+
+            <div class="pjsm-social-links">
+
+                <a href="#" aria-label="Facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+
+                <a href="#" aria-label="LinkedIn">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+
+                <a href="#" aria-label="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+
+                <a href="#" aria-label="YouTube">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- QUICK LINKS -->
+        <div class="pjsm-footer-box">
+
+            <h3>Quick Links</h3>
+
+            <ul>
+                <li><a href="first.html">Home</a></li>
+                <li><a href="destinations.html">Destinations</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="scholarship.html">Scholarships</a></li>
+                <li><a href="process.html">Our Process</a></li>
+                <li><a href="success-stories.html">Success Stories</a></li>
+            </ul>
+
+        </div>
+
+
+        <!-- DESTINATIONS -->
+        <div class="pjsm-footer-box">
+
+            <h3>Study Destinations</h3>
+
+            <ul>
+                <li><a href="destinations.html">Australia</a></li>
+                <li><a href="destinations.html">United Kingdom</a></li>
+                <li><a href="destinations.html">USA</a></li>
+                <li><a href="destinations.html">Canada</a></li>
+                <li><a href="destinations.html">Germany</a></li>
+                <li><a href="destinations.html">Ireland</a></li>
+            </ul>
+
+        </div>
+
+
+        <!-- CONTACT -->
+        <div class="pjsm-footer-box pjsm-footer-contact">
+
+            <h3>Get In Touch</h3>
+
+            <div class="pjsm-contact-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Bangalore, India</span>
+            </div>
+
+            <div class="pjsm-contact-item">
+                <i class="fa-solid fa-phone"></i>
+                <a href="tel:+919121398010">
+                    +91 9121398010
+                </a>
+            </div>
+
+            <div class="pjsm-contact-item">
+                <i class="fa-solid fa-envelope"></i>
+                <a href="mailto:PJSMconsultancy@gmail.com">
+                    PJSMconsultancy@gmail.com
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- BOTTOM -->
+   <div class="pjsm-footer-bottom-inner">
+
+    <p>
+        © 2026 PJSM Education. All rights reserved.
+    </p>
+
+    <div class="pjsm-footer-bottom-links">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <span>•</span>
+        <a href="refund.html">Refund Policy</a>
+        <span>•</span>
+        <a href="terms-conditions.html">Terms &amp; Conditions</a>
+    </div>
+
+</div>
+
+    </div>
+
+</footer>
+
   <script src="script.js"></script>
+  <script>
+    (function () {
+      var els = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); }
+      else {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+        }, { threshold: 0.12 });
+        els.forEach(function (e) { io.observe(e); });
+      }
+      var card = document.getElementById('worldCard');
+      if (card) {
+        card.addEventListener('click', function () { card.classList.remove('locked'); });
+        card.addEventListener('mouseleave', function () { card.classList.add('locked'); });
+      }
+    })();
+  </script>
 </body>
 </html>

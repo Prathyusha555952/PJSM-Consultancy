@@ -10,6 +10,9 @@
           content="Study abroad with expert guidance for university selection, applications, scholarships and visas.">
 
     <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,7 +20,121 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"rel="stylesheet">
     <link rel="stylesheet"href="https://use.fontawesome.com/releases/v6.5.2/css/all.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    
+    <style>
+    :root { --navy:#0f2536; --navy2:#173b50; --orange:#f26a1b; --bg:#f3f5f9; --card:#fff; --text:#11273a; --muted:#6b7a88; --line:#e7ecf1; --green:#1ea672; --red:#d64545; }
+    *, *::before, *::after { box-sizing:border-box; }
+    html { overflow-x:hidden; }
+    body { margin:0; font-family:'DM Sans',system-ui,sans-serif; background:var(--bg); color:var(--text); overflow-x:hidden; }
+    [hidden] { display:none !important; }
+    button { font:inherit; cursor:pointer; }
+    svg.i { width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; flex:none; }
+ 
+    /* ---------- Login ---------- */
+    .login { min-height:100vh; display:grid; place-items:center; padding:20px; background:linear-gradient(135deg,#0f2536,#173b50 60%,#1f4d68); }
+    .login-card { width:min(420px,100%); padding:34px 30px; background:#fff; border-radius:20px; box-shadow:0 30px 70px rgba(0,0,0,.35); text-align:center; }
+    .brand { display:inline-flex; align-items:center; gap:10px; font-weight:700; font-size:1.25rem; }
+    .brand i { display:grid; place-items:center; width:42px; height:42px; border-radius:50%; background:var(--orange); color:#fff; font-style:normal; }
+    .login-card h1 { margin:18px 0 6px; font-family:'Playfair Display',serif; font-size:1.7rem; }
+    .login-card p { margin:0 0 20px; color:var(--muted); font-size:.92rem; }
+    .field { text-align:left; margin-bottom:14px; }
+    .field label { display:block; margin-bottom:6px; font-size:.8rem; font-weight:700; color:var(--muted); }
+    .field input { width:100%; padding:13px 14px; border:1px solid #d5dde5; border-radius:10px; font:inherit; outline:none; transition:border-color .2s, box-shadow .2s; }
+    .field input:focus { border-color:var(--orange); box-shadow:0 0 0 4px rgba(242,106,27,.15); }
+    .btn { padding:12px 20px; border:0; border-radius:10px; background:var(--orange); color:#fff; font-weight:700; transition:background .2s, transform .15s; }
+    .btn:hover { background:#d85a10; transform:translateY(-1px); }
+    .btn.block { width:100%; padding:14px; }
+    .btn.light { background:#fff; color:var(--text); border:1px solid var(--line); }
+    .btn.light:hover { background:#f6f8fb; }
+    .link-btn { margin-top:14px; border:0; background:none; color:var(--muted); font-size:.82rem; text-decoration:underline; }
+    .alert { margin:0 0 14px; padding:12px 14px; border-radius:10px; background:#fdecec; color:#a32a2a; font-size:.86rem; line-height:1.5; text-align:left; }
+    .conn { display:inline-flex; align-items:center; gap:8px; margin-top:16px; font-size:.82rem; color:var(--muted); }
+    .dot { width:9px; height:9px; border-radius:50%; background:#b8c2cc; }
+    .dot.online { background:var(--green); box-shadow:0 0 0 4px rgba(30,166,114,.2); }
+    .dot.offline { background:var(--red); box-shadow:0 0 0 4px rgba(214,69,69,.2); }
+    .dot.loading { background:#e0a100; animation:pulse 1s infinite; }
+    @keyframes pulse { 50% { opacity:.35; } }
+ 
+    /* ---------- Layout ---------- */
+    .app { display:grid; grid-template-columns:250px minmax(0,1fr); min-height:100vh; }
+    .side { position:sticky; top:0; height:100vh; display:flex; flex-direction:column; padding:22px 16px; background:linear-gradient(180deg,#0f2536,#112f43); color:#cfdce6; }
+    .side .brand { color:#fff; padding:0 8px 22px; }
+    .side nav { display:flex; flex-direction:column; gap:4px; }
+    .side nav a { display:flex; align-items:center; gap:12px; padding:12px 14px; border-radius:10px; color:#cfdce6; text-decoration:none; font-weight:500; font-size:.94rem; transition:background .2s, color .2s; }
+    .side nav a:hover, .side nav a.on { background:rgba(255,255,255,.1); color:#fff; }
+    .side nav a.on { box-shadow:inset 3px 0 0 var(--orange); }
+    .side-foot { margin-top:auto; padding:14px 8px 0; border-top:1px solid rgba(255,255,255,.12); font-size:.82rem; }
+    .side-foot .conn { margin:0 0 12px; color:#cfdce6; }
+    .side-foot button { width:100%; padding:10px; border:1px solid rgba(255,255,255,.25); border-radius:10px; background:transparent; color:#fff; }
+    .side-foot button:hover { background:rgba(255,255,255,.1); }
+    .main { min-width:0; }
+    .top { position:sticky; top:0; z-index:5; display:flex; align-items:center; gap:14px; padding:16px clamp(16px,3vw,32px); background:rgba(243,245,249,.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+    .top h1 { margin:0; font-size:clamp(1.15rem,2.4vw,1.5rem); }
+    .top small { display:block; color:var(--muted); font-weight:400; font-size:.8rem; margin-top:2px; }
+    .top-actions { margin-left:auto; display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end; }
+    .switch { display:inline-flex; align-items:center; gap:8px; font-size:.82rem; color:var(--muted); cursor:pointer; user-select:none; }
+    .menu { display:none; width:40px; height:40px; border:1px solid var(--line); border-radius:10px; background:#fff; place-items:center; }
+    .content { padding:clamp(16px,3vw,32px); max-width:1400px; }
+    .banner { margin-bottom:18px; }
+ 
+    /* ---------- Cards ---------- */
+    .kpis { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px; }
+    .kpi { position:relative; overflow:hidden; display:flex; gap:14px; align-items:center; padding:22px 20px; background:var(--card); border-radius:16px; box-shadow:0 6px 20px rgba(15,37,54,.06); transition:transform .25s, box-shadow .25s; }
+    .kpi:hover { transform:translateY(-4px); box-shadow:0 16px 32px rgba(15,37,54,.12); }
+    .kpi .ic { display:grid; place-items:center; width:50px; height:50px; border-radius:14px; background:var(--c-bg); color:var(--c); }
+    .kpi b { display:block; font-size:clamp(1.6rem,2.8vw,2.1rem); line-height:1.1; }
+    .kpi span { display:block; margin-top:4px; color:var(--muted); font-size:.84rem; }
+    .kpi em { display:inline-block; margin-top:6px; padding:2px 8px; border-radius:20px; font-style:normal; font-size:.72rem; font-weight:700; background:#eef2f6; color:var(--muted); }
+    .kpi em.up { background:#e3f6ee; color:var(--green); } .kpi em.down { background:#fdecec; color:var(--red); }
+    .k1 { --c:#f26a1b; --c-bg:#fff0e6; } .k2 { --c:#2f7be0; --c-bg:#e7f0fd; } .k3 { --c:#8a4fe0; --c-bg:#f1eafd; } .k4 { --c:#1ea672; --c-bg:#e3f6ee; }
+    .row { display:grid; grid-template-columns:minmax(0,1.5fr) minmax(0,1fr); gap:18px; margin-top:18px; }
+    .panel { padding:22px; background:var(--card); border-radius:16px; box-shadow:0 6px 20px rgba(15,37,54,.06); min-width:0; scroll-margin-top:90px; }
+    .panel h2 { margin:0 0 4px; font-size:1.05rem; }
+    .panel .sub { margin:0 0 18px; color:var(--muted); font-size:.82rem; }
+    .panel-head { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; margin-bottom:14px; }
+    .panel-head h2 { margin:0; }
+    #chart { display:block; width:100%; height:auto; }
+    .donut-wrap { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:22px; }
+    .donut { position:relative; width:170px; height:170px; border-radius:50%; background:#eef2f6; flex:none; }
+    .donut::after { content:attr(data-total); position:absolute; inset:28px; display:grid; place-items:center; border-radius:50%; background:#fff; font-size:1.7rem; font-weight:700; }
+    .legend { flex:1; min-width:170px; display:flex; flex-direction:column; gap:10px; }
+    .lg { display:grid; grid-template-columns:12px 1fr auto; align-items:center; gap:10px; font-size:.88rem; }
+    .lg i { width:12px; height:12px; border-radius:4px; background:var(--c); }
+    .lg b { font-weight:700; } .lg small { color:var(--muted); font-weight:400; margin-left:4px; }
+    .empty { padding:26px 10px; text-align:center; color:var(--muted); font-size:.9rem; }
+    .search { padding:10px 14px; border:1px solid var(--line); border-radius:10px; font:inherit; font-size:.88rem; min-width:200px; outline:none; }
+    .search:focus { border-color:var(--orange); }
+    .tbl-wrap { overflow-x:auto; }
+    table { width:100%; border-collapse:collapse; font-size:.9rem; }
+    th { padding:11px 14px; text-align:left; color:var(--muted); font-size:.74rem; text-transform:uppercase; letter-spacing:.07em; border-bottom:1px solid var(--line); white-space:nowrap; }
+    td { padding:13px 14px; border-bottom:1px solid #f0f3f6; white-space:nowrap; }
+    tbody tr { transition:background .15s; } tbody tr:hover { background:#fafbfd; }
+    .who { display:flex; align-items:center; gap:10px; font-weight:600; }
+    .av { display:grid; place-items:center; width:34px; height:34px; border-radius:50%; background:#fff0e6; color:var(--orange); font-size:.8rem; font-weight:700; }
+    .pill { padding:4px 12px; border-radius:20px; background:#e7f0fd; color:#2f7be0; font-size:.78rem; font-weight:700; }
+    .skeleton { color:transparent !important; background:linear-gradient(90deg,#eceff3,#f7f8fa,#eceff3); background-size:200% 100%; animation:sk 1.2s infinite; border-radius:8px; }
+    @keyframes sk { to { background-position:-200% 0; } }
+ 
+    /* ---------- Responsive ---------- */
+    @media (max-width:1180px) { .kpis { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media (max-width:980px) {
+      .app { grid-template-columns:1fr; }
+      .side { position:fixed; z-index:20; left:0; top:0; width:260px; transform:translateX(-100%); transition:transform .3s ease; }
+      .side.open { transform:none; box-shadow:0 0 0 100vmax rgba(8,20,32,.55); }
+      .menu { display:grid; }
+      .row { grid-template-columns:1fr; }
+    }
+    @media (max-width:640px) {
+      .kpis { gap:10px; }
+      .kpi { flex-direction:column; align-items:flex-start; gap:10px; padding:16px 14px; }
+      .kpi .ic { width:42px; height:42px; }
+      .top-actions .switch span { display:none; }
+      .panel { padding:16px; }
+      .search { min-width:0; width:100%; }
+      .donut { width:150px; height:150px; } .donut::after { inset:24px; font-size:1.5rem; }
+      .login-card { padding:28px 20px; }
+    }
+    @media (prefers-reduced-motion:reduce) { * { animation:none !important; transition:none !important; } }
+  </style>
 </head>
 
 <body>
@@ -143,6 +260,8 @@
     <a href="destinations.html">Destinations</a>
 
     <a href="services.html">Services</a>
+
+    <a href="scholarship.html">Scholarships</a>
 
     <a href="courses.html">Courses</a>
 
@@ -918,6 +1037,80 @@
     </div>
 </section>
 
+<!-- ================= LOGIN ================= -->
+<div class="login" id="login">
+  <div class="login-card">
+    <div class="brand"><i>✈</i> PJSM</div>
+    <h1>Admin Dashboard</h1>
+    <p>Sign in with your admin key to view website visitors, registrations and destination choices.</p>
+    <div class="alert" id="loginErr" hidden></div>
+    <div class="field"><label for="keyInput">Admin key</label><input type="password" id="keyInput" placeholder="Enter admin key" autocomplete="off"></div>
+    <div class="field" id="apiField" hidden><label for="apiInput">Backend API address</label><input type="text" id="apiInput" placeholder="http://localhost:8080/api"></div>
+    <button class="btn block" id="loginBtn" type="button">Open dashboard</button>
+    <button class="link-btn" id="settingsBtn" type="button">Connection settings</button><br>
+    <span class="conn"><span class="dot loading" id="loginDot"></span><span id="loginConn">Checking server…</span></span>
+  </div>
+</div>
+ 
+<!-- ================= APP ================= -->
+<div class="app" id="app" hidden>
+  <aside class="side" id="side">
+    <div class="brand"><i>✈</i> PJSM</div>
+    <nav>
+      <a href="#overview" class="on"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>Overview</a>
+      <a href="#traffic"><svg class="i" viewBox="0 0 24 24"><path d="M3 20h18M6 16V10M11 16V5M16 16v-8M21 16v-4"/></svg>Visitors</a>
+      <a href="#destinations"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>Destinations</a>
+      <a href="#selections"><svg class="i" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6M16 11.5a3 3 0 100-6M18 14.3c2.2.6 3.5 2.6 3.5 5.7"/></svg>Registrations</a>
+    </nav>
+    <div class="side-foot">
+      <div class="conn"><span class="dot loading" id="sideDot"></span><span id="sideConn">Connecting…</span></div>
+      <button type="button" id="logoutBtn">Log out</button>
+    </div>
+  </aside>
+ 
+  <div class="main">
+    <header class="top">
+      <button class="menu" id="menuBtn" type="button" aria-label="Open menu"><svg class="i" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <h1>Dashboard Overview<small id="updated">Loading data…</small></h1>
+      <div class="top-actions">
+        <label class="switch"><input type="checkbox" id="auto" checked><span>Auto-refresh</span></label>
+        <button class="btn light" id="refreshBtn" type="button">↻ Refresh</button>
+      </div>
+    </header>
+ 
+    <div class="content" id="overview">
+      <div class="alert banner" id="appErr" hidden></div>
+ 
+      <section class="kpis">
+        <div class="kpi k1"><div class="ic"><svg class="i" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></div><div><b id="kVisits" class="skeleton">0000</b><span>Total website visits</span><em id="kTrend">—</em></div></div>
+        <div class="kpi k2"><div class="ic"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></div><div><b id="kUnique" class="skeleton">0000</b><span>Unique visitors</span></div></div>
+        <div class="kpi k3"><div class="ic"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div><div><b id="kToday" class="skeleton">0000</b><span>Visits today</span></div></div>
+        <div class="kpi k4"><div class="ic"><svg class="i" viewBox="0 0 24 24"><path d="M3 12l5 5L21 6"/></svg></div><div><b id="kRegs" class="skeleton">0000</b><span>Free counselling registrations</span><em id="kConv">—</em></div></div>
+      </section>
+ 
+      <section class="row">
+        <div class="panel" id="traffic"><h2>Website visits</h2><p class="sub">Last 7 days</p><svg id="chart" viewBox="0 0 600 240" role="img" aria-label="Visits in the last 7 days"></svg></div>
+        <div class="panel" id="destinations"><h2>Destinations chosen</h2><p class="sub">Share of students by country</p>
+          <div class="donut-wrap"><div class="donut" id="donut" data-total="0"></div><div class="legend" id="legend"></div></div>
+        </div>
+      </section>
+ 
+      <section class="panel" id="selections" style="margin-top:18px">
+        <div class="panel-head"><div><h2>Latest destination selections</h2><p class="sub" style="margin:4px 0 0">Students who chose a destination</p></div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;width:100%;max-width:420px;justify-content:flex-end">
+            <input class="search" id="search" type="search" placeholder="Search name, phone, country" style="flex:1">
+            <button class="btn light" id="csvBtn" type="button">⬇ Export CSV</button>
+          </div>
+        </div>
+        <div class="tbl-wrap"><table>
+          <thead><tr><th>Student</th><th>Phone</th><th>Destination</th><th>Date</th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table></div>
+      </section>
+    </div>
+  </div>
+</div>
+ 
 
 <!-- ================= FOOTER ================= -->
 
@@ -977,6 +1170,7 @@
                 <li><a href="destinations.html">Destinations</a></li>
                 <li><a href="courses.html">Courses</a></li>
                 <li><a href="services.html">Services</a></li>
+                <li><a href="scholarship.html">Scholarships</a></li>
                 <li><a href="process.html">Our Process</a></li>
                 <li><a href="success-stories.html">Success Stories</a></li>
             </ul>
@@ -1033,21 +1227,25 @@
     <!-- BOTTOM -->
     <div class="pjsm-footer-bottom">
 
-        <div class="pjsm-footer-bottom-inner">
+        
+<div class="pjsm-footer-bottom-inner">
 
-            <p>
-                © 2026 PJSM Education. All rights reserved.
-            </p>
+    <p>
+        © 2026 PJSM Education. All rights reserved.
+    </p>
 
-            <div class="pjsm-footer-bottom-links">
-               <a href="privacy-policy.html">Privacy Policy</a>
-<span>•</span>
-<a href="terms-conditions.html">Terms & Conditions</a>
-            </div>
-
-        </div>
-
+    <div class="pjsm-footer-bottom-links">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <span>•</span>
+        <a href="refund.html">Refund Policy</a>
+        <span>•</span>
+        <a href="terms-conditions.html">Terms &amp; Conditions</a>
     </div>
+
+</div>
+
+</div>
+
 
 </footer>
 
@@ -1063,9 +1261,204 @@
     WhatsApp
 </a>
 
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var DEFAULT_API = 'http://localhost:8080/api';
+  var API = DEFAULT_API, key = '', timer = null, rows = [];
+  var COLORS = ['#f26a1b', '#2f7be0', '#1ea672', '#8a4fe0', '#e0a100', '#d64545', '#17a2b8', '#6b7a88'];
+  try { API = localStorage.getItem('pjsm_api') || DEFAULT_API; key = sessionStorage.getItem('pjsm_admin_key') || ''; } catch (e) {}
+  $('apiInput').value = API;
+ 
+  /* ---------- connection status ---------- */
+  function dot(state, text) {
+    ['loginDot', 'sideDot'].forEach(function (id) { $(id).className = 'dot ' + state; });
+    $('loginConn').textContent = text; $('sideConn').textContent = text;
+  }
+  function ping() {
+    dot('loading', 'Checking server…');
+    return fetch(API + '/dashboard').then(function (r) {
+      if (r.status === 401) dot('online', 'Server online');
+      else if (r.status === 404) dot('offline', 'Server found, API missing');
+      else dot('online', 'Server online');
+    }).catch(function () { dot('offline', 'Server offline'); });
+  }
+ 
+  /* ---------- helpers ---------- */
+  function el(tag, attrs, text) {
+    var n = document.createElementNS('http://www.w3.org/2000/svg', tag);
+    for (var k in attrs) n.setAttribute(k, attrs[k]);
+    if (text != null) n.textContent = text; return n;
+  }
+  function countUp(node, to) {
+    node.classList.remove('skeleton');
+    var start = performance.now(), dur = 900;
+    (function step(t) {
+      var p = Math.min((t - start) / dur, 1);
+      node.textContent = Math.round(to * (1 - Math.pow(1 - p, 3))).toLocaleString('en-IN');
+      if (p < 1) requestAnimationFrame(step);
+    })(start);
+  }
+  function showErr(box, msg) { box.textContent = msg; box.hidden = false; }
+  function errorMessage(e) {
+    if (e && e.status === 404) return 'The server is running but /api/dashboard was not found. Make sure DashboardController is inside com.pjsm.pjsmbackend.controller, then restart the Spring Boot app.';
+    if (e && e.status >= 500) return 'The server returned an error (' + e.status + '). Open the IntelliJ Run console to see the cause (usually the database or a missing property such as pjsm.admin.key).';
+    if (e && e.status) return 'Unexpected response from the server (' + e.status + ').';
+    return 'Cannot reach the backend at ' + API + '. Check that the Spring Boot app is running, the address is correct (see Connection settings), and CorsConfig.java has been added.';
+  }
+ 
+  /* ---------- load ---------- */
+  function load() {
+    $('appErr').hidden = true;
+    return fetch(API + '/dashboard', { headers: { 'X-Admin-Key': key } }).then(function (r) {
+      if (r.status === 401) { logout('Wrong admin key. Please try again.'); return null; }
+      if (!r.ok) { var err = new Error('http'); err.status = r.status; throw err; }
+      return r.json();
+    }).then(function (d) {
+      if (!d) return;
+      render(d); dot('online', 'Connected');
+    }).catch(function (e) {
+      dot('offline', 'Disconnected'); showErr($('appErr'), errorMessage(e));
+    });
+  }
+ 
+  /* ---------- render ---------- */
+  function render(d) {
+    countUp($('kVisits'), d.totalVisits); countUp($('kUnique'), d.uniqueVisitors);
+    countUp($('kToday'), d.visitsToday); countUp($('kRegs'), d.registrations);
+ 
+    var days = d.last7Days || [], today = days.length ? days[days.length - 1].count : 0, yest = days.length > 1 ? days[days.length - 2].count : 0;
+    var t = $('kTrend');
+    if (yest === 0) { t.textContent = today > 0 ? 'New activity today' : 'No visits yet'; t.className = ''; }
+    else { var pc = Math.round((today - yest) / yest * 100); t.textContent = (pc >= 0 ? '▲ ' : '▼ ') + Math.abs(pc) + '% vs yesterday'; t.className = pc >= 0 ? 'up' : 'down'; }
+    $('kConv').textContent = d.uniqueVisitors > 0 ? (d.registrations / d.uniqueVisitors * 100).toFixed(1) + '% of visitors' : '—';
+ 
+    // The API uses `country`; the dashboard legend uses `label`.
+    // Normalise the response and calculate the total rather than relying on
+    // the older, optional `destinationChoices` field.
+    var destinationData = (d.destinations || []).map(function (item) {
+      return { label: item.label || item.country || 'Unknown country', count: Number(item.count) || 0 };
+    });
+    var destinationTotal = destinationData.reduce(function (sum, item) { return sum + item.count; }, 0);
+    drawChart(days); drawDonut(destinationData, destinationTotal);
+    rows = d.recent || []; drawRows();
+    $('updated').textContent = 'Updated ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  }
+ 
+  function drawChart(data) {
+    var svg = $('chart'); svg.textContent = '';
+    var W = 600, H = 240, pl = 34, pr = 10, pt = 22, pb = 34;
+    var max = Math.max.apply(null, data.map(function (x) { return x.count; }).concat([1]));
+    var top = Math.max(4, Math.ceil(max / 4) * 4);
+    var defs = el('defs', {}); var g = el('linearGradient', { id: 'bg', x1: 0, y1: 0, x2: 0, y2: 1 });
+    g.appendChild(el('stop', { offset: '0', 'stop-color': '#f26a1b' })); g.appendChild(el('stop', { offset: '1', 'stop-color': '#ffb482' }));
+    defs.appendChild(g); svg.appendChild(defs);
+    for (var i = 0; i <= 4; i++) {
+      var y = pt + (H - pt - pb) * (1 - i / 4);
+      svg.appendChild(el('line', { x1: pl, x2: W - pr, y1: y, y2: y, stroke: '#e7ecf1', 'stroke-width': 1 }));
+      svg.appendChild(el('text', { x: pl - 8, y: y + 4, 'text-anchor': 'end', 'font-size': 11, fill: '#8896a3' }, Math.round(top * i / 4)));
+    }
+    var slot = (W - pl - pr) / Math.max(data.length, 1), bw = Math.min(46, slot * .55);
+    data.forEach(function (x, i) {
+      var h = (H - pt - pb) * x.count / top, cx = pl + slot * i + slot / 2, y = H - pb - h;
+      var bar = el('rect', { x: cx - bw / 2, y: H - pb, width: bw, height: 0, rx: 6, fill: 'url(#bg)' });
+      var a = el('animate', { attributeName: 'height', from: 0, to: Math.max(h, 2), dur: '.6s', fill: 'freeze' });
+      var b = el('animate', { attributeName: 'y', from: H - pb, to: Math.min(y, H - pb - 2), dur: '.6s', fill: 'freeze' });
+      bar.appendChild(a); bar.appendChild(b); svg.appendChild(bar);
+      svg.appendChild(el('text', { x: cx, y: Math.min(y, H - pb - 2) - 7, 'text-anchor': 'middle', 'font-size': 12, 'font-weight': 700, fill: '#11273a' }, x.count));
+      svg.appendChild(el('text', { x: cx, y: H - 12, 'text-anchor': 'middle', 'font-size': 11, fill: '#6b7a88' }, x.label));
+    });
+  }
+ 
+  function drawDonut(list, total) {
+    var donut = $('donut'), legend = $('legend'); legend.textContent = '';
+    var sum = list.reduce(function (s, x) { return s + x.count; }, 0);
+    donut.setAttribute('data-total', total || 0);
+    if (!sum) { donut.style.background = '#eef2f6'; var e = document.createElement('div'); e.className = 'empty'; e.textContent = 'No destination chosen yet.'; legend.appendChild(e); return; }
+    var acc = 0, stops = [];
+    list.forEach(function (x, i) {
+      var c = COLORS[i % COLORS.length], from = acc / sum * 100; acc += x.count; var to = acc / sum * 100;
+      stops.push(c + ' ' + from + '% ' + to + '%');
+      var row = document.createElement('div'); row.className = 'lg'; row.style.setProperty('--c', c);
+      var sw = document.createElement('i'), nm = document.createElement('span'), v = document.createElement('b'), s = document.createElement('small');
+      nm.textContent = x.label; v.textContent = x.count; s.textContent = Math.round(x.count / sum * 100) + '%'; v.appendChild(s);
+      row.appendChild(sw); row.appendChild(nm); row.appendChild(v); legend.appendChild(row);
+    });
+    donut.style.background = 'conic-gradient(' + stops.join(',') + ')';
+  }
+ 
+  function drawRows() {
+    var q = $('search').value.trim().toLowerCase(), body = $('rows'); body.textContent = '';
+    var list = rows.filter(function (r) { return (r.name + ' ' + r.phone + ' ' + r.destination).toLowerCase().indexOf(q) > -1; });
+    if (!list.length) {
+      var tr = document.createElement('tr'), td = document.createElement('td'); td.colSpan = 4; td.className = 'empty';
+      td.textContent = rows.length ? 'No matching students.' : 'No destination selections yet.'; tr.appendChild(td); body.appendChild(tr); return;
+    }
+    list.forEach(function (r) {
+      var tr = document.createElement('tr');
+      var c1 = document.createElement('td'), who = document.createElement('div'), av = document.createElement('span'), nm = document.createElement('span');
+      who.className = 'who'; av.className = 'av'; av.textContent = (r.name || '?').trim().charAt(0).toUpperCase(); nm.textContent = r.name;
+      who.appendChild(av); who.appendChild(nm); c1.appendChild(who);
+      var c2 = document.createElement('td'); c2.textContent = r.phone;
+      var c3 = document.createElement('td'), p = document.createElement('span'); p.className = 'pill'; p.textContent = r.destination; c3.appendChild(p);
+      var c4 = document.createElement('td'); c4.textContent = r.date;
+      [c1, c2, c3, c4].forEach(function (c) { tr.appendChild(c); }); body.appendChild(tr);
+    });
+  }
+ 
+  function exportCsv() {
+    var q = function (v) { return '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"'; };
+    var csv = ['Name,Phone,Destination,Date'].concat(rows.map(function (r) { return [q(r.name), q(r.phone), q(r.destination), q(r.date)].join(','); })).join('\n');
+    var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
+    a.download = 'pjsm-destination-selections.csv'; a.click(); URL.revokeObjectURL(a.href);
+  }
+ 
+  /* ---------- session ---------- */
+  function startAuto() { clearInterval(timer); if ($('auto').checked) timer = setInterval(load, 30000); }
+  function enter() {
+    $('login').hidden = true; $('app').hidden = false; load(); startAuto();
+  }
+  function logout(msg) {
+    key = ''; try { sessionStorage.removeItem('pjsm_admin_key'); } catch (e) {}
+    clearInterval(timer); $('app').hidden = true; $('login').hidden = false; $('keyInput').value = '';
+    if (msg) showErr($('loginErr'), msg); else $('loginErr').hidden = true;
+    ping();
+  }
+ 
+  $('loginBtn').addEventListener('click', function () {
+    var k = $('keyInput').value.trim(), a = $('apiInput').value.trim().replace(/\/+$/, '');
+    if (!k) { showErr($('loginErr'), 'Please enter the admin key.'); return; }
+    if (a) { API = a; try { localStorage.setItem('pjsm_api', API); } catch (e) {} }
+    key = k; try { sessionStorage.setItem('pjsm_admin_key', key); } catch (e) {}
+    $('loginErr').hidden = true;
+    fetch(API + '/dashboard', { headers: { 'X-Admin-Key': key } }).then(function (r) {
+      if (r.status === 401) { showErr($('loginErr'), 'Wrong admin key. It must match pjsm.admin.key in application.properties.'); return; }
+      if (!r.ok) { var e = new Error('http'); e.status = r.status; throw e; }
+      enter();
+    }).catch(function (e) { dot('offline', 'Server offline'); showErr($('loginErr'), errorMessage(e)); });
+  });
+  $('keyInput').addEventListener('keydown', function (e) { if (e.key === 'Enter') $('loginBtn').click(); });
+  $('settingsBtn').addEventListener('click', function () { $('apiField').hidden = !$('apiField').hidden; });
+  $('logoutBtn').addEventListener('click', function () { logout(); });
+  $('refreshBtn').addEventListener('click', load);
+  $('auto').addEventListener('change', startAuto);
+  $('search').addEventListener('input', drawRows);
+  $('csvBtn').addEventListener('click', exportCsv);
+  $('menuBtn').addEventListener('click', function () { $('side').classList.toggle('open'); });
+  document.querySelectorAll('.side nav a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      document.querySelectorAll('.side nav a').forEach(function (x) { x.classList.remove('on'); }); a.classList.add('on'); $('side').classList.remove('open');
+    });
+  });
+  document.addEventListener('click', function (e) { var s = $('side'); if (s.classList.contains('open') && !s.contains(e.target) && !$('menuBtn').contains(e.target)) s.classList.remove('open'); });
+ 
+  ping();
+  if (key) enter();
+})();
+</script>
 
 <script src="script.js"></script>
-
+<script src="tracker.js"></script>
 
 
 </body>

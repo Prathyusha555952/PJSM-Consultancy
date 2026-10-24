@@ -440,11 +440,18 @@
     go(3);
   });
 
-  // Step 3: send the confirmation email with EmailJS, then go to the thank-you page.
+  // Step 3: save the enquiry first, then send the confirmation email.
+  // Keeping this separate from EmailJS is important: EmailJS only sends mail and
+  // does not create a row in MySQL.
+  var CONTACT_API = 'http://localhost:8080/api/counselling';
+  try {
+    var savedApi = localStorage.getItem('pjsm_api');
+    if (savedApi) CONTACT_API = savedApi.replace(/\/+$/, '') + '/counselling';
+  } catch (e) {}
   var finishBtn = document.getElementById('finish');
   var submitError = document.getElementById('submitError');
 
-  finishBtn.addEventListener('click', function () {
+  finishBtn.addEventListener('click', async function () {
     if (!state.service || !state.lead) return;
 
     submitError.textContent = '';
@@ -463,6 +470,34 @@
       service: state.service.title,
       reference: reference
     };
+
+    var enquiry = {
+      name: state.lead.name,
+      email: state.lead.email,
+      phone: state.lead.phone,
+      qualification: state.lead.qual,
+      enquiryType: state.path,
+      serviceId: state.service.id,
+      serviceTitle: state.service.title
+    };
+
+    try {
+      var saveResponse = await fetch(CONTACT_API, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(enquiry)
+      });
+      if (!saveResponse.ok) {
+        var saveError = await saveResponse.text();
+        throw new Error(saveError || 'Your enquiry could not be saved.');
+      }
+    } catch (error) {
+      console.error('Contact save error:', error);
+      submitError.textContent = 'We could not save your enquiry. Please try again.';
+      finishBtn.disabled = false;
+      finishBtn.textContent = 'Confirm service';
+      return;
+    }
 
 emailjs.send(
   EMAILJS_SERVICE_ID,

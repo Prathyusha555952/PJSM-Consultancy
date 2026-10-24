@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PJSM study abroad country guides and scholarship information.">
+    <title>PJSM | Country Guides & Scholarships</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <style>
+        /* =====================================================
+           SCHOLARSHIP PAGE - all classes start with "sch-" so
+           nothing here can clash with style.css
+        ===================================================== */
+
+        /* ---------- HERO (uses the same .page-hero system as other pages) ---------- */
+        .page-hero.scholarship-hero::before {
+            background-image: url("https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1800&q=85") !important;
+        }
+
+        .page-hero.scholarship-hero h1 {
+            font-size: clamp(2.2rem, 5vw, 3.7rem) !important;
+            line-height: 1.1 !important;
+            margin-bottom: 16px !important;
+        }
+
+        .page-hero.scholarship-hero p {
+            font-size: 1.02rem !important;
+            max-width: 560px !important;
+        }
+
+        .sch-hero-buttons {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-items: center;
+            gap: 14px;
+            margin-top: 26px;
+        }
+
+        .sch-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 13px 26px;
+            border: 2px solid #e86f2e;
+            border-radius: 40px;
+            background: #e86f2e;
+            color: #ffffff;
+            font-family: "DM Sans", sans-serif;
+            font-size: .95rem;
+            font-weight: 700;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease;
+        }
+
+        .sch-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px rgba(232, 111, 46, .35);
+        }
+
+        .sch-btn-outline {
+            background: transparent;
+            border-color: #ffffff;
+            color: #ffffff;
+        }
+
+        .sch-btn-outline:hover {
+            background: #ffffff;
+            border-color: #ffffff;
+            color: #172a3a;
+            box-shadow: 0 10px 22px rgba(0, 0, 0, .25);
+        }
+
+        .sch-btn:focus-visible,
+        .sch-filter:focus-visible {
+            outline: 3px solid #ffb27f;
+            outline-offset: 3px;
+        }
+
+        /* ---------- SECTIONS ---------- */
+        .sch-wrap {
+            width: min(1180px, 92%);
+            margin: 0 auto;
+        }
+
+        .sch-block {
+            padding: 70px 0;
+            background: #ffffff;
+        }
+
+        .sch-block-tint {
+            background: #f4f7f9;
+        }
+
+        .sch-head {
+            max-width: 680px;
+            margin-bottom: 28px;
+        }
+
+        .sch-head h2 {
+            margin: 0 0 10px;
+            color: #172a3a;
+            font-family: "Playfair Display", serif;
+            font-size: clamp(1.7rem, 4vw, 2.6rem);
+            line-height: 1.15;
+        }
+
+        .sch-head p {
+            margin: 0;
+            color: #667085;
+            font-size: 1rem;
+        }
+
+        /* ---------- FILTERS ---------- */
+        .sch-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+            margin-bottom: 24px;
+        }
+
+        .sch-filter {
+            padding: 8px 16px;
+            border: 1px solid #d8dfe3;
+            border-radius: 99px;
+            background: #ffffff;
+            color: #172a3a;
+            font-family: "DM Sans", sans-serif;
+            font-size: .88rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background .2s ease, color .2s ease, border-color .2s ease;
+        }
+
+        .sch-filter:hover,
+        .sch-filter.is-active {
+            border-color: #172a3a;
+            background: #172a3a;
+            color: #ffffff;
+        }
+
+        /* ---------- SMALL CARDS ---------- */
+        .sch-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .sch-grid-three {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .sch-card {
+            --c: #1d4ed8;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            overflow: hidden;
+            border: 1px solid #e7eaee;
+            border-radius: 16px;
+            background: #ffffff;
+            box-shadow: 0 4px 16px rgba(23, 42, 58, .06);
+            transition: transform .3s ease, box-shadow .3s ease;
+        }
+
+        .sch-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 32px rgba(23, 42, 58, .13);
+        }
+
+        .sch-top {
+            position: relative;
+            height: 155px;
+            overflow: hidden;
+            background: #172a3a;
+        }
+
+        .sch-top img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .6s ease;
+        }
+
+        .sch-card:hover .sch-top img {
+            transform: scale(1.07);
+        }
+
+        .sch-top::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10, 25, 38, .6) 0%, rgba(10, 25, 38, 0) 60%);
+            pointer-events: none;
+        }
+
+        .sch-badge {
+            position: absolute;
+            z-index: 2;
+            left: 14px;
+            bottom: 12px;
+            display: grid;
+            place-items: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #ffffff;
+            color: var(--c);
+            font-size: 1rem;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, .25);
+        }
+
+        .sch-body {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            padding: 16px 18px 18px;
+        }
+
+        .sch-label {
+            margin-bottom: 6px;
+            color: var(--c);
+            font-size: .82rem;
+            font-weight: 700;
+        }
+
+        .sch-card h3 {
+            margin: 0 0 8px;
+            color: #172a3a;
+            font-family: "DM Sans", sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .sch-card p {
+            margin: 0 0 12px;
+            color: #667085;
+            font-size: .87rem;
+            line-height: 1.55;
+        }
+
+        .sch-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: auto;
+        }
+
+        .sch-pills span {
+            padding: 3px 9px;
+            border-radius: 20px;
+            background: #f1f4f7;
+            color: #475467;
+            font-size: .72rem;
+            font-weight: 600;
+        }
+
+        /* gradients and label colours */
+        .g1 { --c: #059669; } .g1 .sch-top { background: linear-gradient(135deg, #059669, #10b981); }
+        .g2 { --c: #ea580c; } .g2 .sch-top { background: linear-gradient(135deg, #f59e0b, #f97316); }
+        .g3 { --c: #db2777; } .g3 .sch-top { background: linear-gradient(135deg, #f43f5e, #db2777); }
+        .g4 { --c: #1d4ed8; } .g4 .sch-top { background: linear-gradient(135deg, #1e3a8a, #2563eb); }
+        .g5 { --c: #7c3aed; } .g5 .sch-top { background: linear-gradient(135deg, #6d28d9, #9333ea); }
+        .g6 { --c: #0891b2; } .g6 .sch-top { background: linear-gradient(135deg, #0e7490, #06b6d4); }
+        .g7 { --c: #172a3a; } .g7 .sch-top { background: linear-gradient(135deg, #172a3a, #2f4b63); }
+        .g8 { --c: #c2410c; } .g8 .sch-top { background: linear-gradient(135deg, #e86f2e, #c2410c); }
+
+        .sch-hidden {
+            display: none !important;
+        }
+
+        .sch-note {
+            margin-top: 24px;
+            padding: 15px 18px;
+            border-left: 4px solid #e86f2e;
+            border-radius: 0 10px 10px 0;
+            background: #ffffff;
+            color: #53616a;
+            font-size: .9rem;
+            line-height: 1.6;
+        }
+
+        .sch-note strong {
+            color: #172a3a;
+        }
+
+        /* ---------- CLOSING PANEL ---------- */
+        .sch-final {
+            padding: 0 0 80px;
+            background: #f4f7f9;
+        }
+
+        .sch-final-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 28px;
+            padding: clamp(24px, 5vw, 46px);
+            border-radius: 18px;
+            background: linear-gradient(135deg, #172a3a, #0c1c29);
+            color: #ffffff;
+        }
+
+        .sch-final-box h2 {
+            margin: 0 0 8px;
+            font-family: "Playfair Display", serif;
+            font-size: clamp(1.4rem, 3.4vw, 2.2rem);
+            line-height: 1.15;
+        }
+
+        .sch-final-box p {
+            max-width: 600px;
+            margin: 0;
+            color: rgba(255, 255, 255, .78);
+            font-size: .98rem;
+        }
+
+        /* =====================================================
+           TABLET
+        ===================================================== */
+        @media (max-width: 1000px) {
+            .sch-grid,
+            .sch-grid-three {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        /* =====================================================
+           PHONES - two cards side by side, sizes scale with screen
+        ===================================================== */
+        @media (max-width: 768px) {
+            .sch-block {
+                padding: 48px 0;
+            }
+
+            .sch-grid,
+            .sch-grid-three {
+                gap: clamp(8px, 2.6vw, 14px);
+            }
+
+            .sch-card {
+                border-radius: clamp(10px, 3vw, 14px);
+            }
+
+            .sch-top {
+                height: clamp(92px, 29vw, 145px);
+            }
+
+            .sch-badge {
+                left: clamp(8px, 2.6vw, 14px);
+                bottom: clamp(7px, 2.2vw, 12px);
+                width: clamp(26px, 8vw, 36px);
+                height: clamp(26px, 8vw, 36px);
+                font-size: clamp(.7rem, 3.2vw, .95rem);
+            }
+
+            .sch-body {
+                padding: clamp(10px, 3vw, 16px);
+            }
+
+            .sch-label {
+                font-size: clamp(.66rem, 2.6vw, .8rem);
+            }
+
+            .sch-card h3 {
+                font-size: clamp(.86rem, 3.8vw, 1.05rem);
+            }
+
+            .sch-card p {
+                font-size: clamp(.7rem, 2.9vw, .84rem);
+                line-height: 1.45;
+                margin-bottom: 9px;
+            }
+
+            .sch-pills span {
+                padding: 2px 7px;
+                font-size: clamp(.6rem, 2.4vw, .7rem);
+            }
+
+            .sch-filter {
+                padding: 7px 12px;
+                font-size: clamp(.7rem, 3vw, .84rem);
+            }
+
+            .sch-hero-buttons {
+                gap: 8px;
+                margin-top: 20px;
+            }
+
+            .sch-btn {
+                padding: clamp(10px, 2.8vw, 13px) clamp(12px, 4vw, 22px);
+                font-size: clamp(.74rem, 3.3vw, .92rem);
+            }
+
+            .sch-final {
+                padding-bottom: 56px;
+            }
+
+            .sch-final-box {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 340px) {
+            .sch-hero-buttons {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .sch-card,
+            .sch-btn,
+            .sch-filter {
+                transition: none;
+            }
+        }
+    </style>
+    <script>
+        /* If a photo fails to load, try the card's backup photos, then fall back to the gradient */
+        function pjsmImgFallback(img) {
+            var list = (img.getAttribute("data-alt") || "").split("|").filter(Boolean);
+            if (list.length) {
+                img.setAttribute("data-alt", list.slice(1).join("|"));
+                img.src = list[0];
+            } else {
+                img.remove();
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="container nav-container">
+
+        <a href="first.html" class="logo">
+            <span class="plane-logo">✈</span>
+            <span style="color:#ffffff !important;">PJSM</span>
+        </a>
+
+        <nav class="navbar" id="navbar">
+            <a href="first.html" class="nav-home">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="destinations.html">Destinations</a>
+            <a href="services.html">Services</a>
+            <a href="scholarship.html">Scholarships</a>
+            <a href="courses.html">Courses</a>
+            <a href="process.html">Process</a>
+            <a href="success-stories.html">Success Stories</a>
+            <a href="contact.html" class="nav-button">Free Counselling</a>
+        </nav>
+
+        <button class="menu-btn" id="menuBtn" type="button" aria-label="Open navigation">☰</button>
+
+    </div>
+
+</header>
+
+<main>
+
+    <!-- HERO -->
+    <section class="page-hero scholarship-hero">
+        <div class="container page-hero-content">
+
+            <span class="page-eyebrow">PJSM STUDENT GUIDE</span>
+
+            <h1>
+                Explore the world.
+                <span>Fund your future.</span>
+            </h1>
+
+            <p>
+                Country guides, application tips and scholarship starting points
+                to help you plan your next step in higher education with confidence.
+            </p>
+
+            <div class="sch-hero-buttons">
+                <a class="sch-btn" href="#country-guides">Explore country guides</a>
+                <a class="sch-btn sch-btn-outline" href="#scholarships">Find scholarships</a>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- COUNTRY GUIDES -->
+    <section class="sch-block" id="country-guides">
+        <div class="sch-wrap">
+
+            <div class="sch-head">
+                <h2>Choose your destination</h2>
+                <p>Quick facts on popular study countries. Always confirm current requirements with the official university or government source before you apply.</p>
+            </div>
+
+            <div class="sch-filters" role="group" aria-label="Filter countries by region">
+                <button class="sch-filter is-active" type="button" data-filter="all" aria-pressed="true">All countries</button>
+                <button class="sch-filter" type="button" data-filter="europe" aria-pressed="false">Europe</button>
+                <button class="sch-filter" type="button" data-filter="asia" aria-pressed="false">Asia</button>
+                <button class="sch-filter" type="button" data-filter="north-america" aria-pressed="false">North America</button>
+                <button class="sch-filter" type="button" data-filter="oceania" aria-pressed="false">Oceania</button>
+            </div>
+
+            <div class="sch-grid">
+
+                <article class="sch-card g4" data-region="europe">
+                    <div class="sch-top"><img src="https://images.unsplash.com/photo-1560969184-10fe8719e047?auto=format&fit=crop&w=700&q=80" data-alt="https://images.unsplash.com/photo-1599946347371-68eb71b16afc?auto=format&fit=crop&w=700&q=80|https://images.unsplash.com/photo-1528728329032-2972f65dfb3f?auto=format&fit=crop&w=700&q=80" alt="" loading="lazy" onerror="pjsmImgFallback(this)"><span class="sch-badge"><i class="fa-solid fa-gears" aria-hidden="true"></i></span></div>
+                    <div class="sch-body">
+                        <span class="sch-label">Europe</span>
+                        <h3>Study in Germany</h3>
+                        <p>Research-led universities and strong engineering programmes. Many public universities charge low or no tuition, but rules differ by state.</p>
+                        <div class="sch-pills"><span>Engineering</span><span>Research</span></div>
+                    </div>
+                </article>
+
+                <article class="sch-card g5" data-region="europe">
+                    <div class="sch-top"><img src="https://images.unsplash.com/photo-1486299267070-83823f5448dd?auto=format&fit=crop&w=700&q=80" data-alt="https://images.unsplash.com/photo-1529655683826-aba9b3e77383?auto=format&fit=crop&w=700&q=80|https://images.unsplash.com/photo-1520986606214-8b456906c813?auto=format&fit=crop&w=700&q=80" alt="" loading="lazy" onerror="pjsmImgFallback(this)"><span class="sch-badge"><i class="fa-solid fa-landmark" aria-hidden="true"></i></span></div>
+                    <div class="sch-body">
+                        <span class="sch-label">Europe</span>
+                        <h3>Study in the UK</h3>
+                        <p>One-year master's degrees are common. Compare entry requirements, English-test rules and scholarship deadlines early.</p>
+                        <div class="sch-pills"><span>Master's</span><span>Business</span></div>
+                    </div>
+                </article>
+
+                <article class="sch-card g3" data-region="north-america">
+                    <div class="sch-top"><img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=700&q=80" data-alt="https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?auto=format&fit=crop&w=700&q=80|https://images.unsplash.com/photo-1534430480872-3498386e7856?auto=format&fit=crop&w=700&q=80" alt="" loading="lazy" onerror="pjsmImgFallback(this)"><span class="sch-badge"><i class="fa-solid fa-flag-usa" aria-hidden="true"></i></span></div>
+                    <div class="sch-body">
+                        <span class="sch-label">North America</span>
+                        <h3>Study in the USA</h3>
+                        <p>Large research universities with assistantships and funding packages. Check test requirements and application timelines.</p>
+                        <div class="sch-pills"><span>STEM</span><span>Assistantships</span></div>
+                    </div>
+                </article>
+
+                <article class="sch-card g2" data-region="north-america">
+                    <div class="sch-top"><img src="https://images.unsplash.com/photo-1507992781348-310259076fe0?auto=format&fit=crop&w=700&q=80" data-alt="https://images.unsplash.com/photo-1517935706615-2717063c2225?auto=format&fit=crop&w=700&q=80|https://images.unsplash.com/photo-1559511260-66a654ae982a?auto=format&fit=crop&w=700&q=80" alt="" loading="lazy" onerror="pjsmImgFallback(this)"><span class="sch-badge"><i class="fa-solid fa-leaf" aria-hidden="true"></i></span></div>
+                    <div class="sch-body">
+                        <span class="sch-label">North America</span>
+                        <h3>Study in Canada</h3>
+                        <p>Co-op programmes and graduate funding options. Study permit and post-study work rules change, so check the latest guidance.</p>
+                        <div class="sch-pills"><span>Co-op</span><span>Graduate study</span></div>
+                    </div>
+                </article>
+
+                <article class="sch-card g6" data-region="oceania">
+                    <div class="sch-top"><img src="https://images.unsplash.com/photo-1529108190281-9a4f620bc2d8?auto=format&fit=crop&w=700&q=80" data-alt="https://images.unsplash.com/photo-1514395462725-fb4566210144?auto=format&fit=crop&w=700&q=80" alt="" loading="lazy" onerror="pjsmImgFallback(this)"><span class="sch-badge"><i class="fa-solid fa-sun" aria-hidden="true"></i></span></div>
+                    <div class="sch-body">
+                        <span class="sch-label">Oceania</span>
+                        <h3>Study in Australia</h3>
+                        <p>Strong in health, IT and engineering. Compare tuition and living costs by city, and check course-specific entry and visa rules.</p>
+                        <div class="sch-pills"><span>Health</span><span>IT</span></div>
+                    </div>
+                </article>
+
+                <article class="sch-card g1" data-region="europe">
+                    <div class="sch-top"><img src="https://images.unsplash.com/photo-1564959130747-897fb406b9af?auto=format&fit=crop&w=700&q=80" data-alt="https://images.unsplash.com/photo-1549918864-48ac978761a4?auto=format&fit=crop&w=700&q=80" alt="" loading="lazy" onerror="pjsmImgFallback(this)"><span class="sch-badge"><i class="fa-solid fa-clover" aria-hidden="true"></i></span></div>
+                    <div class="sch-body">
+                        <span class="sch-label">Europe</span>
+                        <h3>Study in Ireland</h3>
+                        <p>English-speaking country with growing technology and business sectors. Compare programme fees and intake dates.</p>
+                        <div class="sch-pills"><span>Technology</span><span>Business</span></div>
+                    </div>
+                </article>
+
+                <article class="sch-card g8" data-region="europe">
+                    <div class="sch-top"><img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=700&q=80" data-alt="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=700&q=80" alt="" loading="lazy" onerror="pjsmImgFallback(this)"><span class="sch-badge"><i class="fa-solid fa-palette" aria-hidden="true"></i></span></div>
+                    <div class="sch-body">
+                        <span class="sch-label">Europe</span>
+                        <h3>Study in France</h3>
+                        <p>Public universities and specialised schools, with both English- and French-taught programmes and funding options.</p>
+                        <div class="sch-pills"><span>Arts</span><span>Management</span></div>
+                    </div>
+                </article>
+
+                <article class="sch-card g7" data-region="asia">
+                    <div class="sch-top"><img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=700&q=80" data-alt="https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=700&q=80" alt="" loading="lazy" onerror="pjsmImgFallback(this)"><span class="sch-badge"><i class="fa-solid fa-torii-gate" aria-hidden="true"></i></span></div>
+                    <div class="sch-body">
+                        <span class="sch-label">Asia</span>
+                        <h3>Study in Japan</h3>
+                        <p>Technology and science programmes. Look into Japanese Government and university scholarship routes.</p>
+                        <div class="sch-pills"><span>Technology</span><span>Science</span></div>
+                    </div>
+                </article>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- SCHOLARSHIPS -->
+    <section class="sch-block sch-block-tint" id="scholarships">
+        <div class="sch-wrap">
+
+            <div class="sch-head">
+                <h2>Scholarships to research</h2>
+                <p>Well-known programmes to start your funding search. Eligibility, coverage and deadlines vary by programme and year.</p>
+            </div>
+
+            <div class="sch-grid sch-grid-three">
+
+                <article class="sch-card g5">
+                    <div class="sch-top"><img src="https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=700&q=80" data-alt="https://images.unsplash.com/photo-1491557345352-5929e343eb89?auto=format&fit=crop&w=700&q=80" alt="" loading="lazy" onerror="pjsmImgFallback(this)"><span class="sch-badge"><i class="fa-solid fa-earth-europe" aria-hidden="true"></i></span></div>
+                    <div class="sch-body">
+                        <span class="sch-label">Europe</span>
+                        <h3>Erasmus Mundus Joint Masters</h3>
+                        <p>Scholarships for selected international joint master's programmes run by university consortia. Each programme has its own deadline.</p>
+                        <div class="sch-pills"><span>Joint master's</span><span>Multiple countries</span></div>
+                    </div>
+                </article>
+
+                <article class="sch-card g4">
+                    <div class="sch-top"><img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=700&q=80" data-alt="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=700&q=80|https://images.unsplash.com/photo-1568792923760-d70635a89fdc?auto=format&fit=crop&w=700&q=80" alt="" loading="lazy" onerror="pjsmImgFallback(this)"><span class="sch-badge"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></span></div>
+                    <div class="sch-body">
+                        <span class="sch-label">United Kingdom</span>
+                        <h3>Chevening Scholarships</h3>
+                        <p>UK government scholarships for eligible applicants taking a master's in the UK. Check citizenship, work-experience and return-home rules.</p>
+                        <div class="sch-pills"><span>Master's</span><span>Government funded</span></div>
+                    </div>
+                </article>
+
+                <article class="sch-card g2">
+                    <div class="sch-top"><img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=700&q=80" data-alt="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=700&q=80|https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=700&q=80" alt="" loading="lazy" onerror="pjsmImgFallback(this)"><span class="sch-badge"><i class="fa-solid fa-book-open" aria-hidden="true"></i></span></div>
+                    <div class="sch-body">
+                        <span class="sch-label">Germany</span>
+                        <h3>DAAD Scholarships</h3>
+                        <p>Funding for international students and graduates, including selected postgraduate study and research routes.</p>
+                        <div class="sch-pills"><span>Postgraduate</span><span>Research</span></div>
+                    </div>
+                </article>
+
+                <article class="sch-card g3">
+                    <div class="sch-top"><img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=700&q=80" data-alt="https://images.unsplash.com/photo-1500916434205-0c77489c6cf7?auto=format&fit=crop&w=700&q=80" alt="" loading="lazy" onerror="pjsmImgFallback(this)"><span class="sch-badge"><i class="fa-solid fa-award" aria-hidden="true"></i></span></div>
+                    <div class="sch-body">
+                        <span class="sch-label">United States</span>
+                        <h3>Fulbright-Nehru Fellowships</h3>
+                        <p>Funding for eligible Indian applicants in selected study, research and professional fields. Each award has its own rules and cycle.</p>
+                        <div class="sch-pills"><span>Study</span><span>Research</span></div>
+                    </div>
+                </article>
+
+                <article class="sch-card g7">
+                    <div class="sch-top"><img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=700&q=80" data-alt="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=700&q=80|https://images.unsplash.com/photo-1480796927426-f609979314bd?auto=format&fit=crop&w=700&q=80" alt="" loading="lazy" onerror="pjsmImgFallback(this)"><span class="sch-badge"><i class="fa-solid fa-atom" aria-hidden="true"></i></span></div>
+                    <div class="sch-body">
+                        <span class="sch-label">Japan</span>
+                        <h3>MEXT Scholarships</h3>
+                        <p>Japanese Government scholarships across several study categories. Application routes differ by award.</p>
+                        <div class="sch-pills"><span>Government funded</span><span>Multiple levels</span></div>
+                    </div>
+                </article>
+
+                <article class="sch-card g6">
+                    <div class="sch-top"><img src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=700&q=80" data-alt="https://images.unsplash.com/photo-1524820197278-540916411e20?auto=format&fit=crop&w=700&q=80" alt="" loading="lazy" onerror="pjsmImgFallback(this)"><span class="sch-badge"><i class="fa-solid fa-trophy" aria-hidden="true"></i></span></div>
+                    <div class="sch-body">
+                        <span class="sch-label">Australia</span>
+                        <h3>Australia Awards</h3>
+                        <p>Scholarships for eligible applicants from participating countries, subject to programme and country priorities.</p>
+                        <div class="sch-pills"><span>Government funded</span><span>Selected countries</span></div>
+                    </div>
+                </article>
+
+            </div>
+
+            <div class="sch-note">
+                <strong>Please note:</strong> this is an information guide, not a promise of funding. Availability, eligibility and deadlines change, so verify everything with the official provider before applying. Be careful of anyone who guarantees a scholarship for a fee.
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- CLOSING PANEL -->
+    <section class="sch-final">
+        <div class="sch-wrap">
+            <div class="sch-final-box">
+                <div>
+                    <h2>Not sure which country or scholarship fits you?</h2>
+                    <p>Start with your course, academic background, budget and preferred intake. PJSM can help you organise the questions to ask before you apply.</p>
+                </div>
+                <a class="sch-btn" href="contact.html">Book free counselling</a>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+
+<footer class="pjsm-footer">
+
+    <div class="pjsm-footer-container">
+
+        <!-- BRAND -->
+        <div class="pjsm-footer-box pjsm-footer-about">
+
+            <a href="first.html" class="pjsm-footer-logo">
+                <span class="pjsm-footer-plane">✈</span>
+
+                <span>
+                    PJSM
+                    <small>Education</small>
+                </span>
+            </a>
+
+            <p>
+                Helping students turn their study-abroad dreams
+                into successful international futures through
+                personalised guidance and trusted education
+                consultancy.
+            </p>
+
+            <div class="pjsm-social-links">
+
+                <a href="#" aria-label="Facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+
+                <a href="#" aria-label="LinkedIn">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+
+                <a href="#" aria-label="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+
+                <a href="#" aria-label="YouTube">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- QUICK LINKS -->
+        <div class="pjsm-footer-box">
+
+            <h3>Quick Links</h3>
+
+            <ul>
+                <li><a href="first.html">Home</a></li>
+                <li><a href="destinations.html">Destinations</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="scholarship.html">Scholarships</a></li>
+                <li><a href="process.html">Our Process</a></li>
+                <li><a href="success-stories.html">Success Stories</a></li>
+            </ul>
+
+        </div>
+
+
+        <!-- DESTINATIONS -->
+        <div class="pjsm-footer-box">
+
+            <h3>Study Destinations</h3>
+
+            <ul>
+                <li><a href="destinations.html">Australia</a></li>
+                <li><a href="destinations.html">United Kingdom</a></li>
+                <li><a href="destinations.html">USA</a></li>
+                <li><a href="destinations.html">Canada</a></li>
+                <li><a href="destinations.html">Germany</a></li>
+                <li><a href="destinations.html">Ireland</a></li>
+            </ul>
+
+        </div>
+
+
+        <!-- CONTACT -->
+        <div class="pjsm-footer-box pjsm-footer-contact">
+
+            <h3>Get In Touch</h3>
+
+            <div class="pjsm-contact-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Bangalore, India</span>
+            </div>
+
+            <div class="pjsm-contact-item">
+                <i class="fa-solid fa-phone"></i>
+                <a href="tel:+919121398010">+91 9121398010</a>
+            </div>
+
+            <div class="pjsm-contact-item">
+                <i class="fa-solid fa-envelope"></i>
+                <a href="mailto:PJSMconsultancy@gmail.com">PJSMconsultancy@gmail.com</a>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- BOTTOM -->
+    <div class="pjsm-footer-bottom-inner">
+
+    <p>
+        © 2026 PJSM Education. All rights reserved.
+    </p>
+
+    <div class="pjsm-footer-bottom-links">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <span>•</span>
+        <a href="refund.html">Refund Policy</a>
+        <span>•</span>
+        <a href="terms-conditions.html">Terms &amp; Conditions</a>
+    </div>
+
+</div>
+
+    </div>
+
+</footer>
+
+<script src="script.js"></script>
+
+<script>
+    /* Country filter (self-contained, does not touch the menu code in script.js) */
+    (function () {
+        var buttons = document.querySelectorAll(".sch-filter");
+        var cards = document.querySelectorAll("#country-guides .sch-card");
+
+        buttons.forEach(function (button) {
+            button.addEventListener("click", function () {
+                var filter = button.getAttribute("data-filter");
+
+                buttons.forEach(function (b) {
+                    var active = b === button;
+                    b.classList.toggle("is-active", active);
+                    b.setAttribute("aria-pressed", active ? "true" : "false");
+                });
+
+                cards.forEach(function (card) {
+                    var show = filter === "all" || card.getAttribute("data-region") === filter;
+                    card.classList.toggle("sch-hidden", !show);
+                });
+            });
+        });
+    })();
+    
+</script>
+
+</body>
+</html>

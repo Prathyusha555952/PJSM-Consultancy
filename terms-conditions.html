@@ -321,6 +321,681 @@
 
 
     <!-- BOTTOM -->
+    <div class="pjsm-footer-bottom-inner">
+
+    <p>
+        © 2026 PJSM Education. All rights reserved.
+    </p>
+
+ 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Thank You for Contacting Us | PJSM Education</title>
+    <meta name="description" content="Thank you for contacting PJSM Education. Reach our team through email or WhatsApp for study abroad guidance.">
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        :root {
+            --ty-navy: #101d3a;
+            --ty-blue: #1d3f75;
+            --ty-gold: #e7ad54;
+            --ty-muted: #68758b;
+            --ty-border: #e8edf5;
+            --ty-green: #20a967;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .ty-main {
+            position: relative;
+            overflow: hidden;
+            padding: 85px 20px 100px;
+            background:
+                radial-gradient(ellipse at 10% 15%, rgba(231, 173, 84, 0.13), transparent 34%),
+                radial-gradient(ellipse at 90% 80%, rgba(38, 91, 157, 0.12), transparent 35%),
+                #f7f9fd;
+        }
+
+        .ty-main::before,
+        .ty-main::after {
+            content: "";
+            position: absolute;
+            border: 1px solid rgba(29, 63, 117, 0.08);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .ty-main::before {
+            width: 360px;
+            height: 360px;
+            top: -180px;
+            right: -90px;
+        }
+
+        .ty-main::after {
+            width: 260px;
+            height: 260px;
+            bottom: -130px;
+            left: -80px;
+        }
+
+        .ty-container {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .ty-card {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 55px 55px 48px;
+            background: rgba(255, 255, 255, 0.96);
+            border: 1px solid rgba(225, 232, 243, 0.95);
+            border-radius: 28px;
+            box-shadow: 0 25px 75px rgba(16, 29, 58, 0.09);
+            text-align: center;
+            animation: tyAppear 0.8s ease both;
+        }
+
+        .ty-success-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 88px;
+            height: 88px;
+            margin: 0 auto 26px;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 35px;
+            background: linear-gradient(145deg, #26b875, #148b55);
+            box-shadow: 0 12px 28px rgba(32, 169, 103, 0.23);
+            animation: tyPop 0.65s 0.2s ease both;
+        }
+
+        .ty-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            margin-bottom: 18px;
+            color: #9b6b25;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2.2px;
+            text-transform: uppercase;
+        }
+
+        .ty-eyebrow::before,
+        .ty-eyebrow::after {
+            content: "";
+            width: 23px;
+            height: 1px;
+            background: var(--ty-gold);
+        }
+
+        .ty-card h1 {
+            margin: 0 0 20px;
+            color: var(--ty-navy);
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(36px, 5vw, 54px);
+            line-height: 1.16;
+            letter-spacing: -1.2px;
+        }
+
+        .ty-card h1 span {
+            color: #c58b37;
+        }
+
+        .ty-intro {
+            max-width: 570px;
+            margin: 0 auto;
+            color: var(--ty-muted);
+            font-size: 16px;
+            line-height: 1.9;
+        }
+
+        .ty-divider {
+            width: 70px;
+            height: 3px;
+            margin: 30px auto;
+            border-radius: 5px;
+            background: linear-gradient(90deg, var(--ty-gold), #f3d49b);
+        }
+
+        .ty-contact-heading {
+            margin: 0 0 8px;
+            color: var(--ty-navy);
+            font-size: 21px;
+            font-weight: 800;
+        }
+
+        .ty-contact-subheading {
+            margin: 0 0 25px;
+            color: var(--ty-muted);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .ty-contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+            text-align: left;
+        }
+
+        .ty-contact-card {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            min-width: 0;
+            padding: 22px 19px;
+            border: 1px solid var(--ty-border);
+            border-radius: 18px;
+            background: #fff;
+            text-decoration: none;
+            transition: transform 0.25s ease,
+                        box-shadow 0.25s ease,
+                        border-color 0.25s ease;
+        }
+
+        .ty-contact-card:hover {
+            transform: translateY(-5px);
+            border-color: #d8e2f1;
+            box-shadow: 0 15px 35px rgba(16, 29, 58, 0.09);
+        }
+
+        .ty-contact-icon {
+            display: flex;
+            flex: 0 0 54px;
+            align-items: center;
+            justify-content: center;
+            width: 54px;
+            height: 54px;
+            border-radius: 15px;
+            font-size: 25px;
+        }
+
+        .ty-email-icon {
+            color: #234d83;
+            background: #edf4ff;
+        }
+
+        .ty-whatsapp-icon {
+            color: #fff;
+            background: var(--ty-green);
+        }
+
+        .ty-contact-copy {
+            min-width: 0;
+            flex: 1;
+        }
+
+        .ty-contact-label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--ty-muted);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .ty-contact-title {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--ty-navy);
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        .ty-contact-detail {
+            display: block;
+            overflow-wrap: anywhere;
+            color: #52647f;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .ty-contact-arrow {
+            flex: 0 0 auto;
+            color: #98a5b9;
+            font-size: 14px;
+        }
+
+        .ty-note {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-top: 24px;
+            padding: 16px 18px;
+            border: 1px solid #f1e5ce;
+            border-radius: 14px;
+            background: #fffbf4;
+            color: #76613e;
+            text-align: left;
+            font-size: 13px;
+            line-height: 1.75;
+        }
+
+        .ty-note i {
+            margin-top: 3px;
+            color: #c58b37;
+        }
+
+        .ty-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .ty-home-btn,
+        .ty-back-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            min-height: 49px;
+            padding: 13px 23px;
+            border-radius: 10px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .ty-home-btn {
+            color: #fff;
+            background: var(--ty-navy);
+            box-shadow: 0 7px 18px rgba(16, 29, 58, 0.15);
+        }
+
+        .ty-home-btn:hover {
+            transform: translateY(-2px);
+            background: #1c345e;
+        }
+
+        .ty-back-btn {
+            color: var(--ty-navy);
+            border: 1px solid #dce4ef;
+            background: #fff;
+        }
+
+        .ty-back-btn:hover {
+            transform: translateY(-2px);
+            background: #f3f6fb;
+        }
+
+        .ty-footer-note {
+            margin: 24px 0 0;
+            color: #8b96a8;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        @keyframes tyAppear {
+            from {
+                opacity: 0;
+                transform: translateY(22px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes tyPop {
+            0% {
+                opacity: 0;
+                transform: scale(0.55);
+            }
+            75% {
+                transform: scale(1.08);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .ty-main {
+                padding: 48px 14px 60px;
+            }
+
+            .ty-card {
+                padding: 38px 20px 30px;
+                border-radius: 22px;
+            }
+
+            .ty-success-icon {
+                width: 72px;
+                height: 72px;
+                font-size: 29px;
+            }
+
+            .ty-card h1 {
+                font-size: 38px;
+            }
+
+            .ty-intro {
+                font-size: 14px;
+            }
+
+            .ty-contact-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .ty-contact-card {
+                padding: 17px 15px;
+            }
+
+            .ty-contact-icon {
+                flex-basis: 48px;
+                width: 48px;
+                height: 48px;
+                font-size: 22px;
+            }
+
+            .ty-actions {
+                flex-direction: column;
+            }
+
+            .ty-home-btn,
+            .ty-back-btn {
+                width: 100%;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .ty-card,
+            .ty-success-icon {
+                animation: none;
+            }
+
+            .ty-contact-card,
+            .ty-home-btn,
+            .ty-back-btn {
+                transition: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="header">
+    <div class="container nav-container">
+
+        <a href="first.html" class="logo">
+            <span class="plane-logo">✈</span>
+            <span style="color:#ffffff !important;">PJSM</span>
+        </a>
+
+        <nav class="navbar" id="navbar">
+            <a href="first.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="destinations.html">Destinations</a>
+            <a href="services.html">Services</a>
+            <a href="courses.html">Courses</a>
+            <a href="process.html">Process</a>
+            <a href="success-stories.html">Success Stories</a>
+            <a href="contact.html" class="nav-button">Free Counselling</a>
+        </nav>
+
+        <button class="menu-btn" id="menuBtn" type="button"
+                aria-label="Open navigation menu">
+            ☰
+        </button>
+
+    </div>
+</header>
+
+
+<main class="ty-main">
+
+    <div class="ty-container">
+
+        <section class="ty-card">
+
+            <div class="ty-success-icon" aria-hidden="true">
+                <i class="fa-solid fa-check"></i>
+            </div>
+
+            <div class="ty-eyebrow">MESSAGE RECEIVED</div>
+
+            <h1>
+                Thank You for<br>
+                <span>Contacting Us.</span>
+            </h1>
+
+            <p class="ty-intro">
+                We appreciate you reaching out to PJSM Education.
+                Your interest in your international education journey
+                means a lot to us. Our team is here to help you take
+                the next step with confidence.
+            </p>
+
+            <div class="ty-divider"></div>
+
+            <h2 class="ty-contact-heading">We're Just a Message Away</h2>
+
+            <p class="ty-contact-subheading">
+                Have a question or need assistance? Feel free to contact
+                us directly using either option below.
+            </p>
+
+            <div class="ty-contact-grid">
+
+                <!-- EMAIL CONTACT -->
+                <a class="ty-contact-card"
+                   href="mailto:PJSMconsultancy@gmail.com?subject=Enquiry%20for%20PJSM%20Education">
+
+                    <span class="ty-contact-icon ty-email-icon">
+                        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                    </span>
+
+                    <span class="ty-contact-copy">
+                        <span class="ty-contact-label">WRITE TO US</span>
+                        <span class="ty-contact-title">Email Us</span>
+                        <span class="ty-contact-detail">
+                            PJSMconsultancy@gmail.com
+                        </span>
+                    </span>
+
+                    <i class="fa-solid fa-arrow-up-right-from-square ty-contact-arrow"
+                       aria-hidden="true"></i>
+                </a>
+
+
+                <!-- WHATSAPP CONTACT -->
+                <a class="ty-contact-card"
+                   href="https://wa.me/919121398010?text=Hello%20PJSM%20Education%2C%20I%20would%20like%20to%20know%20more%20about%20your%20services."
+                   target="_blank"
+                   rel="noopener noreferrer">
+
+                    <span class="ty-contact-icon ty-whatsapp-icon">
+                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+                    </span>
+
+                    <span class="ty-contact-copy">
+                        <span class="ty-contact-label">CHAT WITH OUR TEAM</span>
+                        <span class="ty-contact-title">WhatsApp Us</span>
+                        <span class="ty-contact-detail">
+                            +91 91213 98010
+                        </span>
+                    </span>
+
+                    <i class="fa-solid fa-arrow-up-right-from-square ty-contact-arrow"
+                       aria-hidden="true"></i>
+                </a>
+
+            </div>
+
+            <div class="ty-note">
+                <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                <span>
+                    Our team will review your enquiry and get in touch
+                    as soon as possible. If you need immediate assistance,
+                    please email us or send us a message on WhatsApp.
+                </span>
+            </div>
+
+            <div class="ty-actions">
+
+                <a href="first.html" class="ty-home-btn">
+                    <i class="fa-solid fa-house" aria-hidden="true"></i>
+                    Back to Home
+                </a>
+
+                <a href="destinations.html" class="ty-back-btn">
+                    Explore Destinations
+                    <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </a>
+
+            </div>
+
+            <p class="ty-footer-note">
+                PJSM Education · Guiding your journey to global opportunities.
+            </p>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+<footer class="pjsm-footer">
+
+    <div class="pjsm-footer-container">
+
+        <!-- BRAND -->
+        <div class="pjsm-footer-box pjsm-footer-about">
+
+            <a href="first.html" class="pjsm-footer-logo">
+                <span class="pjsm-footer-plane">✈</span>
+                <span>
+                    PJSM
+                    <small>Education</small>
+                </span>
+            </a>
+
+            <p>
+                Helping students turn their study-abroad dreams
+                into successful international futures through
+                personalised guidance and trusted education
+                consultancy.
+            </p>
+
+            <div class="pjsm-social-links">
+
+                <a href="#" aria-label="Facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+
+                <a href="#" aria-label="LinkedIn">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+
+                <a href="#" aria-label="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+
+                <a href="#" aria-label="YouTube">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- QUICK LINKS -->
+        <div class="pjsm-footer-box">
+
+            <h3>Quick Links</h3>
+
+            <ul>
+                <li><a href="first.html">Home</a></li>
+                <li><a href="destinations.html">Destinations</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="process.html">Our Process</a></li>
+                <li><a href="success-stories.html">Success Stories</a></li>
+            </ul>
+
+        </div>
+
+
+        <!-- DESTINATIONS -->
+        <div class="pjsm-footer-box">
+
+            <h3>Study Destinations</h3>
+
+            <ul>
+                <li><a href="destinations.html">Australia</a></li>
+                <li><a href="destinations.html">United Kingdom</a></li>
+                <li><a href="destinations.html">USA</a></li>
+                <li><a href="destinations.html">Canada</a></li>
+                <li><a href="destinations.html">Germany</a></li>
+                <li><a href="destinations.html">Ireland</a></li>
+            </ul>
+
+        </div>
+
+
+        <!-- CONTACT -->
+        <div class="pjsm-footer-box pjsm-footer-contact">
+
+            <h3>Get In Touch</h3>
+
+            <div class="pjsm-contact-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Bangalore, India</span>
+            </div>
+
+            <div class="pjsm-contact-item">
+                <i class="fa-solid fa-phone"></i>
+                <a href="tel:+919121398010">+91 9121398010</a>
+            </div>
+
+            <div class="pjsm-contact-item">
+                <i class="fa-solid fa-envelope"></i>
+                <a href="mailto:PJSMconsultancy@gmail.com">
+                    PJSMconsultancy@gmail.com
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER BOTTOM -->
     <div class="pjsm-footer-bottom">
 
         <div class="pjsm-footer-bottom-inner">
@@ -330,13 +1005,25 @@
             </p>
 
             <div class="pjsm-footer-bottom-links">
-                              <a href="privacy-policy.html">Privacy Policy</a>
-<span>•</span>
-<a href="terms-conditions.html">Terms & Conditions</a>
-
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <span>•</span>
+                <a href="refund-policy.html">Refund Policy</a>
+                <span>•</span>
+                <a href="terms-conditions.html">Terms &amp; Conditions</a>
             </div>
 
         </div>
+
+    </div>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
+
 
     </div>
 

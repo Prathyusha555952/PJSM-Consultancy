@@ -18,6 +18,18 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
           <link rel="icon" type="image/x-icon" href="favicon.ico">
 
+
+<style id="process-sticky-images">
+.process-page .process-content-layout { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr); align-items:start; gap:clamp(28px,5vw,64px); }
+.process-page .process-left,.process-page .process-right { min-width:0; }
+.process-page .journey-timeline { display:flex; flex-direction:column; gap:22px; }
+.process-page .process-right { position:sticky; top:105px; align-self:start; display:grid; gap:18px; max-height:calc(100vh - 125px); overflow-y:auto; scrollbar-width:thin; padding:4px; }
+.process-page .process-side-image { position:relative; width:100%; min-width:0; overflow:hidden; border-radius:18px; background:#edf2f5; box-shadow:0 12px 30px rgba(16,36,51,.12); }
+.process-page .process-side-image img { display:block; width:100%; height:clamp(180px,28vh,300px); object-fit:cover; object-position:center; border-radius:inherit; }
+@media (max-width:900px) and (min-width:701px) { .process-page .process-content-layout { grid-template-columns:minmax(0,1.1fr) minmax(240px,.9fr); gap:24px; } .process-page .process-right { top:90px; max-height:calc(100vh - 105px); gap:14px; } .process-page .process-side-image img { height:clamp(160px,24vh,240px); } }
+@media (max-width:700px) { .process-page .process-content-layout { grid-template-columns:minmax(0,1fr); gap:26px; } .process-page .process-right { position:static; top:auto; max-height:none; overflow:visible; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; padding:0; } .process-page .process-side-image img { height:clamp(135px,38vw,220px); } }
+</style>
+
 </head>
 
 
@@ -58,7 +70,9 @@
             <a href="services.html">
                 Services
             </a>
-
+             <a href="scholarship.html">
+                Scholarships
+            </a>
             <a href="courses.html">
                 Courses
             </a>
@@ -509,6 +523,7 @@
                 <li><a href="destinations.html">Destinations</a></li>
                 <li><a href="courses.html">Courses</a></li>
                 <li><a href="services.html">Services</a></li>
+                <li><a href="scholarship.html">Scholarships</a></li>
                 <li><a href="process.html">Our Process</a></li>
                 <li><a href="success-stories.html">Success Stories</a></li>
             </ul>
@@ -563,22 +578,21 @@
 
 
     <!-- BOTTOM -->
-    <div class="pjsm-footer-bottom">
+  <div class="pjsm-footer-bottom-inner">
 
-        <div class="pjsm-footer-bottom-inner">
+    <p>
+        © 2026 PJSM Education. All rights reserved.
+    </p>
 
-            <p>
-                © 2026 PJSM Education. All rights reserved.
-            </p>
+    <div class="pjsm-footer-bottom-links">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <span>•</span>
+        <a href="refund.html">Refund Policy</a>
+        <span>•</span>
+        <a href="terms-conditions.html">Terms &amp; Conditions</a>
+    </div>
 
-            <div class="pjsm-footer-bottom-links">
-                             <a href="privacy-policy.html">Privacy Policy</a>
-<span>•</span>
-<a href="terms-conditions.html">Terms & Conditions</a>
-
-            </div>
-
-        </div>
+</div>
 
     </div>
 
